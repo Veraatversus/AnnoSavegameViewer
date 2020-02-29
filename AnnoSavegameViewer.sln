@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29709.97
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AnnoSavegameViewer", "AnnoSavegameViewer\AnnoSavegameViewer.csproj", "{F2AB5B80-8E7F-4E86-81AC-CD4C3F54D38C}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AssetFormat", "AssetFormat\AssetFormat.csproj", "{EE06FDB2-EBD1-4296-88B2-4594F8CCDA03}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AnnoRdaExtractInsert", "AnnoRdaExtractInsert\AnnoRdaExtractInsert.csproj", "{E02C92F8-BD4D-4E12-8BAC-C23C11F2AF82}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F2AB5B80-8E7F-4E86-81AC-CD4C3F54D38C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F2AB5B80-8E7F-4E86-81AC-CD4C3F54D38C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F2AB5B80-8E7F-4E86-81AC-CD4C3F54D38C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F2AB5B80-8E7F-4E86-81AC-CD4C3F54D38C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EE06FDB2-EBD1-4296-88B2-4594F8CCDA03}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EE06FDB2-EBD1-4296-88B2-4594F8CCDA03}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EE06FDB2-EBD1-4296-88B2-4594F8CCDA03}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EE06FDB2-EBD1-4296-88B2-4594F8CCDA03}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E02C92F8-BD4D-4E12-8BAC-C23C11F2AF82}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E02C92F8-BD4D-4E12-8BAC-C23C11F2AF82}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E02C92F8-BD4D-4E12-8BAC-C23C11F2AF82}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E02C92F8-BD4D-4E12-8BAC-C23C11F2AF82}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C2873989-848C-4CFC-A0E9-A3AA15223344}
+	EndGlobalSection
+EndGlobal

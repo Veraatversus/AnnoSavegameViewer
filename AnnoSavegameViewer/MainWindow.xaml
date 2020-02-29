@@ -1,0 +1,65 @@
+﻿<Window
+  x:Class="AnnoSavegameViewer.MainWindow"
+  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+  xmlns:local="clr-namespace:AnnoSavegameViewer"
+  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+  Title="Anno 1800 - Savegame Viewer"
+  Width="850"
+  Height="650"
+  Foreground="White"
+  TextElement.FontSize="15"
+  mc:Ignorable="d">
+  <Window.Background>
+    <ImageBrush ImageSource="Resources/Anno1800_Fortification_Concept.jpg" Stretch="UniformToFill" />
+  </Window.Background>
+  <Grid Margin="10">
+    <Grid.RowDefinitions>
+      <RowDefinition Height="24" />
+      <RowDefinition Height="10" />
+      <RowDefinition Height="*" />
+    </Grid.RowDefinitions>
+    <Grid Grid.Row="0">
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="Auto" />
+        <ColumnDefinition Width="5" />
+        <ColumnDefinition Width="100" />
+        <ColumnDefinition Width="5" />
+        <ColumnDefinition Width="Auto" />
+        <ColumnDefinition Width="5" />
+        <ColumnDefinition Width="*" />
+        <ColumnDefinition Width="30" />
+        <ColumnDefinition Width="5" />
+        <ColumnDefinition Width="150" />
+      </Grid.ColumnDefinitions>
+
+      <TextBlock Grid.Column="0" Text="Mode:" />
+      <ComboBox x:Name="cbMode" Grid.Column="2" SelectionChanged="cbMode_SelectionChanged">
+        <TextBlock Text="Items" />
+        <TextBlock Text="Buildings" />
+        <TextBlock Text="Upgrades" />
+      </ComboBox>
+
+      <TextBlock Grid.Column="4" VerticalAlignment="Center" Text="File:" />
+      <TextBlock
+        x:Name="tbSaveFileName"
+        Grid.Column="6"
+        VerticalAlignment="Center"
+        Text="{Binding Path=(local:ProgrammSettings.CurrentSavegame).FilePath}" />
+      <Button
+        x:Name="btnLoadSavegame"
+        Grid.Column="7"
+        Height="24"
+        Padding="5,0"
+        VerticalAlignment="Bottom"
+        Click="btnLoadSavegame_Click"
+        Content=". . ." />
+
+      <ComboBox x:Name="ComboBoxLanguage" Grid.Column="9" ItemsSource="{Binding Source={x:Static local:ProgrammSettings.PossibleLanguages}}" />
+    </Grid>
+    <Grid Grid.Row="2">
+      <ContentPresenter x:Name="Presenter" />
+    </Grid>
+  </Grid>
+</Window>
