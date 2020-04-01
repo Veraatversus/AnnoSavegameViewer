@@ -1,4 +1,5 @@
 using AnnoSavegameViewer.Serialization.Core;
+using System.Collections.Generic;
 
 namespace AnnoSavegameViewer.Structures.Savegame.Generated {
 
@@ -6,6 +7,9 @@ namespace AnnoSavegameViewer.Structures.Savegame.Generated {
 
     [BinaryContent(Name = "TimeUntilUpdate", NodeType = BinaryContentTypes.Attribute)]
     public object TimeUntilUpdate { get; set; }
+
+    [BinaryContent(Name = "TimeUntilAttack", NodeType = BinaryContentTypes.Attribute)]
+    public object TimeUntilAttack { get; set; }
 
     [BinaryContent(Name = "TimeUntilBuild", NodeType = BinaryContentTypes.Attribute)]
     public object TimeUntilBuild { get; set; }
@@ -28,14 +32,11 @@ namespace AnnoSavegameViewer.Structures.Savegame.Generated {
     [BinaryContent(Name = "IsThreatened", NodeType = BinaryContentTypes.Attribute)]
     public object IsThreatened { get; set; }
 
-    [BinaryContent(Name = "MilitaryShipLimit", NodeType = BinaryContentTypes.Attribute)]
-    public object MilitaryShipLimit { get; set; }
-
     [BinaryContent(Name = "MaxFleetSize", NodeType = BinaryContentTypes.Attribute)]
     public object MaxFleetSize { get; set; }
 
-    [BinaryContent(Name = "TimeUntilAttack", NodeType = BinaryContentTypes.Attribute)]
-    public object TimeUntilAttack { get; set; }
+    [BinaryContent(Name = "MilitaryShipLimit", NodeType = BinaryContentTypes.Attribute)]
+    public object MilitaryShipLimit { get; set; }
 
     [BinaryContent(Name = "CurrentStrengthLevel", NodeType = BinaryContentTypes.Node)]
     public CurrentStrengthLevel CurrentStrengthLevel { get; set; }

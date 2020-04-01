@@ -1,10 +1,9 @@
 using AnnoSavegameViewer.Serialization.Core;
+using System.Collections.Generic;
 
 namespace AnnoSavegameViewer.Structures.Savegame.Generated {
 
   public class Attackable {
-
-    #region Public Properties
 
     [BinaryContent(Name = "LastAttackerID", NodeType = BinaryContentTypes.Attribute)]
     public object LastAttackerID { get; set; }
@@ -24,14 +23,14 @@ namespace AnnoSavegameViewer.Structures.Savegame.Generated {
     [BinaryContent(Name = "HealTickRemainder", NodeType = BinaryContentTypes.Attribute)]
     public object HealTickRemainder { get; set; }
 
+    [BinaryContent(Name = "IsWhiteFlagActive", NodeType = BinaryContentTypes.Attribute)]
+    public object IsWhiteFlagActive { get; set; }
+
     [BinaryContent(Name = "RemainderDamage", NodeType = BinaryContentTypes.Attribute)]
     public object RemainderDamage { get; set; }
 
     [BinaryContent(Name = "IsDead", NodeType = BinaryContentTypes.Attribute)]
     public object IsDead { get; set; }
-
-    [BinaryContent(Name = "HitPoints", NodeType = BinaryContentTypes.Attribute)]
-    public object HitPoints { get; set; }
 
     [BinaryContent(Name = "LastDamageOwner", NodeType = BinaryContentTypes.Node)]
     public LastDamageOwner LastDamageOwner { get; set; }
@@ -45,6 +44,5 @@ namespace AnnoSavegameViewer.Structures.Savegame.Generated {
     [BinaryContent(Name = "ManagedAttackersByRange", NodeType = BinaryContentTypes.Node)]
     public ManagedAttackersByRange ManagedAttackersByRange { get; set; }
 
-    #endregion Public Properties
   }
 }

@@ -3,7 +3,8 @@ using AnnoSavegameViewer.Controls.Loading;
 using AnnoSavegameViewer.Templates;
 using Microsoft.Win32;
 using System;
-using System.IO.Compression;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
 using System.Windows;
 
 namespace AnnoSavegameViewer {
@@ -11,7 +12,7 @@ namespace AnnoSavegameViewer {
   /// <summary>
   /// Interaction logic for MainWindow.xaml
   /// </summary>
-  public partial class MainWindow : Window {
+  public partial class MainWindow : Window, INotifyPropertyChanged {
 
     #region Public Constructors
 
@@ -19,6 +20,7 @@ namespace AnnoSavegameViewer {
       ProgrammSettings.MainWindow = this;
       InitializeComponent();
       Loaded += MainWindow_Loaded;
+      DataContext = this;
       ComboBoxLanguage.SelectedItem = ProgrammSettings.Language;
       ComboBoxLanguage.SelectionChanged += ComboBoxLanguage_SelectionChanged;
     }
@@ -27,13 +29,23 @@ namespace AnnoSavegameViewer {
 
     #region Public Events
 
+    public event PropertyChangedEventHandler PropertyChanged;
+
     public event Action SaveGameChanged;
 
     #endregion Public Events
 
+    #region Public Methods
+
+    public void RaisePropertyChanged([CallerMemberName]string name = "") {
+      PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+    }
+
+    #endregion Public Methods
+
     #region Private Methods
 
-    private void MainWindow_Loaded(object sender, RoutedEventArgs e) {
+    private async void MainWindow_Loaded(object sender, RoutedEventArgs e) {
       cbMode.SelectedIndex = 0;
     }
 
@@ -41,9 +53,8 @@ namespace AnnoSavegameViewer {
       if (ComboBoxLanguage.SelectedItem is Languages lang) {
         ProgrammSettings.Language = lang;
       }
-      var temp = DataContext;
       DataContext = null;
-      DataContext = temp;
+      DataContext = this;
     }
 
     private void cbMode_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e) {

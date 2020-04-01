@@ -1,4 +1,5 @@
 using AnnoSavegameViewer.Serialization.Core;
+using System.Collections.Generic;
 
 namespace AnnoSavegameViewer.Structures.Savegame.Generated {
 
@@ -8,7 +9,7 @@ namespace AnnoSavegameViewer.Structures.Savegame.Generated {
     public object TransporterRange { get; set; }
 
     [BinaryContent(Name = "ProductionState", NodeType = BinaryContentTypes.Node)]
-    public ProductionState ProductionState { get; set; }
+    public HeatProviderProductionState ProductionState { get; set; }
 
   }
 }

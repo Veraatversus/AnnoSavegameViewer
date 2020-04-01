@@ -21,7 +21,7 @@
         <Border BorderBrush="#FF554628" BorderThickness="1" CornerRadius="5">
           <TreeView ItemsSource="{Binding ItemsHolder.SelectedItemTree}">
             <TreeView.Background>
-              <SolidColorBrush Opacity="0.5" Color="White" />
+              <SolidColorBrush Opacity="0.7" Color="White" />
             </TreeView.Background>
             <TreeView.ItemTemplate>
               <HierarchicalDataTemplate ItemsSource="{Binding}">

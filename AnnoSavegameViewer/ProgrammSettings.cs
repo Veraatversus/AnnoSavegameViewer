@@ -35,7 +35,7 @@ namespace AnnoSavegameViewer {
         return language;
       }
       set {
-        if (language != value && PossibleLanguages.Contains(value)) {
+        if (PossibleLanguages.Contains(value)) {
           language = value;
           LoadLanguageFile();
           OnLanguageChanged?.Invoke();

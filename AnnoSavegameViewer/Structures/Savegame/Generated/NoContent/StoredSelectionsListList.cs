@@ -6,7 +6,7 @@ namespace AnnoSavegameViewer.Structures.Savegame.Generated {
   public class StoredSelectionsListList {
 
     [BinaryContent(Name = "None", NodeType = BinaryContentTypes.Node)]
-    public List<StoredSelectionsListListList> StoredSelectionsListListList { get; set; }
+    public StoredSelectionsListListList StoredSelectionsListListList { get; set; }
 
   }
 }

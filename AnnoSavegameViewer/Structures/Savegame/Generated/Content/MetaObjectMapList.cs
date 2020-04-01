@@ -1,4 +1,5 @@
 using AnnoSavegameViewer.Serialization.Core;
+using System.Collections.Generic;
 
 namespace AnnoSavegameViewer.Structures.Savegame.Generated {
 
@@ -31,9 +32,6 @@ namespace AnnoSavegameViewer.Structures.Savegame.Generated {
     [BinaryContent(Name = "MetaInteraction", NodeType = BinaryContentTypes.Node)]
     public MetaInteraction MetaInteraction { get; set; }
 
-    [BinaryContent(Name = "MetaExpeditionUser", NodeType = BinaryContentTypes.Node)]
-    public MetaExpeditionUser MetaExpeditionUser { get; set; }
-
     [BinaryContent(Name = "MetaProfileCounter", NodeType = BinaryContentTypes.Node)]
     public MetaProfileCounter MetaProfileCounter { get; set; }
 
@@ -43,14 +41,20 @@ namespace AnnoSavegameViewer.Structures.Savegame.Generated {
     [BinaryContent(Name = "MetaTrader", NodeType = BinaryContentTypes.Node)]
     public MetaTrader MetaTrader { get; set; }
 
-    [BinaryContent(Name = "MetaBuildPermits", NodeType = BinaryContentTypes.Node)]
-    public MetaBuildPermits MetaBuildPermits { get; set; }
-
     [BinaryContent(Name = "MetaConstructionAI", NodeType = BinaryContentTypes.Node)]
     public MetaConstructionAI MetaConstructionAI { get; set; }
 
     [BinaryContent(Name = "BuyShares", NodeType = BinaryContentTypes.Node)]
     public BuyShares BuyShares { get; set; }
+
+    [BinaryContent(Name = "MetaUniqueBuildingHandler", NodeType = BinaryContentTypes.Node)]
+    public MetaUniqueBuildingHandler MetaUniqueBuildingHandler { get; set; }
+
+    [BinaryContent(Name = "MetaExpeditionUser", NodeType = BinaryContentTypes.Node)]
+    public MetaExpeditionUser MetaExpeditionUser { get; set; }
+
+    [BinaryContent(Name = "MetaBuildPermits", NodeType = BinaryContentTypes.Node)]
+    public MetaBuildPermits MetaBuildPermits { get; set; }
 
   }
 }

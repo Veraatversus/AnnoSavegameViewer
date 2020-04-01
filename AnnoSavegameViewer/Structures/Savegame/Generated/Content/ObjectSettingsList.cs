@@ -1,4 +1,5 @@
 using AnnoSavegameViewer.Serialization.Core;
+using System.Collections.Generic;
 
 namespace AnnoSavegameViewer.Structures.Savegame.Generated {
 
@@ -13,11 +14,17 @@ namespace AnnoSavegameViewer.Structures.Savegame.Generated {
     [BinaryContent(Name = "SpawnActionIndicies", NodeType = BinaryContentTypes.Attribute)]
     public object SpawnActionIndicies { get; set; }
 
-    [BinaryContent(Name = "StarterConditionKey", NodeType = BinaryContentTypes.Attribute)]
-    public object StarterConditionKey { get; set; }
-
     [BinaryContent(Name = "QuestGiver", NodeType = BinaryContentTypes.Attribute)]
     public object QuestGiver { get; set; }
+
+    [BinaryContent(Name = "ObjectGUID", NodeType = BinaryContentTypes.Attribute)]
+    public object ObjectGUID { get; set; }
+
+    [BinaryContent(Name = "DespawnDelay", NodeType = BinaryContentTypes.Attribute)]
+    public object DespawnDelay { get; set; }
+
+    [BinaryContent(Name = "StarterConditionKey", NodeType = BinaryContentTypes.Attribute)]
+    public object StarterConditionKey { get; set; }
 
     [BinaryContent(Name = "ScannerSpawnInfo", NodeType = BinaryContentTypes.Node)]
     public ObjectSettingsListScannerSpawnInfo ScannerSpawnInfo { get; set; }

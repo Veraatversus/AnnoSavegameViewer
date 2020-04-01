@@ -5,8 +5,6 @@ namespace AnnoSavegameViewer.Structures.Savegame.Generated {
 
   public class ConditionsListActionsList {
 
-    #region Public Properties
-
     [BinaryContent(Name = "QuestID", NodeType = BinaryContentTypes.Attribute)]
     public List<object> QuestID { get; set; }
 
@@ -40,6 +38,24 @@ namespace AnnoSavegameViewer.Structures.Savegame.Generated {
     [BinaryContent(Name = "IsNetSafe", NodeType = BinaryContentTypes.Attribute)]
     public object IsNetSafe { get; set; }
 
+    [BinaryContent(Name = "SpawnGUID", NodeType = BinaryContentTypes.Attribute)]
+    public object SpawnGUID { get; set; }
+
+    [BinaryContent(Name = "Amount", NodeType = BinaryContentTypes.Attribute)]
+    public object Amount { get; set; }
+
+    [BinaryContent(Name = "CollectCount", NodeType = BinaryContentTypes.Attribute)]
+    public object CollectCount { get; set; }
+
+    [BinaryContent(Name = "ConditionTutorialKey", NodeType = BinaryContentTypes.Attribute)]
+    public object ConditionTutorialKey { get; set; }
+
+    [BinaryContent(Name = "Quest", NodeType = BinaryContentTypes.Attribute)]
+    public object Quest { get; set; }
+
+    [BinaryContent(Name = "InheritQuestSession", NodeType = BinaryContentTypes.Attribute)]
+    public object InheritQuestSession { get; set; }
+
     [BinaryContent(Name = "UnlockAssetGUID", NodeType = BinaryContentTypes.Attribute)]
     public object UnlockAssetGUID { get; set; }
 
@@ -55,11 +71,11 @@ namespace AnnoSavegameViewer.Structures.Savegame.Generated {
     [BinaryContent(Name = "ClampValueMax", NodeType = BinaryContentTypes.Attribute)]
     public object ClampValueMax { get; set; }
 
-    [BinaryContent(Name = "Quest", NodeType = BinaryContentTypes.Attribute)]
-    public object Quest { get; set; }
+    [BinaryContent(Name = "TriggerAsset", NodeType = BinaryContentTypes.Attribute)]
+    public object TriggerAsset { get; set; }
 
-    [BinaryContent(Name = "WinQuest", NodeType = BinaryContentTypes.Attribute)]
-    public object WinQuest { get; set; }
+    [BinaryContent(Name = "ExecutionDelay", NodeType = BinaryContentTypes.Attribute)]
+    public object ExecutionDelay { get; set; }
 
     [BinaryContent(Name = "ChangeForProcessingParticipant", NodeType = BinaryContentTypes.Attribute)]
     public object ChangeForProcessingParticipant { get; set; }
@@ -67,14 +83,11 @@ namespace AnnoSavegameViewer.Structures.Savegame.Generated {
     [BinaryContent(Name = "QuestPoolListToChange", NodeType = BinaryContentTypes.Attribute)]
     public object QuestPoolListToChange { get; set; }
 
-    [BinaryContent(Name = "ExecutionDelay", NodeType = BinaryContentTypes.Attribute)]
-    public object ExecutionDelay { get; set; }
-
-    [BinaryContent(Name = "TriggerAsset", NodeType = BinaryContentTypes.Attribute)]
-    public object TriggerAsset { get; set; }
-
     [BinaryContent(Name = "UnregisterTrigger", NodeType = BinaryContentTypes.Attribute)]
     public object UnregisterTrigger { get; set; }
+
+    [BinaryContent(Name = "QuestGUID", NodeType = BinaryContentTypes.Attribute)]
+    public object QuestGUID { get; set; }
 
     [BinaryContent(Name = "ResetAssetGUID", NodeType = BinaryContentTypes.Attribute)]
     public object ResetAssetGUID { get; set; }
@@ -136,8 +149,11 @@ namespace AnnoSavegameViewer.Structures.Savegame.Generated {
     [BinaryContent(Name = "ActionListFailure", NodeType = BinaryContentTypes.Node)]
     public ActionListFailure ActionListFailure { get; set; }
 
-    [BinaryContent(Name = "SpecifyParticipant", NodeType = BinaryContentTypes.Node)]
-    public SpecifyParticipant SpecifyParticipant { get; set; }
+    [BinaryContent(Name = "NotificationType", NodeType = BinaryContentTypes.Node)]
+    public ConditionsListActionsListNotificationType NotificationType { get; set; }
+
+    [BinaryContent(Name = "Notification", NodeType = BinaryContentTypes.Node)]
+    public Notification Notification { get; set; }
 
     [BinaryContent(Name = "DelayVariable", NodeType = BinaryContentTypes.Node)]
     public ConditionsListActionsListDelayVariable DelayVariable { get; set; }
@@ -148,12 +164,8 @@ namespace AnnoSavegameViewer.Structures.Savegame.Generated {
     [BinaryContent(Name = "DelayedActions", NodeType = BinaryContentTypes.Node)]
     public ConditionsListActionsListDelayedActions DelayedActions { get; set; }
 
-    [BinaryContent(Name = "NotificationType", NodeType = BinaryContentTypes.Node)]
-    public ConditionsListActionsListNotificationType NotificationType { get; set; }
+    [BinaryContent(Name = "SpecifyParticipant", NodeType = BinaryContentTypes.Node)]
+    public SpecifyParticipant SpecifyParticipant { get; set; }
 
-    [BinaryContent(Name = "Notification", NodeType = BinaryContentTypes.Node)]
-    public ConditionsListActionsListNotification Notification { get; set; }
-
-    #endregion Public Properties
   }
 }

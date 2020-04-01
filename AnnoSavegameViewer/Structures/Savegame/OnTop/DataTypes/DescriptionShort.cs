@@ -9,7 +9,7 @@ namespace AnnoSavegameViewer.Structures.Savegame {
     #region Public Properties
 
     [BinaryContent(Name = "GUID", NodeType = BinaryContentTypes.Attribute)]
-    public new short GUID { get => (short)base.GUID; set=> base.GUID = value; }
+    public new short GUID { get => (short)base.GUID; set => base.GUID = value; }
 
     public virtual string CurrentLang => ProgrammSettings.Texts[GUID];
 

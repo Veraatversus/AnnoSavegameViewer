@@ -1,4 +1,5 @@
 using AnnoSavegameViewer.Serialization.Core;
+using System.Collections.Generic;
 
 namespace AnnoSavegameViewer.Structures.Savegame.Generated {
 
@@ -19,8 +20,11 @@ namespace AnnoSavegameViewer.Structures.Savegame.Generated {
     [BinaryContent(Name = "AverageNeedSaturation", NodeType = BinaryContentTypes.Attribute)]
     public object AverageNeedSaturation { get; set; }
 
-    [BinaryContent(Name = "Influence", NodeType = BinaryContentTypes.Attribute)]
-    public object Influence { get; set; }
+    [BinaryContent(Name = "NewspaperMoneyOutput", NodeType = BinaryContentTypes.Attribute)]
+    public object NewspaperMoneyOutput { get; set; }
+
+    [BinaryContent(Name = "LogisticDirty", NodeType = BinaryContentTypes.Attribute)]
+    public object LogisticDirty { get; set; }
 
     [BinaryContent(Name = "ResidenceState", NodeType = BinaryContentTypes.Node)]
     public ResidenceState ResidenceState { get; set; }

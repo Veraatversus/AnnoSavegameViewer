@@ -1,11 +1,12 @@
 using AnnoSavegameViewer.Serialization.Core;
+using System.Collections.Generic;
 
 namespace AnnoSavegameViewer.Structures.Savegame.Generated {
 
   public class SpawnObjectList {
 
     [BinaryContent(Name = "None", NodeType = BinaryContentTypes.Node)]
-    public SpawnObjectListList SpawnObjectListList { get; set; }
+    public List<SpawnObjectListList> SpawnObjectListList { get; set; }
 
   }
 }

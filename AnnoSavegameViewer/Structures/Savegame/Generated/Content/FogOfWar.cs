@@ -5,17 +5,17 @@ namespace AnnoSavegameViewer.Structures.Savegame.Generated {
 
   public class FogOfWar {
 
-    [BinaryContent(Name = "FowIsland", NodeType = BinaryContentTypes.Attribute)]
-    public object FowIsland { get; set; }
-
     [BinaryContent(Name = "IsInitialized", NodeType = BinaryContentTypes.Attribute)]
-    public List<object> IsInitialized { get; set; }
+    public object IsInitialized { get; set; }
 
     [BinaryContent(Name = "DiscoverRadius", NodeType = BinaryContentTypes.Attribute)]
     public object DiscoverRadius { get; set; }
 
     [BinaryContent(Name = "FOWArea", NodeType = BinaryContentTypes.Attribute)]
     public object FOWArea { get; set; }
+
+    [BinaryContent(Name = "FowIsland", NodeType = BinaryContentTypes.Attribute)]
+    public object FowIsland { get; set; }
 
     [BinaryContent(Name = "FOWGrid", NodeType = BinaryContentTypes.Node)]
     public FOWGrid FOWGrid { get; set; }

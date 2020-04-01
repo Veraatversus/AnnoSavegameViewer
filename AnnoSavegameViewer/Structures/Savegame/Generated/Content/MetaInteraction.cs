@@ -1,4 +1,5 @@
 using AnnoSavegameViewer.Serialization.Core;
+using System.Collections.Generic;
 
 namespace AnnoSavegameViewer.Structures.Savegame.Generated {
 
@@ -7,11 +8,11 @@ namespace AnnoSavegameViewer.Structures.Savegame.Generated {
     [BinaryContent(Name = "NextMilitaryCalculation", NodeType = BinaryContentTypes.Attribute)]
     public object NextMilitaryCalculation { get; set; }
 
-    [BinaryContent(Name = "NextWorkingConditionsEvaluation", NodeType = BinaryContentTypes.Attribute)]
-    public object NextWorkingConditionsEvaluation { get; set; }
-
     [BinaryContent(Name = "LastMilitaryValue", NodeType = BinaryContentTypes.Attribute)]
     public object LastMilitaryValue { get; set; }
+
+    [BinaryContent(Name = "NextWorkingConditionsEvaluation", NodeType = BinaryContentTypes.Attribute)]
+    public object NextWorkingConditionsEvaluation { get; set; }
 
     [BinaryContent(Name = "PropagandaChances", NodeType = BinaryContentTypes.Node)]
     public PropagandaChances PropagandaChances { get; set; }

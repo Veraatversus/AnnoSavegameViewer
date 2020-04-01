@@ -1,4 +1,5 @@
 using AnnoSavegameViewer.Serialization.Core;
+using System.Collections.Generic;
 
 namespace AnnoSavegameViewer.Structures.Savegame.Generated {
 
@@ -13,23 +14,23 @@ namespace AnnoSavegameViewer.Structures.Savegame.Generated {
     [BinaryContent(Name = "productivity", NodeType = BinaryContentTypes.Attribute)]
     public object Productivity { get; set; }
 
-    [BinaryContent(Name = "heatChance", NodeType = BinaryContentTypes.Attribute)]
-    public object HeatChance { get; set; }
-
-    [BinaryContent(Name = "damage", NodeType = BinaryContentTypes.Attribute)]
-    public object Damage { get; set; }
-
-    [BinaryContent(Name = "residenceHappiness", NodeType = BinaryContentTypes.Attribute)]
-    public object ResidenceHappiness { get; set; }
-
     [BinaryContent(Name = "workingCondF", NodeType = BinaryContentTypes.Attribute)]
     public object WorkingCondF { get; set; }
 
     [BinaryContent(Name = "factoryHappiness", NodeType = BinaryContentTypes.Attribute)]
     public object FactoryHappiness { get; set; }
 
+    [BinaryContent(Name = "residenceHappiness", NodeType = BinaryContentTypes.Attribute)]
+    public object ResidenceHappiness { get; set; }
+
     [BinaryContent(Name = "workingCondR", NodeType = BinaryContentTypes.Attribute)]
     public object WorkingCondR { get; set; }
+
+    [BinaryContent(Name = "satisfaction", NodeType = BinaryContentTypes.Attribute)]
+    public object Satisfaction { get; set; }
+
+    [BinaryContent(Name = "heatChance", NodeType = BinaryContentTypes.Attribute)]
+    public object HeatChance { get; set; }
 
   }
 }

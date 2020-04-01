@@ -1,4 +1,5 @@
 using AnnoSavegameViewer.Serialization.Core;
+using System.Collections.Generic;
 
 namespace AnnoSavegameViewer.Structures.Savegame.Generated {
 
@@ -10,6 +11,9 @@ namespace AnnoSavegameViewer.Structures.Savegame.Generated {
     [BinaryContent(Name = "AreaID", NodeType = BinaryContentTypes.Attribute)]
     public object AreaID { get; set; }
 
+    [BinaryContent(Name = "VanishGoods", NodeType = BinaryContentTypes.Attribute)]
+    public object VanishGoods { get; set; }
+
     [BinaryContent(Name = "TradeRouteID", NodeType = BinaryContentTypes.Attribute)]
     public object TradeRouteID { get; set; }
 
@@ -19,8 +23,11 @@ namespace AnnoSavegameViewer.Structures.Savegame.Generated {
     [BinaryContent(Name = "ThrowGoodsOverboard", NodeType = BinaryContentTypes.Attribute)]
     public object ThrowGoodsOverboard { get; set; }
 
-    [BinaryContent(Name = "VanishGoods", NodeType = BinaryContentTypes.Attribute)]
-    public object VanishGoods { get; set; }
+    [BinaryContent(Name = "WaitUntilFull", NodeType = BinaryContentTypes.Attribute)]
+    public object WaitUntilFull { get; set; }
+
+    [BinaryContent(Name = "WaitUntilEmpty", NodeType = BinaryContentTypes.Attribute)]
+    public object WaitUntilEmpty { get; set; }
 
     [BinaryContent(Name = "GoodInfos", NodeType = BinaryContentTypes.Node)]
     public GoodInfos GoodInfos { get; set; }

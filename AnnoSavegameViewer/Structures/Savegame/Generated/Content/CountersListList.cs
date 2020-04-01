@@ -1,10 +1,9 @@
 using AnnoSavegameViewer.Serialization.Core;
+using System.Collections.Generic;
 
 namespace AnnoSavegameViewer.Structures.Savegame.Generated {
 
   public class CountersListList {
-
-    #region Public Properties
 
     [BinaryContent(Name = "Context", NodeType = BinaryContentTypes.Attribute)]
     public object Context { get; set; }
@@ -15,6 +14,5 @@ namespace AnnoSavegameViewer.Structures.Savegame.Generated {
     [BinaryContent(Name = "PlayerCounter", NodeType = BinaryContentTypes.Node)]
     public CountersListListPlayerCounter PlayerCounter { get; set; }
 
-    #endregion Public Properties
   }
 }

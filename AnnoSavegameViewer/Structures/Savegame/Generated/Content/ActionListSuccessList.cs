@@ -1,10 +1,9 @@
 using AnnoSavegameViewer.Serialization.Core;
+using System.Collections.Generic;
 
 namespace AnnoSavegameViewer.Structures.Savegame.Generated {
 
   public class ActionListSuccessList {
-
-    #region Public Properties
 
     [BinaryContent(Name = "Quest", NodeType = BinaryContentTypes.Attribute)]
     public object Quest { get; set; }
@@ -39,6 +38,5 @@ namespace AnnoSavegameViewer.Structures.Savegame.Generated {
     [BinaryContent(Name = "OpenNewspaperType", NodeType = BinaryContentTypes.Node)]
     public OpenNewspaperType OpenNewspaperType { get; set; }
 
-    #endregion Public Properties
   }
 }

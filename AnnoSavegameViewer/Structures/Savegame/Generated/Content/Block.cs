@@ -1,10 +1,9 @@
 using AnnoSavegameViewer.Serialization.Core;
+using System.Collections.Generic;
 
 namespace AnnoSavegameViewer.Structures.Savegame.Generated {
 
   public class Block {
-
-    #region Public Properties
 
     [BinaryContent(Name = "mode", NodeType = BinaryContentTypes.Attribute)]
     public object Mode { get; set; }
@@ -21,6 +20,5 @@ namespace AnnoSavegameViewer.Structures.Savegame.Generated {
     [BinaryContent(Name = "values", NodeType = BinaryContentTypes.Node)]
     public Values Values { get; set; }
 
-    #endregion Public Properties
   }
 }

@@ -1,10 +1,9 @@
 using AnnoSavegameViewer.Serialization.Core;
+using System.Collections.Generic;
 
 namespace AnnoSavegameViewer.Structures.Savegame.Generated {
 
   public class CargoItemsList {
-
-    #region Public Properties
 
     [BinaryContent(Name = "ID", NodeType = BinaryContentTypes.Attribute)]
     public object ID { get; set; }
@@ -12,6 +11,5 @@ namespace AnnoSavegameViewer.Structures.Savegame.Generated {
     [BinaryContent(Name = "GUID", NodeType = BinaryContentTypes.Attribute)]
     public object GUID { get; set; }
 
-    #endregion Public Properties
   }
 }

@@ -1,4 +1,5 @@
 using AnnoSavegameViewer.Serialization.Core;
+using System.Collections.Generic;
 
 namespace AnnoSavegameViewer.Structures.Savegame.Generated {
 
@@ -19,11 +20,14 @@ namespace AnnoSavegameViewer.Structures.Savegame.Generated {
     [BinaryContent(Name = "IsMainObjective", NodeType = BinaryContentTypes.Attribute)]
     public object IsMainObjective { get; set; }
 
+    [BinaryContent(Name = "SuccessorObjectiveID", NodeType = BinaryContentTypes.Attribute)]
+    public object SuccessorObjectiveID { get; set; }
+
     [BinaryContent(Name = "ObjectiveIndex", NodeType = BinaryContentTypes.Attribute)]
     public object ObjectiveIndex { get; set; }
 
-    [BinaryContent(Name = "SuccessorObjectiveID", NodeType = BinaryContentTypes.Attribute)]
-    public object SuccessorObjectiveID { get; set; }
+    [BinaryContent(Name = "QuestTrackerIcon", NodeType = BinaryContentTypes.Attribute)]
+    public object QuestTrackerIcon { get; set; }
 
     [BinaryContent(Name = "JumpToVisibility", NodeType = BinaryContentTypes.Node)]
     public JumpToVisibility JumpToVisibility { get; set; }

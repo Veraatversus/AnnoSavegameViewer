@@ -1,10 +1,9 @@
 using AnnoSavegameViewer.Serialization.Core;
+using System.Collections.Generic;
 
 namespace AnnoSavegameViewer.Structures.Savegame.Generated {
 
   public class ConstructionQueue {
-
-    #region Public Properties
 
     [BinaryContent(Name = "LastBuildTime", NodeType = BinaryContentTypes.Attribute)]
     public object LastBuildTime { get; set; }
@@ -27,6 +26,8 @@ namespace AnnoSavegameViewer.Structures.Savegame.Generated {
     [BinaryContent(Name = "SoftRequiredMaterials", NodeType = BinaryContentTypes.Node)]
     public SoftRequiredMaterials SoftRequiredMaterials { get; set; }
 
-    #endregion Public Properties
+    [BinaryContent(Name = "PriorityHandler", NodeType = BinaryContentTypes.Node)]
+    public PriorityHandler PriorityHandler { get; set; }
+
   }
 }

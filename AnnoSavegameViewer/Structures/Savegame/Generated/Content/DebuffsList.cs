@@ -1,10 +1,9 @@
 using AnnoSavegameViewer.Serialization.Core;
+using System.Collections.Generic;
 
 namespace AnnoSavegameViewer.Structures.Savegame.Generated {
 
   public class DebuffsList {
-
-    #region Public Properties
 
     [BinaryContent(Name = "DebuffEnd", NodeType = BinaryContentTypes.Attribute)]
     public object DebuffEnd { get; set; }
@@ -12,6 +11,5 @@ namespace AnnoSavegameViewer.Structures.Savegame.Generated {
     [BinaryContent(Name = "DiceDebuff", NodeType = BinaryContentTypes.Attribute)]
     public object DiceDebuff { get; set; }
 
-    #endregion Public Properties
   }
 }

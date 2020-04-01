@@ -1,13 +1,18 @@
 using AnnoSavegameViewer.Serialization.Core;
+using System.Collections.Generic;
 
 namespace AnnoSavegameViewer.Structures.Savegame.Generated {
 
   public class ConstructionAI {
 
-    #region Public Properties
-
     [BinaryContent(Name = "SessionGUID", NodeType = BinaryContentTypes.Attribute)]
     public object SessionGUID { get; set; }
+
+    [BinaryContent(Name = "NextCityBlockID", NodeType = BinaryContentTypes.Attribute)]
+    public object NextCityBlockID { get; set; }
+
+    [BinaryContent(Name = "NextProductionBlockID", NodeType = BinaryContentTypes.Attribute)]
+    public object NextProductionBlockID { get; set; }
 
     [BinaryContent(Name = "AITIme", NodeType = BinaryContentTypes.Attribute)]
     public object AITIme { get; set; }
@@ -18,17 +23,14 @@ namespace AnnoSavegameViewer.Structures.Savegame.Generated {
     [BinaryContent(Name = "SessionRole", NodeType = BinaryContentTypes.Attribute)]
     public object SessionRole { get; set; }
 
+    [BinaryContent(Name = "NotifiedPeers", NodeType = BinaryContentTypes.Attribute)]
+    public object NotifiedPeers { get; set; }
+
     [BinaryContent(Name = "MainIsland", NodeType = BinaryContentTypes.Attribute)]
     public object MainIsland { get; set; }
 
-    [BinaryContent(Name = "NextCityBlockID", NodeType = BinaryContentTypes.Attribute)]
-    public object NextCityBlockID { get; set; }
-
-    [BinaryContent(Name = "NextProductionBlockID", NodeType = BinaryContentTypes.Attribute)]
-    public object NextProductionBlockID { get; set; }
-
-    [BinaryContent(Name = "NotifiedPeers", NodeType = BinaryContentTypes.Attribute)]
-    public object NotifiedPeers { get; set; }
+    [BinaryContent(Name = "NextCulturalBlockID", NodeType = BinaryContentTypes.Attribute)]
+    public object NextCulturalBlockID { get; set; }
 
     [BinaryContent(Name = "Job", NodeType = BinaryContentTypes.Node)]
     public Job Job { get; set; }
@@ -114,6 +116,5 @@ namespace AnnoSavegameViewer.Structures.Savegame.Generated {
     [BinaryContent(Name = "Seamines", NodeType = BinaryContentTypes.Node)]
     public Seamines Seamines { get; set; }
 
-    #endregion Public Properties
   }
 }

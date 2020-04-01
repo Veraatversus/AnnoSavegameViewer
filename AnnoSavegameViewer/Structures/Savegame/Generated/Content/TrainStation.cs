@@ -1,4 +1,5 @@
 using AnnoSavegameViewer.Serialization.Core;
+using System.Collections.Generic;
 
 namespace AnnoSavegameViewer.Structures.Savegame.Generated {
 
@@ -14,7 +15,7 @@ namespace AnnoSavegameViewer.Structures.Savegame.Generated {
     public object M_LoadCapacity { get; set; }
 
     [BinaryContent(Name = "WaypointList", NodeType = BinaryContentTypes.Node)]
-    public TrainStationWaypointList WaypointList { get; set; }
+    public WaypointList WaypointList { get; set; }
 
     [BinaryContent(Name = "BlockedTrainInfos", NodeType = BinaryContentTypes.Node)]
     public BlockedTrainInfos BlockedTrainInfos { get; set; }

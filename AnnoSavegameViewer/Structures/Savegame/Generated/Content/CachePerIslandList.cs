@@ -1,10 +1,9 @@
 using AnnoSavegameViewer.Serialization.Core;
+using System.Collections.Generic;
 
 namespace AnnoSavegameViewer.Structures.Savegame.Generated {
 
   public class CachePerIslandList {
-
-    #region Public Properties
 
     [BinaryContent(Name = "Ownage", NodeType = BinaryContentTypes.Attribute)]
     public object Ownage { get; set; }
@@ -18,6 +17,5 @@ namespace AnnoSavegameViewer.Structures.Savegame.Generated {
     [BinaryContent(Name = "CoastErros", NodeType = BinaryContentTypes.Node)]
     public CoastErros CoastErros { get; set; }
 
-    #endregion Public Properties
   }
 }

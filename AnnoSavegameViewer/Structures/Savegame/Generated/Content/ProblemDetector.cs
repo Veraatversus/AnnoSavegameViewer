@@ -1,4 +1,5 @@
 using AnnoSavegameViewer.Serialization.Core;
+using System.Collections.Generic;
 
 namespace AnnoSavegameViewer.Structures.Savegame.Generated {
 
@@ -21,6 +22,9 @@ namespace AnnoSavegameViewer.Structures.Savegame.Generated {
 
     [BinaryContent(Name = "LastForceRemove", NodeType = BinaryContentTypes.Attribute)]
     public object LastForceRemove { get; set; }
+
+    [BinaryContent(Name = "ShipSolveCount", NodeType = BinaryContentTypes.Attribute)]
+    public object ShipSolveCount { get; set; }
 
     [BinaryContent(Name = "ForceReconstruct", NodeType = BinaryContentTypes.Attribute)]
     public object ForceReconstruct { get; set; }

@@ -14,5 +14,11 @@ namespace AnnoSavegameViewer.Structures.Savegame.Generated {
     [BinaryContent(Name = "NextShipNameIndex", NodeType = BinaryContentTypes.Node)]
     public List<NextShipNameIndex> NextShipNameIndex { get; set; }
 
+    [BinaryContent(Name = "ParticipantSpecificNames", NodeType = BinaryContentTypes.Node)]
+    public ParticipantSpecificNames ParticipantSpecificNames { get; set; }
+
+    [BinaryContent(Name = "ParticipantSpecificNamesUsed", NodeType = BinaryContentTypes.Node)]
+    public ParticipantSpecificNamesUsed ParticipantSpecificNamesUsed { get; set; }
+
   }
 }

@@ -1,4 +1,5 @@
 using AnnoSavegameViewer.Serialization.Core;
+using System.Collections.Generic;
 
 namespace AnnoSavegameViewer.Structures.Savegame.Generated {
 
@@ -12,6 +13,9 @@ namespace AnnoSavegameViewer.Structures.Savegame.Generated {
 
     [BinaryContent(Name = "Required", NodeType = BinaryContentTypes.Attribute)]
     public object Required { get; set; }
+
+    [BinaryContent(Name = "Blocked", NodeType = BinaryContentTypes.Attribute)]
+    public object Blocked { get; set; }
 
   }
 }

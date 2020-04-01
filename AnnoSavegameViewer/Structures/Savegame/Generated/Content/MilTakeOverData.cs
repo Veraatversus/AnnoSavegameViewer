@@ -1,4 +1,5 @@
 using AnnoSavegameViewer.Serialization.Core;
+using System.Collections.Generic;
 
 namespace AnnoSavegameViewer.Structures.Savegame.Generated {
 
@@ -18,6 +19,9 @@ namespace AnnoSavegameViewer.Structures.Savegame.Generated {
 
     [BinaryContent(Name = "WarMoraleOvertakeCalculated", NodeType = BinaryContentTypes.Attribute)]
     public object WarMoraleOvertakeCalculated { get; set; }
+
+    [BinaryContent(Name = "LowMoraleNotificationSent", NodeType = BinaryContentTypes.Attribute)]
+    public object LowMoraleNotificationSent { get; set; }
 
     [BinaryContent(Name = "MoralSubstracters", NodeType = BinaryContentTypes.Node)]
     public MoralSubstracters MoralSubstracters { get; set; }

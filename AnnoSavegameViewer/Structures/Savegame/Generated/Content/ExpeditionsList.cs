@@ -1,4 +1,5 @@
 using AnnoSavegameViewer.Serialization.Core;
+using System.Collections.Generic;
 
 namespace AnnoSavegameViewer.Structures.Savegame.Generated {
 
@@ -33,6 +34,9 @@ namespace AnnoSavegameViewer.Structures.Savegame.Generated {
 
     [BinaryContent(Name = "worldMapAssetCreated", NodeType = BinaryContentTypes.Attribute)]
     public object WorldMapAssetCreated { get; set; }
+
+    [BinaryContent(Name = "expeditionSlot", NodeType = BinaryContentTypes.Attribute)]
+    public object ExpeditionSlot { get; set; }
 
     [BinaryContent(Name = "owner", NodeType = BinaryContentTypes.Node)]
     public Owner Owner { get; set; }

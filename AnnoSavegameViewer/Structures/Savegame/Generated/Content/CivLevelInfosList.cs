@@ -1,10 +1,9 @@
 using AnnoSavegameViewer.Serialization.Core;
+using System.Collections.Generic;
 
 namespace AnnoSavegameViewer.Structures.Savegame.Generated {
 
   public class CivLevelInfosList {
-
-    #region Public Properties
 
     [BinaryContent(Name = "PersonCount", NodeType = BinaryContentTypes.Attribute)]
     public object PersonCount { get; set; }
@@ -18,6 +17,5 @@ namespace AnnoSavegameViewer.Structures.Savegame.Generated {
     [BinaryContent(Name = "WorkforceConsumed", NodeType = BinaryContentTypes.Attribute)]
     public object WorkforceConsumed { get; set; }
 
-    #endregion Public Properties
   }
 }

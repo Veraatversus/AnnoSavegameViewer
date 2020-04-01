@@ -1,8 +1,12 @@
 using AnnoSavegameViewer.Serialization.Core;
+using System.Collections.Generic;
 
 namespace AnnoSavegameViewer.Structures.Savegame.Generated {
 
   public class FunFactSettings {
+
+    [BinaryContent(Name = "ScopeContext", NodeType = BinaryContentTypes.Attribute)]
+    public object ScopeContext { get; set; }
 
     [BinaryContent(Name = "Value", NodeType = BinaryContentTypes.Attribute)]
     public object Value { get; set; }

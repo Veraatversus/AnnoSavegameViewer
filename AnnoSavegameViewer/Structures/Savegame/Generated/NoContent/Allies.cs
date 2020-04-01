@@ -1,11 +1,12 @@
 using AnnoSavegameViewer.Serialization.Core;
+using System.Collections.Generic;
 
 namespace AnnoSavegameViewer.Structures.Savegame.Generated {
 
   public class Allies {
 
     [BinaryContent(Name = "None", NodeType = BinaryContentTypes.Node)]
-    public AlliesList AlliesList { get; set; }
+    public List<AlliesList> AlliesList { get; set; }
 
   }
 }

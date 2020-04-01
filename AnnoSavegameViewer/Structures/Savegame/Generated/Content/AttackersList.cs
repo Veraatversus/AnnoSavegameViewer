@@ -1,10 +1,12 @@
 using AnnoSavegameViewer.Serialization.Core;
+using System.Collections.Generic;
 
 namespace AnnoSavegameViewer.Structures.Savegame.Generated {
 
   public class AttackersList {
 
-    #region Public Properties
+    [BinaryContent(Name = "AmountOfShares", NodeType = BinaryContentTypes.Attribute)]
+    public object AmountOfShares { get; set; }
 
     [BinaryContent(Name = "AmountOfMorale", NodeType = BinaryContentTypes.Attribute)]
     public object AmountOfMorale { get; set; }
@@ -12,6 +14,5 @@ namespace AnnoSavegameViewer.Structures.Savegame.Generated {
     [BinaryContent(Name = "value", NodeType = BinaryContentTypes.Node)]
     public AttackersListValue Value { get; set; }
 
-    #endregion Public Properties
   }
 }

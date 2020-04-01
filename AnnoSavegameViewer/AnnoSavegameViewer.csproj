@@ -25,12 +25,18 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Structures\Savegame\Generated\Edited\**" />
+    <EmbeddedResource Remove="Structures\Savegame\Generated\Edited\**" />
+    <None Remove="Structures\Savegame\Generated\Edited\**" />
+    <Page Remove="Structures\Savegame\Generated\Edited\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Compile Remove="Program.cs" />
     <Compile Remove="Serialization\Memory\SpanReader2.cs" />
     <Compile Remove="Serialization\Memory\SpanWriter.cs" />
     <Compile Remove="Testing\test.cs" />
     <Compile Remove="Testing\test2.cs" />
-    <Compile Remove="Testing\TreeNodeReader.cs" />
   </ItemGroup>
 
   <ItemGroup>
@@ -42,8 +48,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Include="Resources\Languages\Custom\german.xml" />
     <EmbeddedResource Include="Resources\Languages\Custom\english.xml" />
+    <EmbeddedResource Include="Resources\Languages\Custom\german.xml" />
     <EmbeddedResource Include="Resources\Languages\texts_english.xml" />
     <EmbeddedResource Include="Resources\Languages\texts_german.xml" />
   </ItemGroup>
@@ -56,7 +62,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Structures\Savegame\Generated\Edited\" />
     <Folder Include="Testing\" />
   </ItemGroup>
 

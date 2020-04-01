@@ -1,10 +1,9 @@
 using AnnoSavegameViewer.Serialization.Core;
+using System.Collections.Generic;
 
 namespace AnnoSavegameViewer.Structures.Savegame.Generated {
 
   public class BuildingModule {
-
-    #region Public Properties
 
     [BinaryContent(Name = "ParentFactoryID", NodeType = BinaryContentTypes.Attribute)]
     public object ParentFactoryID { get; set; }
@@ -12,6 +11,5 @@ namespace AnnoSavegameViewer.Structures.Savegame.Generated {
     [BinaryContent(Name = "CultureSlotIndex", NodeType = BinaryContentTypes.Attribute)]
     public object CultureSlotIndex { get; set; }
 
-    #endregion Public Properties
   }
 }

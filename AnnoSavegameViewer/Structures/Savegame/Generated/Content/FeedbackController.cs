@@ -1,4 +1,5 @@
 using AnnoSavegameViewer.Serialization.Core;
+using System.Collections.Generic;
 
 namespace AnnoSavegameViewer.Structures.Savegame.Generated {
 
@@ -10,11 +11,11 @@ namespace AnnoSavegameViewer.Structures.Savegame.Generated {
     [BinaryContent(Name = "SequenceStartTime", NodeType = BinaryContentTypes.Attribute)]
     public object SequenceStartTime { get; set; }
 
-    [BinaryContent(Name = "IsFeedbackEnabled", NodeType = BinaryContentTypes.Attribute)]
-    public object IsFeedbackEnabled { get; set; }
-
     [BinaryContent(Name = "ForcedActorVariation", NodeType = BinaryContentTypes.Attribute)]
     public object ForcedActorVariation { get; set; }
+
+    [BinaryContent(Name = "IsFeedbackEnabled", NodeType = BinaryContentTypes.Attribute)]
+    public object IsFeedbackEnabled { get; set; }
 
     [BinaryContent(Name = "OverrideSequence", NodeType = BinaryContentTypes.Node)]
     public OverrideSequence OverrideSequence { get; set; }

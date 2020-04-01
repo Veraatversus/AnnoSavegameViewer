@@ -1,4 +1,5 @@
 using AnnoSavegameViewer.Serialization.Core;
+using System.Collections.Generic;
 
 namespace AnnoSavegameViewer.Structures.Savegame.Generated {
 
@@ -28,20 +29,20 @@ namespace AnnoSavegameViewer.Structures.Savegame.Generated {
     [BinaryContent(Name = "RoutePausedSince", NodeType = BinaryContentTypes.Attribute)]
     public object RoutePausedSince { get; set; }
 
-    [BinaryContent(Name = "CurrentPointIndex", NodeType = BinaryContentTypes.Attribute)]
-    public object CurrentPointIndex { get; set; }
-
     [BinaryContent(Name = "ReverseDirection", NodeType = BinaryContentTypes.Attribute)]
     public object ReverseDirection { get; set; }
 
     [BinaryContent(Name = "EscortID", NodeType = BinaryContentTypes.Attribute)]
     public object EscortID { get; set; }
 
-    [BinaryContent(Name = "EscortPriority", NodeType = BinaryContentTypes.Attribute)]
-    public object EscortPriority { get; set; }
+    [BinaryContent(Name = "CurrentPointIndex", NodeType = BinaryContentTypes.Attribute)]
+    public object CurrentPointIndex { get; set; }
 
     [BinaryContent(Name = "TargetPosition", NodeType = BinaryContentTypes.Attribute)]
     public object TargetPosition { get; set; }
+
+    [BinaryContent(Name = "EscortPriority", NodeType = BinaryContentTypes.Attribute)]
+    public object EscortPriority { get; set; }
 
     [BinaryContent(Name = "m_PathPlannerLayer", NodeType = BinaryContentTypes.Node)]
     public M_PathPlannerLayer M_PathPlannerLayer { get; set; }

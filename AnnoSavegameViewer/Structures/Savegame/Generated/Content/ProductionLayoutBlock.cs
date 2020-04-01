@@ -1,4 +1,5 @@
 using AnnoSavegameViewer.Serialization.Core;
+using System.Collections.Generic;
 
 namespace AnnoSavegameViewer.Structures.Savegame.Generated {
 
@@ -13,11 +14,11 @@ namespace AnnoSavegameViewer.Structures.Savegame.Generated {
     [BinaryContent(Name = "BlockedTiles", NodeType = BinaryContentTypes.Attribute)]
     public object BlockedTiles { get; set; }
 
-    [BinaryContent(Name = "ContainsNonOrnamentals", NodeType = BinaryContentTypes.Attribute)]
-    public object ContainsNonOrnamentals { get; set; }
-
     [BinaryContent(Name = "AllStreetsFinalized", NodeType = BinaryContentTypes.Attribute)]
     public object AllStreetsFinalized { get; set; }
+
+    [BinaryContent(Name = "ContainsNonOrnamentals", NodeType = BinaryContentTypes.Attribute)]
+    public object ContainsNonOrnamentals { get; set; }
 
     [BinaryContent(Name = "OneStreetFinalized", NodeType = BinaryContentTypes.Attribute)]
     public object OneStreetFinalized { get; set; }

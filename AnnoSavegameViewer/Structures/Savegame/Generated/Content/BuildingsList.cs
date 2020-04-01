@@ -1,10 +1,9 @@
 using AnnoSavegameViewer.Serialization.Core;
+using System.Collections.Generic;
 
 namespace AnnoSavegameViewer.Structures.Savegame.Generated {
 
   public class BuildingsList {
-
-    #region Public Properties
 
     [BinaryContent(Name = "Pos", NodeType = BinaryContentTypes.Attribute)]
     public object Pos { get; set; }
@@ -18,14 +17,11 @@ namespace AnnoSavegameViewer.Structures.Savegame.Generated {
     [BinaryContent(Name = "ReqSecurityBase", NodeType = BinaryContentTypes.Attribute)]
     public object ReqSecurityBase { get; set; }
 
-    [BinaryContent(Name = "ProvSecurity", NodeType = BinaryContentTypes.Attribute)]
-    public object ProvSecurity { get; set; }
-
     [BinaryContent(Name = "GUID", NodeType = BinaryContentTypes.Attribute)]
     public object GUID { get; set; }
 
-    [BinaryContent(Name = "HarborOffice", NodeType = BinaryContentTypes.Attribute)]
-    public object HarborOffice { get; set; }
+    [BinaryContent(Name = "ProvSecurity", NodeType = BinaryContentTypes.Attribute)]
+    public object ProvSecurity { get; set; }
 
     [BinaryContent(Name = "harborBlocker", NodeType = BinaryContentTypes.Node)]
     public HarborBlocker HarborBlocker { get; set; }
@@ -33,6 +29,5 @@ namespace AnnoSavegameViewer.Structures.Savegame.Generated {
     [BinaryContent(Name = "Shippaths", NodeType = BinaryContentTypes.Node)]
     public Shippaths Shippaths { get; set; }
 
-    #endregion Public Properties
   }
 }

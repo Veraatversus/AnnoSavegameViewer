@@ -1,8 +1,24 @@
 using AnnoSavegameViewer.Serialization.Core;
+using System.Collections.Generic;
 
 namespace AnnoSavegameViewer.Structures.Savegame.Generated {
 
   public class IslandManager {
+
+    [BinaryContent(Name = "Island60", NodeType = BinaryContentTypes.Node)]
+    public Island60 Island60 { get; set; }
+
+    [BinaryContent(Name = "Island58", NodeType = BinaryContentTypes.Node)]
+    public Island58 Island58 { get; set; }
+
+    [BinaryContent(Name = "Island57", NodeType = BinaryContentTypes.Node)]
+    public Island57 Island57 { get; set; }
+
+    [BinaryContent(Name = "Island56", NodeType = BinaryContentTypes.Node)]
+    public Island56 Island56 { get; set; }
+
+    [BinaryContent(Name = "Island53", NodeType = BinaryContentTypes.Node)]
+    public Island53 Island53 { get; set; }
 
     [BinaryContent(Name = "Island52", NodeType = BinaryContentTypes.Node)]
     public Island52 Island52 { get; set; }
@@ -43,6 +59,9 @@ namespace AnnoSavegameViewer.Structures.Savegame.Generated {
     [BinaryContent(Name = "Island36", NodeType = BinaryContentTypes.Node)]
     public Island36 Island36 { get; set; }
 
+    [BinaryContent(Name = "Island59", NodeType = BinaryContentTypes.Node)]
+    public Island59 Island59 { get; set; }
+
     [BinaryContent(Name = "Island34", NodeType = BinaryContentTypes.Node)]
     public Island34 Island34 { get; set; }
 
@@ -69,18 +88,6 @@ namespace AnnoSavegameViewer.Structures.Savegame.Generated {
 
     [BinaryContent(Name = "Island21", NodeType = BinaryContentTypes.Node)]
     public Island21 Island21 { get; set; }
-
-    [BinaryContent(Name = "Island33", NodeType = BinaryContentTypes.Node)]
-    public Island33 Island33 { get; set; }
-
-    [BinaryContent(Name = "Island20", NodeType = BinaryContentTypes.Node)]
-    public Island20 Island20 { get; set; }
-
-    [BinaryContent(Name = "Island53", NodeType = BinaryContentTypes.Node)]
-    public Island53 Island53 { get; set; }
-
-    [BinaryContent(Name = "Island19", NodeType = BinaryContentTypes.Node)]
-    public Island19 Island19 { get; set; }
 
     [BinaryContent(Name = "Island38", NodeType = BinaryContentTypes.Node)]
     public Island38 Island38 { get; set; }
@@ -114,6 +121,15 @@ namespace AnnoSavegameViewer.Structures.Savegame.Generated {
 
     [BinaryContent(Name = "Island8", NodeType = BinaryContentTypes.Node)]
     public Island8 Island8 { get; set; }
+
+    [BinaryContent(Name = "Island7", NodeType = BinaryContentTypes.Node)]
+    public Island7 Island7 { get; set; }
+
+    [BinaryContent(Name = "Island33", NodeType = BinaryContentTypes.Node)]
+    public Island33 Island33 { get; set; }
+
+    [BinaryContent(Name = "Island20", NodeType = BinaryContentTypes.Node)]
+    public Island20 Island20 { get; set; }
 
     [BinaryContent(Name = "Island29", NodeType = BinaryContentTypes.Node)]
     public Island29 Island29 { get; set; }
@@ -166,23 +182,8 @@ namespace AnnoSavegameViewer.Structures.Savegame.Generated {
     [BinaryContent(Name = "Island23", NodeType = BinaryContentTypes.Node)]
     public Island23 Island23 { get; set; }
 
-    [BinaryContent(Name = "Island60", NodeType = BinaryContentTypes.Node)]
-    public Island60 Island60 { get; set; }
-
-    [BinaryContent(Name = "Island58", NodeType = BinaryContentTypes.Node)]
-    public Island58 Island58 { get; set; }
-
-    [BinaryContent(Name = "Island57", NodeType = BinaryContentTypes.Node)]
-    public Island57 Island57 { get; set; }
-
-    [BinaryContent(Name = "Island56", NodeType = BinaryContentTypes.Node)]
-    public Island56 Island56 { get; set; }
-
-    [BinaryContent(Name = "Island59", NodeType = BinaryContentTypes.Node)]
-    public Island59 Island59 { get; set; }
-
-    [BinaryContent(Name = "Island7", NodeType = BinaryContentTypes.Node)]
-    public Island7 Island7 { get; set; }
+    [BinaryContent(Name = "Island19", NodeType = BinaryContentTypes.Node)]
+    public Island19 Island19 { get; set; }
 
   }
 }

@@ -213,6 +213,9 @@ namespace AnnoSavegameViewer.Serialization.FileDBSerializer {
         else if (tags.TryGetValue(nextId, out var tag)) {
           //Node
           if (nextId < 32768) {
+            if (tag.StartsWith("AreaManager_")) {
+              tag = "AreaManager";
+            }
             yield return (tag, SerializingType.OpenNode, default);
           }
 

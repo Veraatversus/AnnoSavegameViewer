@@ -1,4 +1,5 @@
 using AnnoSavegameViewer.Serialization.Core;
+using System.Collections.Generic;
 
 namespace AnnoSavegameViewer.Structures.Savegame.Generated {
 
@@ -30,9 +31,6 @@ namespace AnnoSavegameViewer.Structures.Savegame.Generated {
 
     [BinaryContent(Name = "SelectedArticles", NodeType = BinaryContentTypes.Attribute)]
     public object SelectedArticles { get; set; }
-
-    [BinaryContent(Name = "IsFavourite", NodeType = BinaryContentTypes.Attribute)]
-    public object IsFavourite { get; set; }
 
     [BinaryContent(Name = "OriginalArticles", NodeType = BinaryContentTypes.Node)]
     public OriginalArticles OriginalArticles { get; set; }

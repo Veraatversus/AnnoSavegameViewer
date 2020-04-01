@@ -43,11 +43,18 @@ namespace AnnoSavegameViewer.Controls {
 
     private void SavegameItemsView_Unloaded(object sender, RoutedEventArgs e) {
       ProgrammSettings.MainWindow.SaveGameChanged -= MainWindow_SaveGameChanged;
+      ProgrammSettings.OnLanguageChanged -= ProgrammSettings_OnLanguageChanged;
     }
 
     private void SavegameItemsView_Loaded(object sender, RoutedEventArgs e) {
       ProgrammSettings.MainWindow.SaveGameChanged += MainWindow_SaveGameChanged;
+      ProgrammSettings.OnLanguageChanged += ProgrammSettings_OnLanguageChanged;
       UpdateUi();
+    }
+
+    private void ProgrammSettings_OnLanguageChanged() {
+      DataContext = null;
+      DataContext = ViewModel;
     }
 
     private void MainWindow_SaveGameChanged() {

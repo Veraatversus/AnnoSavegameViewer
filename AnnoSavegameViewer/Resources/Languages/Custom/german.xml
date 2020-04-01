@@ -13,28 +13,52 @@
       <Text>GUID</Text>
     </Text>
     <Text>
+      <GUID>-100003</GUID>
+      <Text>Anzahl</Text>
+    </Text>
+    <Text>
       <GUID>-100010</GUID>
-      <Text>Player</Text>
+      <Text>Spieler</Text>
     </Text>
     <Text>
       <GUID>-100011</GUID>
-      <Text>Session</Text>
+      <Text>Karte</Text>
     </Text>
     <Text>
       <GUID>-100012</GUID>
-      <Text>Area</Text>
+      <Text>Insel</Text>
     </Text>
     <Text>
       <GUID>-100013</GUID>
-      <Text>Search</Text>
+      <Text>Suche</Text>
     </Text>
     <Text>
       <GUID>-100014</GUID>
-      <Text>Order</Text>
+      <Text>Sortieren nach</Text>
     </Text>
     <Text>
       <GUID>-100030</GUID>
-      <Text>World</Text>
+      <Text>Welt</Text>
+    </Text>
+    <Text>
+      <GUID>-100040</GUID>
+      <Text>Gegenstände</Text>
+    </Text>
+    <Text>
+      <GUID>-100041</GUID>
+      <Text>Gebäude</Text>
+    </Text>
+    <Text>
+      <GUID>-100042</GUID>
+      <Text>Buffs</Text>
+    </Text>
+    <Text>
+      <GUID>-100050</GUID>
+      <Text>Modus:</Text>
+    </Text>
+    <Text>
+      <GUID>-100051</GUID>
+      <Text>Datei:</Text>
     </Text>
   </Texts>
 </TextExport>

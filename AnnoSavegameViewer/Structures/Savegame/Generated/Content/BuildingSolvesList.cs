@@ -1,10 +1,9 @@
 using AnnoSavegameViewer.Serialization.Core;
+using System.Collections.Generic;
 
 namespace AnnoSavegameViewer.Structures.Savegame.Generated {
 
   public class BuildingSolvesList {
-
-    #region Public Properties
 
     [BinaryContent(Name = "Guid", NodeType = BinaryContentTypes.Attribute)]
     public object Guid { get; set; }
@@ -18,6 +17,5 @@ namespace AnnoSavegameViewer.Structures.Savegame.Generated {
     [BinaryContent(Name = "SessionGUID", NodeType = BinaryContentTypes.Attribute)]
     public object SessionGUID { get; set; }
 
-    #endregion Public Properties
   }
 }

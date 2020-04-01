@@ -1,10 +1,12 @@
 using AnnoSavegameViewer.Serialization.Core;
+using System.Collections.Generic;
 
 namespace AnnoSavegameViewer.Structures.Savegame.Generated {
 
   public class ArchiveListList {
 
-    #region Public Properties
+    [BinaryContent(Name = "TitleGUID", NodeType = BinaryContentTypes.Attribute)]
+    public object TitleGUID { get; set; }
 
     [BinaryContent(Name = "TextGUID", NodeType = BinaryContentTypes.Attribute)]
     public object TextGUID { get; set; }
@@ -18,6 +20,12 @@ namespace AnnoSavegameViewer.Structures.Savegame.Generated {
     [BinaryContent(Name = "Infotip", NodeType = BinaryContentTypes.Attribute)]
     public object Infotip { get; set; }
 
+    [BinaryContent(Name = "IsWarning", NodeType = BinaryContentTypes.Attribute)]
+    public object IsWarning { get; set; }
+
+    [BinaryContent(Name = "IsRead", NodeType = BinaryContentTypes.Attribute)]
+    public object IsRead { get; set; }
+
     [BinaryContent(Name = "ID", NodeType = BinaryContentTypes.Attribute)]
     public object ID { get; set; }
 
@@ -26,9 +34,6 @@ namespace AnnoSavegameViewer.Structures.Savegame.Generated {
 
     [BinaryContent(Name = "MinDisplayTime", NodeType = BinaryContentTypes.Attribute)]
     public object MinDisplayTime { get; set; }
-
-    [BinaryContent(Name = "BlockingTime", NodeType = BinaryContentTypes.Attribute)]
-    public object BlockingTime { get; set; }
 
     [BinaryContent(Name = "DisplayTimeout", NodeType = BinaryContentTypes.Attribute)]
     public object DisplayTimeout { get; set; }
@@ -63,39 +68,35 @@ namespace AnnoSavegameViewer.Structures.Savegame.Generated {
     [BinaryContent(Name = "hasInteraction", NodeType = BinaryContentTypes.Attribute)]
     public object HasInteraction { get; set; }
 
-    [BinaryContent(Name = "TitleGUID", NodeType = BinaryContentTypes.Attribute)]
-    public object TitleGUID { get; set; }
-
     [BinaryContent(Name = "JumpLocation", NodeType = BinaryContentTypes.Attribute)]
     public object JumpLocation { get; set; }
 
     [BinaryContent(Name = "Category", NodeType = BinaryContentTypes.Node)]
-    public Category Category { get; set; }
+    public ArchiveListListCategory Category { get; set; }
 
     [BinaryContent(Name = "StringReplacements", NodeType = BinaryContentTypes.Node)]
-    public StringReplacements StringReplacements { get; set; }
+    public ArchiveListListStringReplacements StringReplacements { get; set; }
 
     [BinaryContent(Name = "TextInfo", NodeType = BinaryContentTypes.Node)]
-    public TextInfo TextInfo { get; set; }
+    public ArchiveListListTextInfo TextInfo { get; set; }
 
     [BinaryContent(Name = "FilterType", NodeType = BinaryContentTypes.Node)]
-    public FilterType FilterType { get; set; }
+    public ArchiveListListFilterType FilterType { get; set; }
 
     [BinaryContent(Name = "Group", NodeType = BinaryContentTypes.Node)]
-    public Group Group { get; set; }
+    public ArchiveListListGroup Group { get; set; }
 
     [BinaryContent(Name = "TargetPeer", NodeType = BinaryContentTypes.Node)]
-    public TargetPeer TargetPeer { get; set; }
+    public ArchiveListListTargetPeer TargetPeer { get; set; }
 
     [BinaryContent(Name = "StartTime", NodeType = BinaryContentTypes.Node)]
-    public StartTime StartTime { get; set; }
+    public ArchiveListListStartTime StartTime { get; set; }
 
     [BinaryContent(Name = "EndTime", NodeType = BinaryContentTypes.Node)]
-    public EndTime EndTime { get; set; }
+    public ArchiveListListEndTime EndTime { get; set; }
 
     [BinaryContent(Name = "Interaction", NodeType = BinaryContentTypes.Node)]
     public Interaction Interaction { get; set; }
 
-    #endregion Public Properties
   }
 }

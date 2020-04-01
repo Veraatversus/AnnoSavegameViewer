@@ -1,11 +1,9 @@
 using AnnoSavegameViewer.Serialization.Core;
+using System.Collections.Generic;
 
 namespace AnnoSavegameViewer.Structures.Savegame.Generated {
 
   public class ShareValueFluctuation {
-
-    [BinaryContent(Name = "Fluctuating", NodeType = BinaryContentTypes.Attribute)]
-    public object Fluctuating { get; set; }
 
     [BinaryContent(Name = "NextChange", NodeType = BinaryContentTypes.Attribute)]
     public object NextChange { get; set; }
@@ -15,6 +13,9 @@ namespace AnnoSavegameViewer.Structures.Savegame.Generated {
 
     [BinaryContent(Name = "Offset", NodeType = BinaryContentTypes.Attribute)]
     public object Offset { get; set; }
+
+    [BinaryContent(Name = "Fluctuating", NodeType = BinaryContentTypes.Attribute)]
+    public object Fluctuating { get; set; }
 
   }
 }

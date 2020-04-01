@@ -5,11 +5,8 @@ namespace AnnoSavegameViewer.Structures.Savegame.Generated {
 
   public class ActionQueueIDManagerFreeIDList {
 
-    #region Public Properties
-
     [BinaryContent(Name = "None", NodeType = BinaryContentTypes.Attribute)]
     public List<object> None { get; set; }
 
-    #endregion Public Properties
   }
 }

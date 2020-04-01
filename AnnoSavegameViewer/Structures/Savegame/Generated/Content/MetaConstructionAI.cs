@@ -1,4 +1,5 @@
 using AnnoSavegameViewer.Serialization.Core;
+using System.Collections.Generic;
 
 namespace AnnoSavegameViewer.Structures.Savegame.Generated {
 
@@ -9,6 +10,9 @@ namespace AnnoSavegameViewer.Structures.Savegame.Generated {
 
     [BinaryContent(Name = "AI Time", NodeType = BinaryContentTypes.Attribute)]
     public object AI_Time { get; set; }
+
+    [BinaryContent(Name = "PermissionQueryCount", NodeType = BinaryContentTypes.Attribute)]
+    public object PermissionQueryCount { get; set; }
 
     [BinaryContent(Name = "ThreadState", NodeType = BinaryContentTypes.Node)]
     public ThreadState ThreadState { get; set; }

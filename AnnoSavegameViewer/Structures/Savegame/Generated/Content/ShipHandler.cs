@@ -1,4 +1,5 @@
 using AnnoSavegameViewer.Serialization.Core;
+using System.Collections.Generic;
 
 namespace AnnoSavegameViewer.Structures.Savegame.Generated {
 
@@ -7,11 +8,11 @@ namespace AnnoSavegameViewer.Structures.Savegame.Generated {
     [BinaryContent(Name = "LastDestroyShipTick", NodeType = BinaryContentTypes.Attribute)]
     public object LastDestroyShipTick { get; set; }
 
-    [BinaryContent(Name = "DestroyedIdleShips", NodeType = BinaryContentTypes.Attribute)]
-    public object DestroyedIdleShips { get; set; }
-
     [BinaryContent(Name = "MetaRequestID", NodeType = BinaryContentTypes.Attribute)]
     public object MetaRequestID { get; set; }
+
+    [BinaryContent(Name = "DestroyedIdleShips", NodeType = BinaryContentTypes.Attribute)]
+    public object DestroyedIdleShips { get; set; }
 
     [BinaryContent(Name = "Ships", NodeType = BinaryContentTypes.Node)]
     public Ships Ships { get; set; }

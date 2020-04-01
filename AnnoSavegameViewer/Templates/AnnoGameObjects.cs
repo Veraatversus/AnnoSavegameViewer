@@ -34,6 +34,7 @@ namespace AnnoSavegameViewer.Templates {
           .SessionData
           .BinaryData
           .GameSessionManager
+          .AreaManagers
           .AreaManager[0]
           .AreaObjectManager
           .GameObject
@@ -57,7 +58,7 @@ namespace AnnoSavegameViewer.Templates {
          .ToDictionary(x => x.First, x => x.Second);
 
         //AreaManager
-        foreach (var areaManager in session.SessionData.BinaryData.GameSessionManager.AreaManager) {
+        foreach (var areaManager in session.SessionData.BinaryData.GameSessionManager.AreaManagers.AreaManager) {
           AreaInfos.TryGetValue(areaManager.AreaItemManager.AreaSlotContainer.AreaID, out var areaInfo);
           if (areaInfo != null) {
             foreach (var kontorItem in areaManager.AreaItemManager.AreaSlotContainer.SlotList.AreaSlotContainerSlotListList ?? Enumerable.Empty<AreaSlotContainerSlotListList>()) {
@@ -92,17 +93,21 @@ namespace AnnoSavegameViewer.Templates {
               });
 
               foreach (var slotItem in gameObject.ItemContainer?.SlotContainer?.SlotList?.SlotContainerSlotListList ?? Enumerable.Empty<SlotContainerSlotListList>()) {
-                if (slotItem?.Stack?.StackList?.GUID != null) {
-                  Items.Add(new AnnoItem {
-                    GUID = slotItem.Stack.StackList.GUID,
-                    Amount = slotItem.ProductStackSize,
-                    InUse = false,
-                    Participant = participant,
-                    ParentObject = gameObject,
-                    AreaManager = areaManager,
-                    AreaInfo = areaInfo,
-                    Session = session
-                  });
+                if (slotItem?.Stack?.StackList != null) {
+                  foreach (var stack in slotItem?.Stack?.StackList) {
+                    if (stack?.GUID != null) {
+                      Items.Add(new AnnoItem {
+                        GUID = stack.GUID,
+                        Amount = slotItem.ProductStackSize > 0 ? slotItem.ProductStackSize : 1,
+                        InUse = false,
+                        Participant = participant,
+                        ParentObject = gameObject,
+                        AreaManager = areaManager,
+                        AreaInfo = areaInfo,
+                        Session = session
+                      });
+                    }
+                  }
                 }
               }
 
@@ -215,18 +220,14 @@ namespace AnnoSavegameViewer.Templates {
 // Enumerable.Empty<GameObjectObjectsList>()) //.Where(ao => ao.ShipMaintenance != null ||
 // (ao.Building != null && ProgrammSettings.Texts.ContainsKey(ao.Guid))) //.ToLookup(go => go.)
 // //.ToLookup(go => go.); //var array = new Dictionary<> //foreach (var Participant in
-// ParticipantsObjects) { //}
+// ParticipantsObjects) { //} foreach (var areaManager in
+// session.SessionData.BinaryData.GameSessionManager.AreaManager) { var gameobjectlist =
+// areaManager.AreaObjectManager.GameObject.Objects?.GameObjectsList; if (gameobjectlist == null) {
+// continue; } if (AreaInfos.ContainsKey(areaManager.AreaItemManager.AreaSlotContainer.AreaID)) {
+// continue; } foreach (var areaObject in
+// areaManager.AreaObjectManager.GameObject.Objects?.GameObjectsList) { //Set Participants Names (GUIDs)
 
-// foreach (var areaManager in session.SessionData.BinaryData.GameSessionManager.AreaManager) { var
-// gameobjectlist = areaManager.AreaObjectManager.GameObject.Objects?.GameObjectsList; if
-// (gameobjectlist == null) { continue; } if
-// (AreaInfos.ContainsKey(areaManager.AreaItemManager.AreaSlotContainer.AreaID)) { continue; }
-// foreach (var areaObject in areaManager.AreaObjectManager.GameObject.Objects?.GameObjectsList) {
-// //Set Participants Names (GUIDs)
-
-// //if (areaObject.ShipMaintenance != null) { //}
-
-// //Debug.WriteLine(ProgrammSettings.Texts[areaObject.Guid]);
+// //if (areaObject.ShipMaintenance != null) { //} //Debug.WriteLine(ProgrammSettings.Texts[areaObject.Guid]);
 
 // if (areaObject.Building != null && ProgrammSettings.Texts.TryGetValue(areaObject.Guid.GUID, out
 // var text)) { Debug.WriteLine(ProgrammSettings.Texts[areaObject.Guid.GUID]); }
@@ -272,7 +273,6 @@ namespace AnnoSavegameViewer.Templates {
 // areaObject.ItemContainer.SocketContainer.SocketItems.SocketItemsList) { // if (socketItem.GUID >
 // 0) { // Participants[areaObject.ParticipantID.Id].AddItemUsed(socketItem, 1); // } //}
 // //ShipItems //else if (areaObject.ShipMaintenance is ShipMaintenance _) { //} } } } }
-
 //  //public Dictionary<short, AnnoParticipant> Participants { get; }
 //  //public Dictionary<short, AreaInfoList> AreaInfos { get; }
 //}

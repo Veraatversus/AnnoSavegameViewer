@@ -1,10 +1,9 @@
 using AnnoSavegameViewer.Serialization.Core;
+using System.Collections.Generic;
 
 namespace AnnoSavegameViewer.Structures.Savegame.Generated {
 
   public class AreaEconomy {
-
-    #region Public Properties
 
     [BinaryContent(Name = "happinessFactor", NodeType = BinaryContentTypes.Attribute)]
     public object HappinessFactor { get; set; }
@@ -27,6 +26,5 @@ namespace AnnoSavegameViewer.Structures.Savegame.Generated {
     [BinaryContent(Name = "shareValueFluctuation", NodeType = BinaryContentTypes.Node)]
     public ShareValueFluctuation ShareValueFluctuation { get; set; }
 
-    #endregion Public Properties
   }
 }

@@ -65,7 +65,7 @@
           x:Name="cbPlayers"
           Grid.Row="1"
           Grid.Column="0"
-          Height="22"
+          Padding="2,0"
           DisplayMemberPath="CurrentLang"
           ItemsSource="{Binding Path=ItemsHolder.StandardFilters[Player].CurrentValues}"
           SelectedItem="{Binding Path=ItemsHolder.StandardFilters[Player].SelectedValue}"
@@ -74,8 +74,8 @@
           x:Name="ComboBoxEquipped"
           Grid.Row="1"
           Grid.Column="2"
-          Height="22"
           Margin="0"
+          Padding="2,0"
           DisplayMemberPath="CurrentLang"
           ItemsSource="{Binding ItemsHolder.StandardFilters[Session].CurrentValues}"
           SelectedItem="{Binding ItemsHolder.StandardFilters[Session].SelectedValue}"
@@ -84,7 +84,7 @@
           x:Name="ComboBoxUpgrades"
           Grid.Row="1"
           Grid.Column="4"
-          Height="22"
+          Padding="2,0"
           DisplayMemberPath="CurrentLang"
           ItemsSource="{Binding ItemsHolder.StandardFilters[Area].CurrentValues}"
           SelectedItem="{Binding ItemsHolder.StandardFilters[Area].SelectedValue}"
@@ -94,15 +94,35 @@
           Grid.Column="6"
           SourceUpdated="ComboBox_SelectionChanged"
           Text="{Binding NotifyOnSourceUpdated=True, Path=ItemsHolder.StandardFilters[Text].SelectedValue, UpdateSourceTrigger=PropertyChanged, Delay=100}" />
+        <TextBlock
+          Grid.Row="2"
+          Grid.Column="0"
+          Margin="0,0,5,0"
+          VerticalAlignment="Center"
+          Text="{Binding Path=ItemsHolder.OrderFilter.Description}" />
+        <ComboBox
+          x:Name="cbSort"
+          Grid.Row="3"
+          Grid.Column="0"
+          Padding="2,0"
+          DisplayMemberPath="CurrentLang"
+          ItemsSource="{Binding Path=ItemsHolder.OrderFilter.CurrentValues}"
+          SelectedItem="{Binding Path=ItemsHolder.OrderFilter.SelectedValue}"
+          SelectionChanged="ComboBox_SelectionChanged" />
       </Grid>
     </Border>
     <Grid Grid.Row="2">
       <Grid.ColumnDefinitions>
-        <ColumnDefinition Width="Auto" />
+        <ColumnDefinition Width="*" />
         <ColumnDefinition Width="10" />
         <ColumnDefinition Width="*" />
       </Grid.ColumnDefinitions>
       <local:ItemListControl Grid.Column="0" ItemSource="{Binding ItemsHolder.Items}" />
+      <GridSplitter
+        Grid.Column="1"
+        Width="5"
+        HorizontalAlignment="Stretch"
+        VerticalAlignment="Stretch" />
       <local:ItemTreeControl Grid.Column="2" />
     </Grid>
   </Grid>

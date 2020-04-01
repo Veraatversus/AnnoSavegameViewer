@@ -23,6 +23,11 @@ namespace AnnoSavegameViewer.Structures.A7S {
       A7SData = Blocks[3].Files[0].FileData;
     }
 
+    public static A7S FromFile(string path) {
+      var bytes = System.IO.File.ReadAllBytes(path);
+      var reader = new MemoryReader(bytes);
+      return new A7S(ref reader);
+    }
     #endregion Public Constructors
   }
 }

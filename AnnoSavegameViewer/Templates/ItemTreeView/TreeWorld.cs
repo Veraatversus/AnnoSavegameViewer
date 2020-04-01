@@ -16,11 +16,11 @@ namespace AnnoSavegameViewer.Templates {
 
     public static TreeWorld Create(Description description, IEnumerable<AnnoItem> items) {
       var world = new TreeWorld { Description = description };
-
-      foreach (var item in items) {
-        world.Add(item);
+      if (items != null) {
+        foreach (var item in items) {
+          world.Add(item);
+        }
       }
-
       return world;
     }
 

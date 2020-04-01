@@ -1,4 +1,5 @@
 using AnnoSavegameViewer.Serialization.Core;
+using System.Collections.Generic;
 
 namespace AnnoSavegameViewer.Structures.Savegame.Generated {
 
@@ -10,11 +11,11 @@ namespace AnnoSavegameViewer.Structures.Savegame.Generated {
     [BinaryContent(Name = "GUID", NodeType = BinaryContentTypes.Attribute)]
     public object GUID { get; set; }
 
-    [BinaryContent(Name = "Charges", NodeType = BinaryContentTypes.Attribute)]
-    public object Charges { get; set; }
-
     [BinaryContent(Name = "QuestID", NodeType = BinaryContentTypes.Attribute)]
     public object QuestID { get; set; }
+
+    [BinaryContent(Name = "Charges", NodeType = BinaryContentTypes.Attribute)]
+    public object Charges { get; set; }
 
   }
 }

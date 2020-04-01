@@ -1,19 +1,18 @@
 using AnnoSavegameViewer.Serialization.Core;
+using System.Collections.Generic;
 
 namespace AnnoSavegameViewer.Structures.Savegame.Generated {
 
   public class CommandQueue {
 
-    #region Public Properties
+    [BinaryContent(Name = "ExecuteCurrentCommand", NodeType = BinaryContentTypes.Attribute)]
+    public object ExecuteCurrentCommand { get; set; }
 
     [BinaryContent(Name = "BasePosition", NodeType = BinaryContentTypes.Attribute)]
     public object BasePosition { get; set; }
 
     [BinaryContent(Name = "BaseRotation", NodeType = BinaryContentTypes.Attribute)]
     public object BaseRotation { get; set; }
-
-    [BinaryContent(Name = "ExecuteCurrentCommand", NodeType = BinaryContentTypes.Attribute)]
-    public object ExecuteCurrentCommand { get; set; }
 
     [BinaryContent(Name = "StateMain", NodeType = BinaryContentTypes.Attribute)]
     public object StateMain { get; set; }
@@ -33,6 +32,5 @@ namespace AnnoSavegameViewer.Structures.Savegame.Generated {
     [BinaryContent(Name = "StateParams", NodeType = BinaryContentTypes.Node)]
     public StateParams StateParams { get; set; }
 
-    #endregion Public Properties
   }
 }

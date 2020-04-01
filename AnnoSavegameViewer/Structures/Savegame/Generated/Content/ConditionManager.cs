@@ -1,10 +1,9 @@
 using AnnoSavegameViewer.Serialization.Core;
+using System.Collections.Generic;
 
 namespace AnnoSavegameViewer.Structures.Savegame.Generated {
 
   public class ConditionManager {
-
-    #region Public Properties
 
     [BinaryContent(Name = "UniqueIDCounter", NodeType = BinaryContentTypes.Attribute)]
     public object UniqueIDCounter { get; set; }
@@ -24,6 +23,5 @@ namespace AnnoSavegameViewer.Structures.Savegame.Generated {
     [BinaryContent(Name = "Conditions", NodeType = BinaryContentTypes.Node)]
     public Conditions Conditions { get; set; }
 
-    #endregion Public Properties
   }
 }

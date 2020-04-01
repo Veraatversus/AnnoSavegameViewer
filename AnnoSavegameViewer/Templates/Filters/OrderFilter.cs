@@ -1,4 +1,5 @@
-﻿using AnnoSavegameViewer.Structures.Savegame;
+﻿using AnnoSavegameViewer.Comparer;
+using AnnoSavegameViewer.Structures.Savegame;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,6 +17,10 @@ namespace AnnoSavegameViewer.Templates.Filters {
         }
         else if (SelectedValue.GUID == -100002) {
           result = result.OrderBy(w => w.GUID.GUID);
+        }
+        else if (SelectedValue.GUID == -100003) {
+          var tempresult = result.ToLookup(i => i, AnnoItemComparer.Default);
+          result = result.OrderByDescending(w => tempresult[w].Count());
         }
       }
 
@@ -75,6 +80,7 @@ namespace AnnoSavegameViewer.Templates.Filters {
     private readonly List<Description> values = new List<Description>{
       new DescriptionInt(-100001),
       new DescriptionInt(-100002),
+      new DescriptionInt(-100003),
     };
     private Description _selectedValue;
     private List<Description> currentValues;

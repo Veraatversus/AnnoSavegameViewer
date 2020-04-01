@@ -1,10 +1,9 @@
 using AnnoSavegameViewer.Serialization.Core;
+using System.Collections.Generic;
 
 namespace AnnoSavegameViewer.Structures.Savegame.Generated {
 
   public class AreaFestivalManager {
-
-    #region Public Properties
 
     [BinaryContent(Name = "nextTick", NodeType = BinaryContentTypes.Attribute)]
     public object NextTick { get; set; }
@@ -25,8 +24,7 @@ namespace AnnoSavegameViewer.Structures.Savegame.Generated {
     public AreaFestivalManagerActiveType ActiveType { get; set; }
 
     [BinaryContent(Name = "activeEffects", NodeType = BinaryContentTypes.Node)]
-    public ActiveEffects ActiveEffects { get; set; }
+    public AreaFestivalManagerActiveEffects ActiveEffects { get; set; }
 
-    #endregion Public Properties
   }
 }

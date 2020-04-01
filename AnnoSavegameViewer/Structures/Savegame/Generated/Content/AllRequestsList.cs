@@ -1,10 +1,9 @@
 using AnnoSavegameViewer.Serialization.Core;
+using System.Collections.Generic;
 
 namespace AnnoSavegameViewer.Structures.Savegame.Generated {
 
   public class AllRequestsList {
-
-    #region Public Properties
 
     [BinaryContent(Name = "Product", NodeType = BinaryContentTypes.Attribute)]
     public object Product { get; set; }
@@ -24,6 +23,5 @@ namespace AnnoSavegameViewer.Structures.Savegame.Generated {
     [BinaryContent(Name = "Source", NodeType = BinaryContentTypes.Node)]
     public AllRequestsListSource Source { get; set; }
 
-    #endregion Public Properties
   }
 }

@@ -8,6 +8,12 @@ namespace AnnoSavegameViewer.Structures.Savegame.Generated {
     [BinaryContent(Name = "AreaRandomManager", NodeType = BinaryContentTypes.Node)]
     public AreaRandomManager AreaRandomManager { get; set; }
 
+    [BinaryContent(Name = "AreaPopulationManager", NodeType = BinaryContentTypes.Node)]
+    public AreaPopulationManager AreaPopulationManager { get; set; }
+
+    [BinaryContent(Name = "AreaIrrigationManager", NodeType = BinaryContentTypes.Node)]
+    public AreaIrrigationManager AreaIrrigationManager { get; set; }
+
     [BinaryContent(Name = "AreaRailwayManager", NodeType = BinaryContentTypes.Node)]
     public AreaRailwayManager AreaRailwayManager { get; set; }
 
@@ -16,9 +22,6 @@ namespace AnnoSavegameViewer.Structures.Savegame.Generated {
 
     [BinaryContent(Name = "AreaResidenceConsumptionManager", NodeType = BinaryContentTypes.Node)]
     public AreaResidenceConsumptionManager AreaResidenceConsumptionManager { get; set; }
-
-    [BinaryContent(Name = "AreaPopulationManager", NodeType = BinaryContentTypes.Node)]
-    public AreaPopulationManager AreaPopulationManager { get; set; }
 
     [BinaryContent(Name = "AreaTransporterManager", NodeType = BinaryContentTypes.Node)]
     public AreaTransporterManager AreaTransporterManager { get; set; }

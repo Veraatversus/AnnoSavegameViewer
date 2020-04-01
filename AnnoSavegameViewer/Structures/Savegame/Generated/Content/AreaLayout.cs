@@ -1,10 +1,9 @@
 using AnnoSavegameViewer.Serialization.Core;
+using System.Collections.Generic;
 
 namespace AnnoSavegameViewer.Structures.Savegame.Generated {
 
   public class AreaLayout {
-
-    #region Public Properties
 
     [BinaryContent(Name = "KontorBlocking", NodeType = BinaryContentTypes.Attribute)]
     public object KontorBlocking { get; set; }
@@ -42,6 +41,5 @@ namespace AnnoSavegameViewer.Structures.Savegame.Generated {
     [BinaryContent(Name = "StreetPlanner", NodeType = BinaryContentTypes.Node)]
     public StreetPlanner StreetPlanner { get; set; }
 
-    #endregion Public Properties
   }
 }

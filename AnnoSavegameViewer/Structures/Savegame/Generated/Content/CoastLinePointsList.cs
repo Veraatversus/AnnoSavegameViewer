@@ -1,10 +1,9 @@
 using AnnoSavegameViewer.Serialization.Core;
+using System.Collections.Generic;
 
 namespace AnnoSavegameViewer.Structures.Savegame.Generated {
 
   public class CoastLinePointsList {
-
-    #region Public Properties
 
     [BinaryContent(Name = "pos", NodeType = BinaryContentTypes.Attribute)]
     public object Pos { get; set; }
@@ -12,6 +11,5 @@ namespace AnnoSavegameViewer.Structures.Savegame.Generated {
     [BinaryContent(Name = "dir", NodeType = BinaryContentTypes.Attribute)]
     public object Dir { get; set; }
 
-    #endregion Public Properties
   }
 }

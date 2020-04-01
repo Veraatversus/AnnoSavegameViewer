@@ -1,13 +1,12 @@
 using AnnoSavegameViewer.Serialization.Core;
+using System.Collections.Generic;
 
 namespace AnnoSavegameViewer.Structures.Savegame.Generated {
 
   public class ActionByIDList {
 
-    #region Public Properties
-
     [BinaryContent(Name = "actionID", NodeType = BinaryContentTypes.Attribute)]
-    public object ActionID1 { get; set; }
+    public object actionID { get; set; }
 
     [BinaryContent(Name = "UseVariableAsDelay", NodeType = BinaryContentTypes.Attribute)]
     public object UseVariableAsDelay { get; set; }
@@ -19,7 +18,7 @@ namespace AnnoSavegameViewer.Structures.Savegame.Generated {
     public object AssetGUID { get; set; }
 
     [BinaryContent(Name = "ActionID", NodeType = BinaryContentTypes.Attribute)]
-    public object ActionID2 { get; set; }
+    public object ActionID { get; set; }
 
     [BinaryContent(Name = "actionType", NodeType = BinaryContentTypes.Node)]
     public ActionType ActionType { get; set; }
@@ -39,6 +38,5 @@ namespace AnnoSavegameViewer.Structures.Savegame.Generated {
     [BinaryContent(Name = "DelayedActions", NodeType = BinaryContentTypes.Node)]
     public DelayedActions DelayedActions { get; set; }
 
-    #endregion Public Properties
   }
 }

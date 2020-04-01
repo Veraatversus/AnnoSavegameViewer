@@ -1,8 +1,15 @@
 using AnnoSavegameViewer.Serialization.Core;
+using System.Collections.Generic;
 
 namespace AnnoSavegameViewer.Structures.Savegame.Generated {
 
   public class Monument {
+
+    [BinaryContent(Name = "EventState", NodeType = BinaryContentTypes.Attribute)]
+    public object EventState { get; set; }
+
+    [BinaryContent(Name = "eventAttractiveness", NodeType = BinaryContentTypes.Attribute)]
+    public object EventAttractiveness { get; set; }
 
     [BinaryContent(Name = "lastReducedAttractivenessTimestamp", NodeType = BinaryContentTypes.Attribute)]
     public object LastReducedAttractivenessTimestamp { get; set; }
@@ -18,15 +25,6 @@ namespace AnnoSavegameViewer.Structures.Savegame.Generated {
 
     [BinaryContent(Name = "FeedbackTextPosition", NodeType = BinaryContentTypes.Attribute)]
     public object FeedbackTextPosition { get; set; }
-
-    [BinaryContent(Name = "EventGUID", NodeType = BinaryContentTypes.Attribute)]
-    public object EventGUID { get; set; }
-
-    [BinaryContent(Name = "EventState", NodeType = BinaryContentTypes.Attribute)]
-    public object EventState { get; set; }
-
-    [BinaryContent(Name = "eventAttractiveness", NodeType = BinaryContentTypes.Attribute)]
-    public object EventAttractiveness { get; set; }
 
     [BinaryContent(Name = "ProductionState", NodeType = BinaryContentTypes.Node)]
     public MonumentProductionState ProductionState { get; set; }

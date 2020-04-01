@@ -37,7 +37,7 @@ namespace AnnoSavegameViewer.Templates.Filters {
          .Where(s => s.Participant != null)
          .Select(s => s.Participant.GUID)
          .Distinct(DescriptionComparer.Default)
-         //.Concat(new[] { (Description)new DescriptionInt(0) })
+         .Concat(new[] { (Description)new DescriptionInt(0) })
          .OrderBy(o => o.CurrentLang)
          .ToList();
     }

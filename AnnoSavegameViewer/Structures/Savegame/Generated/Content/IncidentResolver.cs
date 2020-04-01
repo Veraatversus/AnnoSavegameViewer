@@ -1,4 +1,5 @@
 using AnnoSavegameViewer.Serialization.Core;
+using System.Collections.Generic;
 
 namespace AnnoSavegameViewer.Structures.Savegame.Generated {
 
@@ -6,9 +7,6 @@ namespace AnnoSavegameViewer.Structures.Savegame.Generated {
 
     [BinaryContent(Name = "specialActionCooldown", NodeType = BinaryContentTypes.Attribute)]
     public object SpecialActionCooldown { get; set; }
-
-    [BinaryContent(Name = "pausedLastTick", NodeType = BinaryContentTypes.Attribute)]
-    public object PausedLastTick { get; set; }
 
     [BinaryContent(Name = "resolverUnits", NodeType = BinaryContentTypes.Node)]
     public ResolverUnits ResolverUnits { get; set; }

@@ -1,4 +1,5 @@
 using AnnoSavegameViewer.Serialization.Core;
+using System.Collections.Generic;
 
 namespace AnnoSavegameViewer.Structures.Savegame.Generated {
 
@@ -19,9 +20,6 @@ namespace AnnoSavegameViewer.Structures.Savegame.Generated {
     [BinaryContent(Name = "QuestsFailed", NodeType = BinaryContentTypes.Attribute)]
     public object QuestsFailed { get; set; }
 
-    [BinaryContent(Name = "ShipsDestroyed", NodeType = BinaryContentTypes.Attribute)]
-    public object ShipsDestroyed { get; set; }
-
     [BinaryContent(Name = "Session", NodeType = BinaryContentTypes.Attribute)]
     public object Session { get; set; }
 
@@ -30,6 +28,9 @@ namespace AnnoSavegameViewer.Structures.Savegame.Generated {
 
     [BinaryContent(Name = "HappinessOnStart", NodeType = BinaryContentTypes.Attribute)]
     public object HappinessOnStart { get; set; }
+
+    [BinaryContent(Name = "CityStatusOnIntervalStart", NodeType = BinaryContentTypes.Attribute)]
+    public object CityStatusOnIntervalStart { get; set; }
 
     [BinaryContent(Name = "ElementType", NodeType = BinaryContentTypes.Node)]
     public NewsTrackerElementType ElementType { get; set; }

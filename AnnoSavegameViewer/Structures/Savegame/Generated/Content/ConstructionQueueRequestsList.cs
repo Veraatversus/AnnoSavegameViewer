@@ -1,10 +1,9 @@
 using AnnoSavegameViewer.Serialization.Core;
+using System.Collections.Generic;
 
 namespace AnnoSavegameViewer.Structures.Savegame.Generated {
 
   public class ConstructionQueueRequestsList {
-
-    #region Public Properties
 
     [BinaryContent(Name = "ScndPriority", NodeType = BinaryContentTypes.Attribute)]
     public object ScndPriority { get; set; }
@@ -39,6 +38,5 @@ namespace AnnoSavegameViewer.Structures.Savegame.Generated {
     [BinaryContent(Name = "Budget", NodeType = BinaryContentTypes.Node)]
     public Budget Budget { get; set; }
 
-    #endregion Public Properties
   }
 }

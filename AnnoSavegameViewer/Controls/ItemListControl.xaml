@@ -14,27 +14,29 @@
       x:Name="ListBoxItems"
       HorizontalContentAlignment="Stretch"
       BorderBrush="Transparent"
+      Grid.IsSharedSizeScope="True"
       IsSynchronizedWithCurrentItem="True"
       ItemsSource="{Binding ItemsHolder.Items}"
       SelectedItem="{Binding Path=SelectedItem}">
       <ListBox.Background>
-        <SolidColorBrush Opacity="0.5" Color="White" />
+        <SolidColorBrush Opacity="0.7" Color="White" />
       </ListBox.Background>
       <ListBox.ItemTemplate>
         <DataTemplate>
           <Grid MaxHeight="24">
             <Grid.ColumnDefinitions>
-              <ColumnDefinition Width="30" />
-              <ColumnDefinition Width="30" />
+              <ColumnDefinition Width="Auto" SharedSizeGroup="Count" />
+              <ColumnDefinition Width="20" />
               <ColumnDefinition Width="*" />
               <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
-            <!--<Image Grid.Column="1" HorizontalAlignment="Left" Source="{Binding Path=Text.Icon.Filename}" />-->
             <TextBlock
               Grid.Column="0"
               VerticalAlignment="Center"
               Text="{Binding Path=Count}"
               TextTrimming="CharacterEllipsis" />
+            <!--<Image Grid.Column="1" HorizontalAlignment="Left" Source="{Binding Path=Text.Icon.Filename}" />-->
+            <TextBlock Grid.Column="1" Text="-" TextAlignment="Center" />
             <TextBlock
               Grid.Column="2"
               VerticalAlignment="Center"

@@ -1,10 +1,9 @@
 using AnnoSavegameViewer.Serialization.Core;
+using System.Collections.Generic;
 
 namespace AnnoSavegameViewer.Structures.Savegame.Generated {
 
   public class Context {
-
-    #region Public Properties
 
     [BinaryContent(Name = "ArticleGUID", NodeType = BinaryContentTypes.Attribute)]
     public object ArticleGUID { get; set; }
@@ -12,14 +11,14 @@ namespace AnnoSavegameViewer.Structures.Savegame.Generated {
     [BinaryContent(Name = "TownID", NodeType = BinaryContentTypes.Attribute)]
     public object TownID { get; set; }
 
+    [BinaryContent(Name = "ParticipantName", NodeType = BinaryContentTypes.Attribute)]
+    public object ParticipantName { get; set; }
+
     [BinaryContent(Name = "TownName", NodeType = BinaryContentTypes.Attribute)]
     public object TownName { get; set; }
 
     [BinaryContent(Name = "ObjectGUID", NodeType = BinaryContentTypes.Attribute)]
     public object ObjectGUID { get; set; }
-
-    [BinaryContent(Name = "ParticipantName", NodeType = BinaryContentTypes.Attribute)]
-    public object ParticipantName { get; set; }
 
     [BinaryContent(Name = "ObjectName", NodeType = BinaryContentTypes.Attribute)]
     public object ObjectName { get; set; }
@@ -33,6 +32,5 @@ namespace AnnoSavegameViewer.Structures.Savegame.Generated {
     [BinaryContent(Name = "Owner", NodeType = BinaryContentTypes.Node)]
     public ContextOwner Owner { get; set; }
 
-    #endregion Public Properties
   }
 }

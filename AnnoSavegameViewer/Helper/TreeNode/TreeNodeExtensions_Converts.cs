@@ -13,7 +13,7 @@ namespace AnnoSavegameViewer.Helper.TreeNode {
 
     #region Public Methods
 
-    public static void ExtractAllInformations(TreeNode node, string saveName) {
+    public static void ExtractAllInformations(this TreeNode node, string saveName) {
       node.SaveXmls(saveName);
       node.SaveCsharpClasses(saveName);
     }
@@ -175,10 +175,10 @@ namespace AnnoSavegameViewer.Helper.TreeNode {
       var sessioncount = 0;
       var rootxml = node.ToXml();
       rootxml.Save($"{saveName}/Xml/{saveName}.data.xml");
-      foreach (var item in node["MetaGameManager"][0]["GameSessions"][0]) {
-        var xml = item.ToXml();
-        xml.Save($"{saveName}/Xml/{saveName}.Session{sessioncount++}.xml");
-      }
+      //foreach (var item in node["MetaGameManager"][0]["GameSessions"][0]) {
+      //  var xml = item.ToXml();
+      //  xml.Save($"{saveName}/Xml/{saveName}.Session{sessioncount++}.xml");
+      //}
     }
 
     public static void SaveCsharpClasses(this TreeNode node, string saveName) {

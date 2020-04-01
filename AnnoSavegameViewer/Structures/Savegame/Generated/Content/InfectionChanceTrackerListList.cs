@@ -1,4 +1,5 @@
 using AnnoSavegameViewer.Serialization.Core;
+using System.Collections.Generic;
 
 namespace AnnoSavegameViewer.Structures.Savegame.Generated {
 
@@ -9,9 +10,6 @@ namespace AnnoSavegameViewer.Structures.Savegame.Generated {
 
     [BinaryContent(Name = "AccumulatedInfectionChance", NodeType = BinaryContentTypes.Attribute)]
     public object AccumulatedInfectionChance { get; set; }
-
-    [BinaryContent(Name = "HealingUnitSent", NodeType = BinaryContentTypes.Attribute)]
-    public object HealingUnitSent { get; set; }
 
   }
 }

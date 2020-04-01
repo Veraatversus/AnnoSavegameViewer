@@ -6,7 +6,7 @@ namespace AnnoSavegameViewer.Structures.Savegame.Generated {
   public class RewardList {
 
     [BinaryContent(Name = "None", NodeType = BinaryContentTypes.Node)]
-    public List<RewardListList> RewardListList { get; set; }
+    public RewardListList RewardListList { get; set; }
 
   }
 }

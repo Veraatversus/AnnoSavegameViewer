@@ -1,10 +1,9 @@
 using AnnoSavegameViewer.Serialization.Core;
+using System.Collections.Generic;
 
 namespace AnnoSavegameViewer.Structures.Savegame.Generated {
 
   public class ConstructionMaterialHandler {
-
-    #region Public Properties
 
     [BinaryContent(Name = "LastTick", NodeType = BinaryContentTypes.Attribute)]
     public object LastTick { get; set; }
@@ -18,6 +17,5 @@ namespace AnnoSavegameViewer.Structures.Savegame.Generated {
     [BinaryContent(Name = "StockLimits", NodeType = BinaryContentTypes.Node)]
     public StockLimits StockLimits { get; set; }
 
-    #endregion Public Properties
   }
 }

@@ -1,4 +1,5 @@
 using AnnoSavegameViewer.Serialization.Core;
+using System.Collections.Generic;
 
 namespace AnnoSavegameViewer.Structures.Savegame.Generated {
 
@@ -27,9 +28,6 @@ namespace AnnoSavegameViewer.Structures.Savegame.Generated {
 
     [BinaryContent(Name = "TargetDirection", NodeType = BinaryContentTypes.Attribute)]
     public object TargetDirection { get; set; }
-
-    [BinaryContent(Name = "GroupID", NodeType = BinaryContentTypes.Attribute)]
-    public object GroupID { get; set; }
 
     [BinaryContent(Name = "State", NodeType = BinaryContentTypes.Node)]
     public QueuedTransfersListState State { get; set; }

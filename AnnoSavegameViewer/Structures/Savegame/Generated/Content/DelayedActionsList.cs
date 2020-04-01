@@ -1,10 +1,9 @@
 using AnnoSavegameViewer.Serialization.Core;
+using System.Collections.Generic;
 
 namespace AnnoSavegameViewer.Structures.Savegame.Generated {
 
   public class DelayedActionsList {
-
-    #region Public Properties
 
     [BinaryContent(Name = "Quest", NodeType = BinaryContentTypes.Attribute)]
     public object Quest { get; set; }
@@ -42,6 +41,5 @@ namespace AnnoSavegameViewer.Structures.Savegame.Generated {
     [BinaryContent(Name = "ValueType", NodeType = BinaryContentTypes.Node)]
     public DelayedActionsListValueType ValueType { get; set; }
 
-    #endregion Public Properties
   }
 }
