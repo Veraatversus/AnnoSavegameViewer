@@ -1,5 +1,6 @@
 ﻿using AnnoSavegameViewer.Structures.Savegame;
 using AnnoSavegameViewer.Structures.Savegame.Generated;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -79,7 +80,11 @@ namespace AnnoSavegameViewer.Templates {
           }
           //GameObjects
           foreach (var gameObject in areaManager.AreaObjectManager.GameObject.Objects?.GameObjectsList ?? Enumerable.Empty<GameObjectObjectsList>()) {
-            var participant = Participants[gameObject.ParticipantID.Id];
+            if (!Participants.TryGetValue(gameObject.ParticipantID.Id, out var participant))
+            {
+                Console.WriteLine($"Game object {gameObject} couldn't be found for {gameObject.ParticipantID.Id} in {session.SessionDesc.SessionGUID}");
+                continue;
+            }
 
             if ((gameObject.ShipMaintenance != null || (gameObject.Building != null && ProgrammSettings.Texts.ContainsKey(gameObject.Guid.GUID))) /*&& participant.GUID.GUID != 34*/) {
               GameObjects.Add(new AnnoItem {
