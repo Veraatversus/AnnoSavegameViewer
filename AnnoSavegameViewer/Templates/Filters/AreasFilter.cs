@@ -11,7 +11,7 @@ namespace AnnoSavegameViewer.Templates.Filters {
 
     public override Func<IEnumerable<AnnoItem>, IEnumerable<AnnoItem>> FilterFunc => result => {
       if (SelectedValue != null && SelectedValue.GUID != 0) {
-        return result.Where(w => w.AreaInfo?.CityName.Equals(SelectedValue.CurrentLang) == true);
+        return result.Where(w => w.AreaInfo?.CityNameOrGuid.Equals(SelectedValue.CurrentLang) == true);
       }
       return null;
     };
@@ -34,7 +34,7 @@ namespace AnnoSavegameViewer.Templates.Filters {
       CurrentValues = ItemsHolder
          .GetResultWithoutFilter(this)
          .Where(s => s.AreaInfo != null)
-         .Select(s => s.AreaInfo.CityName)
+         .Select(s => s.AreaInfo.CityNameOrGuid)
          .Distinct()
          .Select(s => new Description(s))
          .Concat(new[] { (Description)new DescriptionInt(0) })

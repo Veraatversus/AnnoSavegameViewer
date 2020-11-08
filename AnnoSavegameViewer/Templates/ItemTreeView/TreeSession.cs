@@ -10,7 +10,7 @@ namespace AnnoSavegameViewer.Templates {
     public override Func<AnnoItem, Description> DescriptionSelector {
       get {
         return item => {
-          return item?.AreaInfo?.CityName != null ? new Description(item.AreaInfo.CityName) : new DescriptionInt(2342);
+          return item?.AreaInfo?.CityNameOrGuid != null ? new Description(item.AreaInfo.CityNameOrGuid) : new DescriptionInt(2342);
         };
       }
     }

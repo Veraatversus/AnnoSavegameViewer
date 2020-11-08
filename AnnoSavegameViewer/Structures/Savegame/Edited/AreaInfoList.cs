@@ -17,6 +17,8 @@ namespace AnnoSavegameViewer.Structures.Savegame.Generated {
     [BinaryContent(Name = "CityName", Encoding = "utf-16", NodeType = BinaryContentTypes.Attribute)]
     public string CityName { get; set; }
 
+    public string CityNameOrGuid => CityName ?? CityNameGuid.ToString();
+
     [BinaryContent(Name = "WasEverOwned", NodeType = BinaryContentTypes.Attribute)]
     public bool WasEverOwned { get; set; }
 
