@@ -1,5 +1,5 @@
 ﻿namespace AnnoSavegameViewer.Templates {
-  using AnnoSavegameViewer.Structures.DataTypes;
+  using AnnoSerializer.Structures.DataTypes;
 
   public class AnnoParticipant {
 

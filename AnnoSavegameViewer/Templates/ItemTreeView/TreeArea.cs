@@ -1,5 +1,5 @@
 ﻿namespace AnnoSavegameViewer.Templates {
-  using AnnoSavegameViewer.Structures.DataTypes;
+  using AnnoSerializer.Structures.DataTypes;
   using System;
 
   public class TreeArea : TreeBase<TreeObject> {

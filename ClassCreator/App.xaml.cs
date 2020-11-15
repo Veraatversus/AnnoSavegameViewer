@@ -5,8 +5,8 @@ namespace ClassCreator {
   using System.Globalization;
   using System.Windows;
   using System.Windows.Controls;
-  using AnnoSavegameViewer.Converter;
-  using AnnoSavegameViewer.Serialization.Tree;
+  using AnnoSerializer.Converter;
+  using AnnoSerializer.Serialization.Tree;
 
   /// <summary> Interaction logic for App.xaml </summary>
   public partial class App : Application {

@@ -1,6 +1,6 @@
 ﻿namespace AnnoSavegameViewer.Templates {
-  using AnnoSavegameViewer.Structures.DataTypes;
-  using AnnoSavegameViewer.Structures.Savegame.Generated;
+  using AnnoSerializer.Structures.DataTypes;
+  using AnnoSerializer.Structures.Generated.a7s;
   using System;
   using System.Diagnostics;
   using System.Diagnostics.CodeAnalysis;
@@ -14,10 +14,10 @@
     public int Amount { get; set; }
     public bool InUse { get; internal set; }
     public AnnoParticipant Participant { get; internal set; }
-    public GameObjectObjectsList ParentObject { get; internal set; }
-    public AreaManager AreaManager { get; internal set; }
-    public AreaInfoList AreaInfo { get; internal set; }
-    public GameSessionsList Session { get; internal set; }
+    public GameObjectObjectsValue ParentObject { get; internal set; }
+    public AreaManagersValue AreaManager { get; internal set; }
+    public AreaInfoValue AreaInfo { get; internal set; }
+    public GameSessionsValue Session { get; internal set; }
 
     #endregion Public Properties
 

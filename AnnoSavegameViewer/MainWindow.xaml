@@ -6,6 +6,7 @@
   xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
   xmlns:local="clr-namespace:AnnoSavegameViewer"
   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+  xmlns:serializer="clr-namespace:AnnoSerializer;assembly=AnnoSerializer"
   Title="Anno 1800 - Savegame Viewer"
   Width="850"
   Height="650"
@@ -16,7 +17,7 @@
     <converter:GlobalDescriptionConverter x:Key="Description" />
   </Window.Resources>
   <Window.Background>
-    <ImageBrush ImageSource="Resources/Anno1800_Fortification_Concept.jpg" Opacity="0.6" Stretch="UniformToFill" />
+    <ImageBrush ImageSource="/Resources/Anno1800_Fortification_Concept.jpg" Opacity="0.6" Stretch="UniformToFill" />
   </Window.Background>
   <Grid Margin="10">
     <Grid.RowDefinitions>
@@ -67,7 +68,7 @@
         x:Name="ComboBoxLanguage"
         Grid.Column="9"
         Padding="2,0"
-        ItemsSource="{Binding Source={x:Static local:ProgrammSettings.PossibleLanguages}}" />
+        ItemsSource="{Binding Source={x:Static serializer:LanguageService.PossibleLanguages}}" />
     </Grid>
     <Grid Grid.Row="2">
       <ContentPresenter x:Name="Presenter" />

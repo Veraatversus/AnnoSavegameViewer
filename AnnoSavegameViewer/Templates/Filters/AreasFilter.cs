@@ -1,5 +1,5 @@
 ﻿namespace AnnoSavegameViewer.Templates.Filters {
-  using AnnoSavegameViewer.Structures.DataTypes;
+  using AnnoSerializer.Structures.DataTypes;
   using System;
   using System.Collections.Generic;
   using System.Linq;

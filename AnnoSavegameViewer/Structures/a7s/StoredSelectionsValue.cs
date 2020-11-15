@@ -1,0 +1,20 @@
+namespace AnnoSerializer.Structures.Generated.a7s {
+
+	using AnnoSerializer.Serialization.Core;
+	using AnnoSerializer.Structures.DataTypes;
+	using System;
+	using System.Collections.Generic;
+
+	public partial class StoredSelectionsValue : KeyValueDictionary<HexString, SelectionGroupControllerStoredSelectionsValuesNoneValue> {
+
+		[BinaryContent(Name = "value", NodeType = BinaryContentTypes.Node)]
+		public StoredSelectionsValuesNoneValue Value { get; set; }
+
+		[BinaryContent(Name = "None", NodeType = BinaryContentTypes.Attribute)]
+		public override List<HexString> Keys { get; set; }
+
+		[BinaryContent(Name = "None", NodeType = BinaryContentTypes.Node)]
+		public override List<SelectionGroupControllerStoredSelectionsValuesNoneValue> Values { get; set; }
+
+	}
+}

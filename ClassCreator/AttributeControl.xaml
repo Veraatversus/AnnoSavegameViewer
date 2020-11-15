@@ -3,14 +3,15 @@
   xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
   xmlns:System="clr-namespace:System;assembly=mscorlib"
-  xmlns:core="clr-namespace:AnnoSavegameViewer.Serialization.Core;assembly=AnnoSavegameViewer"
+  xmlns:core="clr-namespace:AnnoSerializer.Serialization.Core;assembly=AnnoSerializer"
   xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
   xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
   xmlns:local="clr-namespace:ClassCreator"
   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
   d:DesignHeight="450"
   d:DesignWidth="800"
-  mc:Ignorable="d">
+  mc:Ignorable="d"
+  x:Name="userControl">
   <UserControl.Resources>
     <local:ClassNameConverter x:Key="ClassNameConverter" />
     <ObjectDataProvider x:Key="ConversationTypes" MethodName="GetValues" ObjectType="{x:Type System:Enum}">
@@ -90,12 +91,7 @@
       Margin="1"
       VerticalContentAlignment="Center"
       ItemsSource="{Binding SupportedTypes}"
-      SelectedValue="{Binding SelectedValue.Pattern.ValueType}">
-      <i:Interaction.Triggers>
-        <i:EventTrigger EventName="SelectionChanged">
-          <i:InvokeCommandAction Command="{Binding AttributeChangedCommand}" CommandParameter="{Binding SelectedValue}" />
-        </i:EventTrigger>
-      </i:Interaction.Triggers>
+      SelectedValue="{Binding SelectedPattern.ValueType, ElementName=userControl}">
       <ComboBox.ItemTemplate>
         <DataTemplate>
           <TextBlock Text="{Binding ., Converter={StaticResource ClassNameConverter}}" />
@@ -115,12 +111,7 @@
       Margin="1"
       VerticalContentAlignment="Center"
       ItemsSource="{Binding GenericTypes}"
-      SelectedValue="{Binding SelectedValue.Pattern.GenericType}">
-      <i:Interaction.Triggers>
-        <i:EventTrigger EventName="SelectionChanged">
-          <i:InvokeCommandAction Command="{Binding AttributeChangedCommand}" CommandParameter="{Binding SelectedValue}" />
-        </i:EventTrigger>
-      </i:Interaction.Triggers>
+      SelectedValue="{Binding SelectedPattern.GenericType, ElementName=userControl}">
       <ComboBox.ItemTemplate>
         <DataTemplate>
           <TextBlock Text="{Binding ., Converter={StaticResource ClassNameConverter}}" />
@@ -140,12 +131,7 @@
       Margin="1"
       VerticalContentAlignment="Center"
       ItemsSource="{Binding Source={StaticResource ConversationTypes}}"
-      SelectedValue="{Binding SelectedValue.Pattern.Attribute.ConversationType}">
-      <i:Interaction.Triggers>
-        <i:EventTrigger EventName="SelectionChanged">
-          <i:InvokeCommandAction Command="{Binding AttributeChangedCommand}" CommandParameter="{Binding SelectedValue}" />
-        </i:EventTrigger>
-      </i:Interaction.Triggers>
+      SelectedValue="{Binding SelectedPattern.Attribute.ConversationType, ElementName=userControl}">
     </ComboBox>
 
     <TextBlock
@@ -160,12 +146,7 @@
       Margin="1"
       VerticalContentAlignment="Center"
       ItemsSource="{Binding Source={StaticResource CompressionTypes}}"
-      SelectedValue="{Binding SelectedValue.Pattern.Attribute.CompressionType}">
-      <i:Interaction.Triggers>
-        <i:EventTrigger EventName="SelectionChanged">
-          <i:InvokeCommandAction Command="{Binding AttributeChangedCommand}" CommandParameter="{Binding SelectedValue}" />
-        </i:EventTrigger>
-      </i:Interaction.Triggers>
+      SelectedValue="{Binding SelectedPattern.Attribute.CompressionType, ElementName=userControl}">
     </ComboBox>
 
     <TextBlock
@@ -180,12 +161,7 @@
       Margin="1"
       VerticalContentAlignment="Center"
       ItemsSource="{Binding Source={StaticResource Endian}}"
-      SelectedValue="{Binding SelectedValue.Pattern.Attribute.Endian}">
-      <i:Interaction.Triggers>
-        <i:EventTrigger EventName="SelectionChanged">
-          <i:InvokeCommandAction Command="{Binding AttributeChangedCommand}" CommandParameter="{Binding SelectedValue}" />
-        </i:EventTrigger>
-      </i:Interaction.Triggers>
+      SelectedValue="{Binding SelectedPattern.Attribute.Endian, ElementName=userControl}">
     </ComboBox>
 
     <TextBlock
@@ -200,12 +176,7 @@
       Margin="1"
       VerticalContentAlignment="Center"
       ItemsSource="{Binding Source={StaticResource BoolPattern}}"
-      SelectedValue="{Binding SelectedValue.Pattern.Attribute.BoolPattern}">
-      <i:Interaction.Triggers>
-        <i:EventTrigger EventName="SelectionChanged">
-          <i:InvokeCommandAction Command="{Binding AttributeChangedCommand}" CommandParameter="{Binding SelectedValue}" />
-        </i:EventTrigger>
-      </i:Interaction.Triggers>
+      SelectedValue="{Binding SelectedPattern.Attribute.BoolPattern, ElementName=userControl}">
     </ComboBox>
 
     <TextBlock
@@ -220,12 +191,7 @@
       Margin="1"
       VerticalContentAlignment="Center"
       ItemsSource="{Binding Source={StaticResource DateTimePattern}}"
-      SelectedValue="{Binding SelectedValue.Pattern.Attribute.DateTimePattern}">
-      <i:Interaction.Triggers>
-        <i:EventTrigger EventName="SelectionChanged">
-          <i:InvokeCommandAction Command="{Binding AttributeChangedCommand}" CommandParameter="{Binding SelectedValue}" />
-        </i:EventTrigger>
-      </i:Interaction.Triggers>
+      SelectedValue="{Binding SelectedPattern.Attribute.DateTimePattern, ElementName=userControl}">
     </ComboBox>
 
     <TextBlock
@@ -240,12 +206,7 @@
       Margin="1"
       VerticalContentAlignment="Center"
       ItemsSource="{Binding Source={StaticResource TimeSpanPattern}}"
-      SelectedValue="{Binding SelectedValue.Pattern.Attribute.TimeSpanPattern}">
-      <i:Interaction.Triggers>
-        <i:EventTrigger EventName="SelectionChanged">
-          <i:InvokeCommandAction Command="{Binding AttributeChangedCommand}" CommandParameter="{Binding SelectedValue}" />
-        </i:EventTrigger>
-      </i:Interaction.Triggers>
+      SelectedValue="{Binding SelectedPattern.Attribute.TimeSpanPattern, ElementName=userControl}">
     </ComboBox>
 
     <TextBlock
@@ -260,12 +221,7 @@
       Margin="1"
       VerticalContentAlignment="Center"
       ItemsSource="{Binding Source={StaticResource StringPattern}}"
-      SelectedValue="{Binding SelectedValue.Pattern.Attribute.StringPattern}">
-      <i:Interaction.Triggers>
-        <i:EventTrigger EventName="SelectionChanged">
-          <i:InvokeCommandAction Command="{Binding AttributeChangedCommand}" CommandParameter="{Binding SelectedValue}" />
-        </i:EventTrigger>
-      </i:Interaction.Triggers>
+      SelectedValue="{Binding SelectedPattern.Attribute.StringPattern, ElementName=userControl}">
     </ComboBox>
 
     <TextBlock
@@ -280,12 +236,7 @@
       Margin="1"
       VerticalContentAlignment="Center"
       ItemsSource="{Binding Encodings}"
-      SelectedValue="{Binding SelectedValue.Pattern.Attribute.Encoding}">
-      <i:Interaction.Triggers>
-        <i:EventTrigger EventName="SelectionChanged">
-          <i:InvokeCommandAction Command="{Binding AttributeChangedCommand}" CommandParameter="{Binding SelectedValue}" />
-        </i:EventTrigger>
-      </i:Interaction.Triggers>
+      SelectedValue="{Binding SelectedPattern.Attribute.Encoding, ElementName=userControl}">
     </ComboBox>
 
     <TextBlock
@@ -300,12 +251,7 @@
       Margin="1"
       VerticalContentAlignment="Center"
       local:UiExtensions.IntegerOnly="True"
-      Text="{Binding SelectedValue.Pattern.Attribute.Length, UpdateSourceTrigger=PropertyChanged}">
-      <i:Interaction.Triggers>
-        <i:EventTrigger EventName="TextChanged">
-          <i:InvokeCommandAction Command="{Binding AttributeChangedCommand}" CommandParameter="{Binding SelectedValue}" />
-        </i:EventTrigger>
-      </i:Interaction.Triggers>
+      Text="{Binding SelectedPattern.Attribute.Length, UpdateSourceTrigger=PropertyChanged, ElementName=userControl}">
     </TextBox>
 
     <TextBlock
@@ -320,12 +266,7 @@
       Margin="1"
       VerticalContentAlignment="Center"
       local:UiExtensions.IntegerOnly="True"
-      Text="{Binding SelectedValue.Pattern.Attribute.Offset, UpdateSourceTrigger=PropertyChanged}">
-      <i:Interaction.Triggers>
-        <i:EventTrigger EventName="TextChanged">
-          <i:InvokeCommandAction Command="{Binding AttributeChangedCommand}" CommandParameter="{Binding SelectedValue}" />
-        </i:EventTrigger>
-      </i:Interaction.Triggers>
+      Text="{Binding SelectedPattern.Attribute.Offset, UpdateSourceTrigger=PropertyChanged, ElementName=userControl}">
     </TextBox>
 
     <Button
@@ -333,7 +274,7 @@
       Grid.Row="14"
       Grid.Column="2"
       Command="{Binding ResetAttributeCommand}"
-      CommandParameter="{Binding SelectedValue}"
+      CommandParameter="{Binding SelectedPattern, ElementName=userControl}"
       Content="Reset"
       Tag="{Binding SelectedValue}" />
   </Grid>

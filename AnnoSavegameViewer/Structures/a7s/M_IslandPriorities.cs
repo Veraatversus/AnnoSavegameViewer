@@ -1,0 +1,14 @@
+namespace AnnoSerializer.Structures.Generated.a7s {
+
+	using AnnoSerializer.Serialization.Core;
+	using AnnoSerializer.Structures.DataTypes;
+	using System;
+	using System.Collections.Generic;
+
+	public partial class M_IslandPriorities : ValuesList<M_IslandPrioritiesValue> {
+
+		[BinaryContent(Name = "None", NodeType = BinaryContentTypes.Node)]
+		public override List<M_IslandPrioritiesValue> Values { get; set; }
+
+	}
+}

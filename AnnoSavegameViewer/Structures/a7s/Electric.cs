@@ -1,0 +1,13 @@
+namespace AnnoSerializer.Structures.Generated.a7s {
+
+	using AnnoSerializer.Serialization.Core;
+	using AnnoSerializer.Structures.DataTypes;
+	using System;
+
+	public partial class Electric {
+
+		[BinaryContent(Name = "IsPowered", NodeType = BinaryContentTypes.Attribute)]
+		public Boolean IsPowered { get; set; }
+
+	}
+}

@@ -2,6 +2,7 @@
   using System;
   using System.Globalization;
   using System.Windows.Data;
+  using AnnoSerializer;
 
   public class GlobalDescriptionConverter : IValueConverter {
 
@@ -9,10 +10,10 @@
 
     public object Convert(object value, Type targetType, object parameter, CultureInfo culture) {
       if (parameter is int idint) {
-        return ProgrammSettings.Texts.TryGetValue(idint, out var str) ? str : null;
+        return LanguageService.Texts.TryGetValue(idint, out var str) ? str : null;
       }
       else if (parameter is string idstring && int.TryParse(idstring, out var id)) {
-        return ProgrammSettings.Texts.TryGetValue(id, out var str) ? str : null;
+        return LanguageService.Texts.TryGetValue(id, out var str) ? str : null;
       }
       return null;
     }

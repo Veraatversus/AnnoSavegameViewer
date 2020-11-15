@@ -1,0 +1,16 @@
+namespace AnnoSerializer.Structures.Generated.a7s {
+
+	using AnnoSerializer.Serialization.Core;
+	using AnnoSerializer.Structures.DataTypes;
+	using System;
+
+	public partial class RightClickMenuSettingsValue {
+
+		[BinaryContent(Name = "LockPosition", NodeType = BinaryContentTypes.Attribute)]
+		public HexString LockPosition { get; set; }
+
+		[BinaryContent(Name = "ButtonConfig", NodeType = BinaryContentTypes.Node)]
+		public ButtonConfig ButtonConfig { get; set; }
+
+	}
+}

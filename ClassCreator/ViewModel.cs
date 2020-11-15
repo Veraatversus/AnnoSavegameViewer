@@ -9,11 +9,11 @@ namespace ClassCreator {
   using System.Text;
   using System.Threading.Tasks;
   using System.Windows.Input;
-  using AnnoSavegameViewer.Serialization.Core;
-  using AnnoSavegameViewer.Serialization.Pattern;
-  using AnnoSavegameViewer.Serialization.Tree;
-  using AnnoSavegameViewer.Structures.DataTypes;
-  using AnnoSavegameViewer.Structures.Savegame;
+  using AnnoSerializer.Serialization.Core;
+  using AnnoSerializer.Serialization.Pattern;
+  using AnnoSerializer.Serialization.Tree;
+  using AnnoSerializer.Structures.DataTypes;
+  using AnnoSerializer.Structures.Savegame;
   using Microsoft.Win32;
   using VAV;
   using VAV.Mvvm;
@@ -80,13 +80,22 @@ namespace ClassCreator {
 
     public string FilePath { get; set; }
 
+    public IEnumerable<PropertyPattern> RootPatterns {
+      get { return rootPatterns; }
+      set {
+        if (rootPatterns != value) {
+          rootPatterns = value;
+          RaisePropertyChanged(nameof(RootPatterns));
+        }
+      }
+    }
     #endregion Public Properties
 
     #region Public Constructors
 
     public ViewModel() {
       LoadNewFileCommand = new AsyncRelayCommand(OnLoadNewFile);
-      ResetAttributeCommand = new RelayCommand<TreeNode>(OnResetAttribute);
+      ResetAttributeCommand = new RelayCommand<PropertyPattern>(OnResetAttribute);
       ExportXmlCommand = new AsyncRelayCommand<TreeNode>(async (node) => await (node ?? Tree?.FirstOrDefault()).SaveXml(Path.GetFileNameWithoutExtension(FilePath) + ".xml"));
       ExportCSharpCommand = new AsyncRelayCommand(PatternService.Default.SaveCSharpClasses);
       AnalysePatternsCommand = new AsyncRelayCommand(OnAnalysePatterns);
@@ -114,20 +123,20 @@ namespace ClassCreator {
       }
     }
 
-    private void OnResetAttribute(TreeNode arg) {
-      if (arg != null) {
-        arg.Pattern.GenericType = null;
-        arg.Pattern.ValueType = typeof(HexString);
-        arg.Pattern.Attribute.BoolPattern = default;
-        arg.Pattern.Attribute.CompressionType = default;
-        arg.Pattern.Attribute.ConversationType = default;
-        arg.Pattern.Attribute.DateTimePattern = default;
-        arg.Pattern.Attribute.Encoding = default;
-        arg.Pattern.Attribute.Endian = default;
-        arg.Pattern.Attribute.Length = default;
-        arg.Pattern.Attribute.Offset = default;
-        arg.Pattern.Attribute.StringPattern = default;
-        arg.Pattern.Attribute.TimeSpanPattern = default;
+    private void OnResetAttribute(PropertyPattern pattern) {
+      if (pattern != null) {
+        pattern.GenericType = null;
+        pattern.ValueType = typeof(HexString);
+        pattern.Attribute.BoolPattern = default;
+        pattern.Attribute.CompressionType = default;
+        pattern.Attribute.ConversationType = default;
+        pattern.Attribute.DateTimePattern = default;
+        pattern.Attribute.Encoding = default;
+        pattern.Attribute.Endian = default;
+        pattern.Attribute.Length = default;
+        pattern.Attribute.Offset = default;
+        pattern.Attribute.StringPattern = default;
+        pattern.Attribute.TimeSpanPattern = default;
       }
     }
 
@@ -138,7 +147,10 @@ namespace ClassCreator {
         _ = PatternService.Default.TryLoadPatterns(dialog.FileName);
         FilePath = dialog.FileName;
         var bytes = await File.ReadAllBytesAsync(dialog.FileName);
-        Tree = new TreeChildCollection(null) { new TreeNode($"{PatternService.Default.Name}_File") { NodeType = BinaryContentTypes.Node, Content = bytes } };
+        Tree = new TreeChildCollection(null);
+        var rootNode = new TreeNode($"{PatternService.Default.Name}_File") { NodeType = BinaryContentTypes.Node, Content = bytes };
+        Tree.Add(rootNode);
+        RootPatterns = new[] { rootNode.Pattern };
       }
     }
 
@@ -148,6 +160,7 @@ namespace ClassCreator {
 
     private TreeChildCollection tree;
     private TreeNode selectedValue;
+    private IEnumerable<PropertyPattern> rootPatterns;
 
     #endregion Private Fields
   }

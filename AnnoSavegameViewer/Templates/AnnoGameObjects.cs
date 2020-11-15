@@ -1,9 +1,9 @@
 ﻿namespace AnnoSavegameViewer.Templates {
-  using AnnoSavegameViewer.Structures.DataTypes;
-  using AnnoSavegameViewer.Structures.Savegame;
-  using AnnoSavegameViewer.Structures.Savegame.Generated;
+  using AnnoSerializer.Structures.DataTypes;
   using System.Collections.Generic;
   using System.Linq;
+  using AnnoSerializer.Structures.Generated.a7s;
+  using AnnoSerializer;
 
   public class AnnoGameObjects {
 
@@ -17,8 +17,9 @@
 
     #region Public Constructors
 
-    public AnnoGameObjects(DataBaseNode baseNode) {
-      foreach (var session in baseNode.MetaGameManager.GameSessions.GameSessionsList) {
+    public AnnoGameObjects(A7s_File a7s) {
+      var baseNode = a7s.A7s_File_RDA.Block_03.Data_a7s;
+      foreach (var session in baseNode.MetaGameManager.GameSessions.Values) {
         //Participants
         var Participants = session
           .SessionData
@@ -26,7 +27,7 @@
           .GameSessionManager
           .SessionParticipantManager
           .ParticipantIDToObjects
-          .ParticipantIDToObjectsList
+          .Values
           .ToDictionary(p => p.Value.Id, p => new AnnoParticipant(p.Value.Id));
 
         //Find Participants Objects
@@ -34,12 +35,10 @@
           .SessionData
           .BinaryData
           .GameSessionManager
-          .AreaManagers
-          .AreaManager[0]
+          .AreaManagers[0]
           .AreaObjectManager
           .GameObject
           .Objects
-          .GameObjectsList
           .Where(o => o.Profile is not null)
           .Take(Participants.Count);
 
@@ -52,23 +51,23 @@
          .SessionData
          .BinaryData
          .GameSessionManager
-         .AreaInfo
-         .Ids
-         .Zip(session.SessionData.BinaryData.GameSessionManager.AreaInfo.AreaInfoList)
-         .ToDictionary(x => x.First, x => x.Second);
+         .AreaInfo;
+         //.Ids
+         //.Zip(session.SessionData.BinaryData.GameSessionManager.AreaInfo.AreaInfoList)
+         //.ToDictionary(x => x.First, x => x.Second);
 
         //AreaManager
-        foreach (var areaManager in session.SessionData.BinaryData.GameSessionManager.AreaManagers.AreaManager) {
+        foreach (var areaManager in session.SessionData.BinaryData.GameSessionManager.AreaManagers) {
           _ = AreaInfos.TryGetValue(areaManager.AreaItemManager.AreaSlotContainer.AreaID, out var areaInfo);
           if (areaInfo != null) {
-            foreach (var kontorItem in areaManager.AreaItemManager.AreaSlotContainer.SlotList.AreaSlotContainerSlotListList ?? Enumerable.Empty<AreaSlotContainerSlotListList>()) {
-              foreach (var item in kontorItem.Stack.AreaSlotContainerSlotListListStackList ?? Enumerable.Empty<AreaSlotContainerSlotListListStackList>()) {
+            foreach (var kontorItem in areaManager.AreaItemManager.AreaSlotContainer.SlotList ?? Enumerable.Empty<SlotListValue>()) {
+              foreach (var item in kontorItem.Stack.Values ?? Enumerable.Empty<StackValue>()) {
                 if (item.GUID?.GUID != null) {
                   _ = Items.Add(new AnnoItem {
                     GUID = item.GUID,
                     Amount = 1,
                     InUse = false,
-                    Participant = Participants[areaInfo.Owner.id],
+                    Participant = Participants[areaInfo.Owner.Id],
                     AreaManager = areaManager,
                     AreaInfo = areaInfo,
                     Session = session
@@ -78,10 +77,10 @@
             }
           }
           //GameObjects
-          foreach (var gameObject in areaManager.AreaObjectManager.GameObject.Objects?.GameObjectsList ?? Enumerable.Empty<GameObjectObjectsList>()) {
+          foreach (var gameObject in areaManager.AreaObjectManager.GameObject.Objects ?? Enumerable.Empty<GameObjectObjectsValue>()) {
             var participant = Participants[gameObject.ParticipantID.Id];
 
-            if (gameObject.ShipMaintenance != null || (gameObject.Building != null && ProgrammSettings.Texts.ContainsKey(gameObject.Guid.GUID)) /*&& participant.GUID.GUID != 34*/) {
+            if (gameObject.ShipMaintenance != null || (gameObject.Building != null && LanguageService.Texts.ContainsKey(gameObject.Guid.GUID)) /*&& participant.GUID.GUID != 34*/) {
               _ = GameObjects.Add(new AnnoItem {
                 GUID = gameObject.Guid,
                 Participant = participant,
@@ -92,9 +91,9 @@
                 Amount = 1
               });
 
-              foreach (var slotItem in gameObject.ItemContainer?.SlotContainer?.SlotList?.SlotContainerSlotListList ?? Enumerable.Empty<SlotContainerSlotListList>()) {
-                if (slotItem?.Stack?.StackList != null) {
-                  foreach (var stack in slotItem?.Stack?.StackList) {
+              foreach (var slotItem in gameObject.ItemContainer?.SlotContainer?.SlotList ?? Enumerable.Empty<SlotContainerSlotListValue>()) {
+                if (slotItem?.Stack != null) {
+                  foreach (var stack in slotItem?.Stack) {
                     if (stack?.GUID != null) {
                       _ = Items.Add(new AnnoItem {
                         GUID = stack.GUID,
@@ -111,7 +110,7 @@
                 }
               }
 
-              foreach (var socketItem in gameObject.ItemContainer?.SocketContainer?.SocketItems?.SocketItemsList ?? Enumerable.Empty<SocketItemsList>()) {
+              foreach (var socketItem in gameObject.ItemContainer?.SocketContainer?.SocketItems ?? Enumerable.Empty<SocketItemsValue>()) {
                 if (socketItem.GUID != null) {
                   _ = Items.Add(new AnnoItem {
                     GUID = socketItem.GUID,
@@ -127,7 +126,7 @@
               }
 
               if (gameObject.UpgradeList != null) {
-                foreach (var upgrade in gameObject.UpgradeList.UpgradeGUIDs.GUIDs ?? Enumerable.Empty<DescriptionInt>()) {
+                foreach (var upgrade in gameObject.UpgradeList.UpgradeGUIDs ?? Enumerable.Empty<DescriptionInt>()) {
                   _ = Upgrades.Add(new AnnoItem {
                     GUID = upgrade,
                     Amount = 1,

@@ -1,11 +1,10 @@
 ﻿namespace AnnoSavegameViewer {
   using AnnoSavegameViewer.Controls;
   using AnnoSavegameViewer.Controls.Loading;
-  using AnnoSavegameViewer.Templates;
+  using AnnoSerializer;
+  using AnnoSerializer.Templates;
   using Microsoft.Win32;
   using System;
-  using System.ComponentModel;
-  using System.Runtime.CompilerServices;
   using System.Windows;
 
   /// <summary> Interaction logic for MainWindow.xaml </summary>
@@ -24,7 +23,7 @@
       InitializeComponent();
       Loaded += MainWindow_Loaded;
       DataContext = this;
-      ComboBoxLanguage.SelectedItem = ProgrammSettings.Language;
+      ComboBoxLanguage.SelectedItem = LanguageService.Language;
       ComboBoxLanguage.SelectionChanged += ComboBoxLanguage_SelectionChanged;
     }
 
@@ -36,7 +35,7 @@
 
     private void ComboBoxLanguage_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e) {
       if (ComboBoxLanguage.SelectedItem is Languages lang) {
-        ProgrammSettings.Language = lang;
+        LanguageService.Language = lang;
       }
       DataContext = null;
       DataContext = this;

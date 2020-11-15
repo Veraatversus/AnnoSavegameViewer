@@ -1,5 +1,6 @@
 ﻿namespace AnnoSavegameViewer.Templates.Filters {
-  using AnnoSavegameViewer.Structures.DataTypes;
+  using AnnoSerializer;
+  using AnnoSerializer.Structures.DataTypes;
   using System;
   using System.Collections.Generic;
   using System.ComponentModel;
@@ -31,7 +32,7 @@
 
     public List<AnnoItem> SavedItems { get; set; }
 
-    public virtual string Description => ProgrammSettings.Texts[DescriptionID];
+    public virtual string Description => LanguageService.Texts[DescriptionID];
 
     object IFilter.SelectedValue => SelectedValue;
 

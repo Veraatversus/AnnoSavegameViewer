@@ -1,0 +1,13 @@
+namespace AnnoSerializer.Structures.Generated.a7s {
+
+	using AnnoSerializer.Serialization.Core;
+	using AnnoSerializer.Structures.DataTypes;
+	using System;
+
+	public partial class AllRequestsValuesNoneSource {
+
+		[BinaryContent(Name = "Source", NodeType = BinaryContentTypes.Attribute)]
+		public HexString Source { get; set; }
+
+	}
+}

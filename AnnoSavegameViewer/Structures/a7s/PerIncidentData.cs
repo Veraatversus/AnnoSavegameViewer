@@ -1,0 +1,14 @@
+namespace AnnoSerializer.Structures.Generated.a7s {
+
+	using AnnoSerializer.Serialization.Core;
+	using AnnoSerializer.Structures.DataTypes;
+	using System;
+	using System.Collections.Generic;
+
+	public partial class PerIncidentData : ValuesList<PerIncidentDataValue> {
+
+		[BinaryContent(Name = "None", NodeType = BinaryContentTypes.Node)]
+		public override List<PerIncidentDataValue> Values { get; set; }
+
+	}
+}

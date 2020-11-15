@@ -26,38 +26,33 @@
 
   <ItemGroup>
     <Compile Remove="Helper\**" />
-    <Compile Remove="Structures\Savegame\Generated\Edited\**" />
+    <Compile Remove="Resources\**" />
+    <Compile Remove="Structures\Patterns\**" />
+    <Compile Remove="Structures\Savegame2\**" />
     <EmbeddedResource Remove="Helper\**" />
-    <EmbeddedResource Remove="Structures\Savegame\Generated\Edited\**" />
+    <EmbeddedResource Remove="Resources\**" />
+    <EmbeddedResource Remove="Structures\Patterns\**" />
+    <EmbeddedResource Remove="Structures\Savegame2\**" />
     <None Remove="Helper\**" />
-    <None Remove="Structures\Savegame\Generated\Edited\**" />
+    <None Remove="Resources\**" />
+    <None Remove="Structures\Patterns\**" />
+    <None Remove="Structures\Savegame2\**" />
     <Page Remove="Helper\**" />
-    <Page Remove="Structures\Savegame\Generated\Edited\**" />
+    <Page Remove="Resources\**" />
+    <Page Remove="Structures\Patterns\**" />
+    <Page Remove="Structures\Savegame2\**" />
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Remove="Serialization\Memory\MemoryReader - Kopieren.cs" />
-    <Compile Remove="Serialization\Memory\SpanReader2.cs" />
-    <Compile Remove="Serialization\Memory\SpanReadExtensions - Kopieren.cs" />
-    <Compile Remove="Serialization\Memory\SpanWriter.cs" />
-    <Compile Remove="Serialization\TreeNode\ListTypeEnum.cs" />
-    <Compile Remove="Testing\test.cs" />
-    <Compile Remove="Testing\test2.cs" />
+    <Compile Remove="Templates\Languages.cs" />
   </ItemGroup>
 
   <ItemGroup>
     <None Remove="Anno1800_Fortification_Concept.jpg" />
-    <None Remove="Resources\Languages\Custom\english.xml" />
-    <None Remove="Resources\Languages\Custom\german.xml" />
-    <None Remove="Resources\Languages\texts_english.xml" />
-    <None Remove="Resources\Languages\texts_german.xml" />
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Include="Resources\Languages\Custom\english.xml" />
-    <EmbeddedResource Include="Resources\Languages\Custom\german.xml" />
-    <EmbeddedResource Include="Resources\Languages\texts_english.xml" />
-    <EmbeddedResource Include="Resources\Languages\texts_german.xml" />
+    <Resource Include="Resources\Anno1800_Fortification_Concept.jpg" />
   </ItemGroup>
 
   <ItemGroup>
@@ -69,15 +64,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Testing\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\AnnoRdaExtractInsert\AnnoRdaExtractInsert.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Resource Include="Resources\Anno1800_Fortification_Concept.jpg" />
+    <ProjectReference Include="..\AnnoSerializer\AnnoSerializer.csproj" />
   </ItemGroup>
 
   <ItemGroup>

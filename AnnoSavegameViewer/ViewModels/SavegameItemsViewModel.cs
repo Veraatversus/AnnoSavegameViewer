@@ -1,5 +1,5 @@
 ﻿namespace AnnoSavegameViewer.ViewModels {
-  using AnnoSavegameViewer.Structures.DataTypes;
+  using AnnoSerializer.Structures.DataTypes;
   using AnnoSavegameViewer.Templates;
   using System.ComponentModel;
   using System.Linq;

@@ -2,10 +2,10 @@
   x:Class="ClassCreator.App"
   xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-  xmlns:converter="clr-namespace:AnnoSavegameViewer.Converter;assembly=AnnoSavegameViewer"
-  xmlns:core="clr-namespace:AnnoSavegameViewer.Serialization.Core;assembly=AnnoSavegameViewer"
+  xmlns:core="clr-namespace:AnnoSerializer.Serialization.Core;assembly=AnnoSerializer"
   xmlns:local="clr-namespace:ClassCreator"
-  xmlns:tree="clr-namespace:AnnoSavegameViewer.Serialization.Tree;assembly=AnnoSavegameViewer"
+  xmlns:pattern="clr-namespace:AnnoSerializer.Serialization.Pattern;assembly=AnnoSerializer"
+  xmlns:tree="clr-namespace:AnnoSerializer.Serialization.Tree;assembly=AnnoSerializer"
   StartupUri="MainWindow.xaml">
   <Application.Resources>
     <HierarchicalDataTemplate x:Key="TreeNodeTemplate" DataType="{x:Type tree:TreeNode}" ItemsSource="{Binding Childs}">
@@ -29,6 +29,31 @@
                   <Setter Property="Text" Value="{}{ }" />
                 </DataTrigger>
                 <DataTrigger Binding="{Binding Pattern.IsArrayItem}" Value="True">
+                  <Setter Property="Text" Value="[ ]" />
+                </DataTrigger>
+              </Style.Triggers>
+            </Style>
+          </TextBlock.Style>
+        </TextBlock>
+      </StackPanel>
+    </HierarchicalDataTemplate>
+    <HierarchicalDataTemplate x:Key="PatternTemplate" DataType="{x:Type pattern:PropertyPattern}" ItemsSource="{Binding Childs}">
+      <StackPanel Orientation="Horizontal">
+        <TextBlock Grid.Column="0">
+          <Run Text="{Binding RealName, Mode=OneWay}" />
+          <Run Foreground="Green" Text=" : " />
+        </TextBlock>
+        <TextBlock x:Name="tbContent" Grid.Column="1" MaxWidth="2000">
+          <TextBlock.Style>
+            <Style TargetType="TextBlock">
+              <Style.Triggers>
+                <DataTrigger Binding="{Binding HasChilds}" Value="False">
+                  <Setter Property="Text" Value="{Binding FirstRegisteredNode.CalculatedValue}" />
+                </DataTrigger>
+                <DataTrigger Binding="{Binding HasChilds}" Value="True">
+                  <Setter Property="Text" Value="{}{ }" />
+                </DataTrigger>
+                <DataTrigger Binding="{Binding IsArrayItem}" Value="True">
                   <Setter Property="Text" Value="[ ]" />
                 </DataTrigger>
               </Style.Triggers>

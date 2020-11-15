@@ -1,0 +1,25 @@
+namespace AnnoSerializer.Structures.Generated.a7s {
+
+	using AnnoSerializer.Serialization.Core;
+	using AnnoSerializer.Structures.DataTypes;
+	using System;
+
+	public partial class NoneProjection {
+
+		[BinaryContent(Name = "Flags", NodeType = BinaryContentTypes.Attribute)]
+		public HexString Flags { get; set; }
+
+		[BinaryContent(Name = "FOV", NodeType = BinaryContentTypes.Attribute)]
+		public HexString FOV { get; set; }
+
+		[BinaryContent(Name = "NearClip", NodeType = BinaryContentTypes.Attribute)]
+		public HexString NearClip { get; set; }
+
+		[BinaryContent(Name = "FarClip", NodeType = BinaryContentTypes.Attribute)]
+		public HexString FarClip { get; set; }
+
+		[BinaryContent(Name = "AspectRatio", NodeType = BinaryContentTypes.Attribute)]
+		public HexString AspectRatio { get; set; }
+
+	}
+}
