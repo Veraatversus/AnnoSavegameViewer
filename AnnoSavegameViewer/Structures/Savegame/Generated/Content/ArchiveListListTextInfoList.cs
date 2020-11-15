@@ -1,7 +1,5 @@
-using AnnoSavegameViewer.Serialization.Core;
-using System.Collections.Generic;
-
 namespace AnnoSavegameViewer.Structures.Savegame.Generated {
+  using AnnoSavegameViewer.Serialization.Core;
 
   public class ArchiveListListTextInfoList {
 
@@ -16,6 +14,5 @@ namespace AnnoSavegameViewer.Structures.Savegame.Generated {
 
     [BinaryContent(Name = "valObj", NodeType = BinaryContentTypes.Node)]
     public ValObj ValObj { get; set; }
-
   }
 }

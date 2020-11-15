@@ -1,7 +1,6 @@
-using AnnoSavegameViewer.Serialization.Core;
-using System.Collections.Generic;
-
 namespace AnnoSavegameViewer.Structures.Savegame.Generated {
+  using AnnoSavegameViewer.Serialization.Core;
+  using System.Collections.Generic;
 
   public class LastCameraState {
 
@@ -22,6 +21,5 @@ namespace AnnoSavegameViewer.Structures.Savegame.Generated {
 
     [BinaryContent(Name = "SyncedStatesArray", NodeType = BinaryContentTypes.Node)]
     public SyncedStatesArray SyncedStatesArray { get; set; }
-
   }
 }

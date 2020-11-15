@@ -1,7 +1,5 @@
-using AnnoSavegameViewer.Serialization.Core;
-using System.Collections.Generic;
-
 namespace AnnoSavegameViewer.Structures.Savegame.Generated {
+  using AnnoSavegameViewer.Serialization.Core;
 
   public class GameSessionManager {
 
@@ -124,6 +122,5 @@ namespace AnnoSavegameViewer.Structures.Savegame.Generated {
 
     [BinaryContent(Name = "AreaInfo", NodeType = BinaryContentTypes.Node)]
     public AreaInfo AreaInfo { get; set; }
-
   }
 }

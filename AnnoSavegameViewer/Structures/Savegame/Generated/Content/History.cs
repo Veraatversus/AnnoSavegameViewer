@@ -1,9 +1,9 @@
-using AnnoSavegameViewer.Serialization.Core;
-using System.Collections.Generic;
-
 namespace AnnoSavegameViewer.Structures.Savegame.Generated {
+  using AnnoSavegameViewer.Serialization.Core;
 
   public class History {
+
+    #region Public Properties
 
     [BinaryContent(Name = "lastSnapshot", NodeType = BinaryContentTypes.Attribute)]
     public object LastSnapshot { get; set; }
@@ -14,5 +14,6 @@ namespace AnnoSavegameViewer.Structures.Savegame.Generated {
     [BinaryContent(Name = "areaHistory", NodeType = BinaryContentTypes.Node)]
     public AreaHistory AreaHistory { get; set; }
 
+    #endregion Public Properties
   }
 }

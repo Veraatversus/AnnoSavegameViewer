@@ -1,8 +1,8 @@
-using System;
-using System.IO;
-using System.Security.Cryptography;
-
 namespace ICSharpCode.SharpZipLib.Zip.Compression.Streams {
+  using System;
+  using System.IO;
+  using System.Security.Cryptography;
+
   /// <summary>
   /// An input buffer customised for use by <see cref="InflaterInputStream"/>
   /// </summary>
@@ -37,58 +37,39 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression.Streams {
     #endregion Constructors
 
     /// <summary>
-    /// Get the length of bytes bytes in the <see cref="RawData"/>
+    /// Get the length of bytes in the <see cref="RawData"/>
     /// </summary>
-    public int RawLength {
-      get {
-        return rawLength;
-      }
-    }
+    public int RawLength => rawLength;
 
     /// <summary>
     /// Get the contents of the raw data buffer.
     /// </summary>
     /// <remarks>This may contain encrypted data.</remarks>
-    public byte[] RawData {
-      get {
-        return rawData;
-      }
-    }
+    public byte[] RawData => rawData;
 
     /// <summary>
     /// Get the number of useable bytes in <see cref="ClearText"/>
     /// </summary>
-    public int ClearTextLength {
-      get {
-        return clearTextLength;
-      }
-    }
+    public int ClearTextLength => clearTextLength;
 
     /// <summary>
     /// Get the contents of the clear text buffer.
     /// </summary>
-    public byte[] ClearText {
-      get {
-        return clearText;
-      }
-    }
+    public byte[] ClearText => clearText;
 
     /// <summary>
     /// Get/set the number of bytes available
     /// </summary>
-    public int Available {
-      get { return available; }
-      set { available = value; }
-    }
+    public int Available { get; set; }
 
     /// <summary>
     /// Call <see cref="Inflater.SetInput(byte[], int, int)"/> passing the current clear text buffer contents.
     /// </summary>
     /// <param name="inflater">The inflater to set input for.</param>
     public void SetInflaterInput(Inflater inflater) {
-      if (available > 0) {
-        inflater.SetInput(clearText, clearTextLength - available, available);
-        available = 0;
+      if (Available > 0) {
+        inflater.SetInput(clearText, clearTextLength - Available, Available);
+        Available = 0;
       }
     }
 
@@ -108,14 +89,9 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression.Streams {
         toRead -= count;
       }
 
-      if (cryptoTransform != null) {
-        clearTextLength = cryptoTransform.TransformBlock(rawData, 0, rawLength, clearText, 0);
-      }
-      else {
-        clearTextLength = rawLength;
-      }
+      clearTextLength = cryptoTransform != null ? cryptoTransform.TransformBlock(rawData, 0, rawLength, clearText, 0) : rawLength;
 
-      available = clearTextLength;
+      Available = clearTextLength;
     }
 
     /// <summary>
@@ -123,9 +99,7 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression.Streams {
     /// </summary>
     /// <param name="buffer">The buffer to fill</param>
     /// <returns>Returns the number of bytes read.</returns>
-    public int ReadRawBuffer(byte[] buffer) {
-      return ReadRawBuffer(buffer, 0, buffer.Length);
-    }
+    public int ReadRawBuffer(byte[] buffer) => ReadRawBuffer(buffer, 0, buffer.Length);
 
     /// <summary>
     /// Read a buffer directly from the input stream
@@ -143,17 +117,17 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression.Streams {
       var currentLength = length;
 
       while (currentLength > 0) {
-        if (available <= 0) {
+        if (Available <= 0) {
           Fill();
-          if (available <= 0) {
+          if (Available <= 0) {
             return 0;
           }
         }
-        var toCopy = Math.Min(currentLength, available);
-        System.Array.Copy(rawData, rawLength - (int)available, outBuffer, currentOffset, toCopy);
+        var toCopy = Math.Min(currentLength, Available);
+        System.Array.Copy(rawData, rawLength - Available, outBuffer, currentOffset, toCopy);
         currentOffset += toCopy;
         currentLength -= toCopy;
-        available -= toCopy;
+        Available -= toCopy;
       }
       return length;
     }
@@ -174,18 +148,18 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression.Streams {
       var currentLength = length;
 
       while (currentLength > 0) {
-        if (available <= 0) {
+        if (Available <= 0) {
           Fill();
-          if (available <= 0) {
+          if (Available <= 0) {
             return 0;
           }
         }
 
-        var toCopy = Math.Min(currentLength, available);
-        Array.Copy(clearText, clearTextLength - (int)available, outBuffer, currentOffset, toCopy);
+        var toCopy = Math.Min(currentLength, Available);
+        Array.Copy(clearText, clearTextLength - Available, outBuffer, currentOffset, toCopy);
         currentOffset += toCopy;
         currentLength -= toCopy;
-        available -= toCopy;
+        Available -= toCopy;
       }
       return length;
     }
@@ -195,14 +169,14 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression.Streams {
     /// </summary>
     /// <returns>Returns the byte read.</returns>
     public int ReadLeByte() {
-      if (available <= 0) {
+      if (Available <= 0) {
         Fill();
-        if (available <= 0) {
+        if (Available <= 0) {
           throw new ZipException("EOF in header");
         }
       }
-      var result = rawData[rawLength - available];
-      available -= 1;
+      var result = rawData[rawLength - Available];
+      Available--;
       return result;
     }
 
@@ -210,25 +184,19 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression.Streams {
     /// Read an <see cref="short"/> in little endian byte order.
     /// </summary>
     /// <returns>The short value read case to an int.</returns>
-    public int ReadLeShort() {
-      return ReadLeByte() | (ReadLeByte() << 8);
-    }
+    public int ReadLeShort() => ReadLeByte() | (ReadLeByte() << 8);
 
     /// <summary>
     /// Read an <see cref="int"/> in little endian byte order.
     /// </summary>
     /// <returns>The int value read.</returns>
-    public int ReadLeInt() {
-      return ReadLeShort() | (ReadLeShort() << 16);
-    }
+    public int ReadLeInt() => ReadLeShort() | (ReadLeShort() << 16);
 
     /// <summary>
     /// Read a <see cref="long"/> in little endian byte order.
     /// </summary>
     /// <returns>The long value read.</returns>
-    public long ReadLeLong() {
-      return (uint)ReadLeInt() | ((long)ReadLeInt() << 32);
-    }
+    public long ReadLeLong() => (uint)ReadLeInt() | ((long)ReadLeInt() << 32);
 
     /// <summary>
     /// Get/set the <see cref="ICryptoTransform"/> to apply to any data.
@@ -245,8 +213,8 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression.Streams {
             clearText = internalClearText;
           }
           clearTextLength = rawLength;
-          if (available > 0) {
-            cryptoTransform.TransformBlock(rawData, rawLength - available, available, clearText, rawLength - available);
+          if (Available > 0) {
+            _ = cryptoTransform.TransformBlock(rawData, rawLength - Available, Available, clearText, rawLength - Available);
           }
         }
         else {
@@ -264,8 +232,6 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression.Streams {
     private int clearTextLength;
     private byte[] clearText;
     private byte[] internalClearText;
-
-    private int available;
 
     private ICryptoTransform cryptoTransform;
     private Stream inputStream;
@@ -324,10 +290,6 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression.Streams {
     /// Size of the buffer to use
     /// </param>
     public InflaterInputStream(Stream baseInputStream, Inflater inflater, int bufferSize) {
-      if (baseInputStream == null) {
-        throw new ArgumentNullException(nameof(baseInputStream));
-      }
-
       if (inflater == null) {
         throw new ArgumentNullException(nameof(inflater));
       }
@@ -336,7 +298,7 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression.Streams {
         throw new ArgumentOutOfRangeException(nameof(bufferSize));
       }
 
-      this.baseInputStream = baseInputStream;
+      this.baseInputStream = baseInputStream ?? throw new ArgumentNullException(nameof(baseInputStream));
       this.inf = inflater;
 
       inputBuffer = new InflaterInputBuffer(baseInputStream, bufferSize);
@@ -371,7 +333,7 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression.Streams {
 
       // v0.80 Skip by seeking if underlying stream supports it...
       if (baseInputStream.CanSeek) {
-        baseInputStream.Seek(count, SeekOrigin.Current);
+        _ = baseInputStream.Seek(count, SeekOrigin.Current);
         return count;
       }
       else {
@@ -400,19 +362,13 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression.Streams {
     /// <summary>
     /// Clear any cryptographic state.
     /// </summary>
-    protected void StopDecrypting() {
-      inputBuffer.CryptoTransform = null;
-    }
+    protected void StopDecrypting() => inputBuffer.CryptoTransform = null;
 
     /// <summary>
     /// Returns 0 once the end of the stream (EOF) has been reached.
     /// Otherwise returns 1.
     /// </summary>
-    public virtual int Available {
-      get {
-        return inf.IsFinished ? 0 : 1;
-      }
-    }
+    public virtual int Available => inf.IsFinished ? 0 : 1;
 
     /// <summary>
     /// Fills the buffer with more data to decompress.
@@ -436,39 +392,24 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression.Streams {
     /// <summary>
     /// Gets a value indicating whether the current stream supports reading
     /// </summary>
-    public override bool CanRead {
-      get {
-        return baseInputStream.CanRead;
-      }
-    }
+    public override bool CanRead => baseInputStream.CanRead;
 
     /// <summary>
     /// Gets a value of false indicating seeking is not supported for this stream.
     /// </summary>
-    public override bool CanSeek {
-      get {
-        return false;
-      }
-    }
+    public override bool CanSeek => false;
 
     /// <summary>
     /// Gets a value of false indicating that this stream is not writeable.
     /// </summary>
-    public override bool CanWrite {
-      get {
-        return false;
-      }
-    }
+    public override bool CanWrite => false;
 
     /// <summary>
     /// A value representing the length of the stream in bytes.
     /// </summary>
-    public override long Length {
-      get {
+    public override long Length =>
         //return inputBuffer.RawLength;
         throw new NotSupportedException("InflaterInputStream Length is not supported");
-      }
-    }
 
     /// <summary>
     /// The current position within the stream.
@@ -476,20 +417,14 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression.Streams {
     /// </summary>
     /// <exception cref="NotSupportedException">Attempting to set the position</exception>
     public override long Position {
-      get {
-        return baseInputStream.Position;
-      }
-      set {
-        throw new NotSupportedException("InflaterInputStream Position not supported");
-      }
+      get => baseInputStream.Position;
+      set => throw new NotSupportedException("InflaterInputStream Position not supported");
     }
 
     /// <summary>
     /// Flushes the baseInputStream
     /// </summary>
-    public override void Flush() {
-      baseInputStream.Flush();
-    }
+    public override void Flush() => baseInputStream.Flush();
 
     /// <summary>
     /// Sets the position within the current stream
@@ -499,9 +434,7 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression.Streams {
     /// <param name="origin">The <see cref="SeekOrigin"/> defining where to seek from.</param>
     /// <returns>The new position in the stream.</returns>
     /// <exception cref="NotSupportedException">Any access</exception>
-    public override long Seek(long offset, SeekOrigin origin) {
-      throw new NotSupportedException("Seek not supported");
-    }
+    public override long Seek(long offset, SeekOrigin origin) => throw new NotSupportedException("Seek not supported");
 
     /// <summary>
     /// Set the length of the current stream
@@ -509,9 +442,7 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression.Streams {
     /// </summary>
     /// <param name="value">The new length value for the stream.</param>
     /// <exception cref="NotSupportedException">Any access</exception>
-    public override void SetLength(long value) {
-      throw new NotSupportedException("InflaterInputStream SetLength not supported");
-    }
+    public override void SetLength(long value) => throw new NotSupportedException("InflaterInputStream SetLength not supported");
 
     /// <summary>
     /// Writes a sequence of bytes to stream and advances the current position
@@ -521,9 +452,7 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression.Streams {
     /// <param name="offset">The offset of the first byte to write.</param>
     /// <param name="count">The number of bytes to write.</param>
     /// <exception cref="NotSupportedException">Any access</exception>
-    public override void Write(byte[] buffer, int offset, int count) {
-      throw new NotSupportedException("InflaterInputStream Write not supported");
-    }
+    public override void Write(byte[] buffer, int offset, int count) => throw new NotSupportedException("InflaterInputStream Write not supported");
 
     /// <summary>
     /// Writes one byte to the current stream and advances the current position
@@ -531,9 +460,7 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression.Streams {
     /// </summary>
     /// <param name="value">The byte to write.</param>
     /// <exception cref="NotSupportedException">Any access</exception>
-    public override void WriteByte(byte value) {
-      throw new NotSupportedException("InflaterInputStream WriteByte not supported");
-    }
+    public override void WriteByte(byte value) => throw new NotSupportedException("InflaterInputStream WriteByte not supported");
 
     /// <summary>
     /// Closes the input stream.  When <see cref="IsStreamOwner"></see>

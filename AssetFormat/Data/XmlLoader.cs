@@ -1,10 +1,11 @@
-﻿using System.IO;
-using System.Linq;
-using System.Xml.Linq;
+﻿namespace AssetFormat {
+  using System.IO;
+  using System.Linq;
+  using System.Xml.Linq;
 
-namespace AssetFormat {
   public static class XmlLoader {
-    #region Methods
+
+    #region Public Methods
 
     public static XElement LoadXml(string path) {
       if (File.Exists(path)) {
@@ -43,6 +44,6 @@ namespace AssetFormat {
       }
     }
 
-    #endregion Methods
+    #endregion Public Methods
   }
 }

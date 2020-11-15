@@ -1,6 +1,5 @@
-﻿using AnnoSavegameViewer.Templates.Filters;
-
-namespace AnnoSavegameViewer.Templates {
+﻿namespace AnnoSavegameViewer.Templates {
+  using AnnoSavegameViewer.Templates.Filters;
 
   public class BuildingsHolderItems : ItemsHolder {
 

@@ -1,7 +1,6 @@
-using AnnoSavegameViewer.Serialization.Core;
-using System.Collections.Generic;
-
 namespace AnnoSavegameViewer.Structures.Savegame.Generated {
+  using AnnoSavegameViewer.Serialization.Core;
+  using System.Collections.Generic;
 
   public class ConditionsListActionsList {
 
@@ -166,6 +165,5 @@ namespace AnnoSavegameViewer.Structures.Savegame.Generated {
 
     [BinaryContent(Name = "SpecifyParticipant", NodeType = BinaryContentTypes.Node)]
     public SpecifyParticipant SpecifyParticipant { get; set; }
-
   }
 }

@@ -1,7 +1,5 @@
-using AnnoSavegameViewer.Serialization.Core;
-using System.Collections.Generic;
-
 namespace AnnoSavegameViewer.Structures.Savegame.Generated {
+  using AnnoSavegameViewer.Serialization.Core;
 
   public class M_IslandPrioritiesList {
 
@@ -25,6 +23,5 @@ namespace AnnoSavegameViewer.Structures.Savegame.Generated {
 
     [BinaryContent(Name = "PrioType", NodeType = BinaryContentTypes.Node)]
     public PrioType PrioType { get; set; }
-
   }
 }

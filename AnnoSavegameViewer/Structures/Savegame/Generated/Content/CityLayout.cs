@@ -1,9 +1,10 @@
-using AnnoSavegameViewer.Serialization.Core;
-using System.Collections.Generic;
-
 namespace AnnoSavegameViewer.Structures.Savegame.Generated {
+  using AnnoSavegameViewer.Serialization.Core;
+  using System.Collections.Generic;
 
   public class CityLayout {
+
+    #region Public Properties
 
     [BinaryContent(Name = "BlockCount", NodeType = BinaryContentTypes.Attribute)]
     public object BlockCount { get; set; }
@@ -11,5 +12,6 @@ namespace AnnoSavegameViewer.Structures.Savegame.Generated {
     [BinaryContent(Name = "Block", NodeType = BinaryContentTypes.Node)]
     public List<CityLayoutBlock> Block { get; set; }
 
+    #endregion Public Properties
   }
 }

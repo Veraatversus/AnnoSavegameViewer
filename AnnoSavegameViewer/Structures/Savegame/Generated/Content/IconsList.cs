@@ -1,9 +1,9 @@
-using AnnoSavegameViewer.Serialization.Core;
-using System.Collections.Generic;
-
 namespace AnnoSavegameViewer.Structures.Savegame.Generated {
+  using AnnoSavegameViewer.Serialization.Core;
 
   public class IconsList {
+
+    #region Public Properties
 
     [BinaryContent(Name = "VisibilityMaskNew", NodeType = BinaryContentTypes.Attribute)]
     public object VisibilityMaskNew { get; set; }
@@ -17,5 +17,6 @@ namespace AnnoSavegameViewer.Structures.Savegame.Generated {
     [BinaryContent(Name = "HadCallback", NodeType = BinaryContentTypes.Attribute)]
     public object HadCallback { get; set; }
 
+    #endregion Public Properties
   }
 }

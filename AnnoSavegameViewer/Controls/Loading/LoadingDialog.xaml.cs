@@ -1,10 +1,7 @@
-﻿using System.Windows;
+﻿namespace AnnoSavegameViewer.Controls.Loading {
+  using System.Windows;
 
-namespace AnnoSavegameViewer.Controls.Loading {
-
-  /// <summary>
-  /// Interaktionslogik für LoadingDialog.xaml
-  /// </summary>
+  /// <summary> Interaktionslogik für LoadingDialog.xaml </summary>
   public partial class LoadingDialog : Window {
 
     #region Public Constructors
@@ -18,9 +15,7 @@ namespace AnnoSavegameViewer.Controls.Loading {
 
     #region Private Methods
 
-    private void LoadingDialog_Loaded(object sender, RoutedEventArgs e) {
-      this.Visibility = Visibility.Visible;
-    }
+    private void LoadingDialog_Loaded(object sender, RoutedEventArgs e) => this.Visibility = Visibility.Visible;
 
     #endregion Private Methods
   }

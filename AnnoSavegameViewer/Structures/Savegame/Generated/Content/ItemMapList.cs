@@ -1,9 +1,9 @@
-using AnnoSavegameViewer.Serialization.Core;
-using System.Collections.Generic;
-
 namespace AnnoSavegameViewer.Structures.Savegame.Generated {
+  using AnnoSavegameViewer.Serialization.Core;
 
   public class ItemMapList {
+
+    #region Public Properties
 
     [BinaryContent(Name = "ItemID", NodeType = BinaryContentTypes.Attribute)]
     public object ItemID { get; set; }
@@ -17,5 +17,6 @@ namespace AnnoSavegameViewer.Structures.Savegame.Generated {
     [BinaryContent(Name = "Charges", NodeType = BinaryContentTypes.Attribute)]
     public object Charges { get; set; }
 
+    #endregion Public Properties
   }
 }

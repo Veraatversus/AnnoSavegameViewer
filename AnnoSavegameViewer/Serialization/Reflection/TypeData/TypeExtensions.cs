@@ -1,12 +1,9 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-
 namespace AnnoSavegameViewer.Serialization.Reflection.TypeData {
+  using System;
+  using System.Collections;
+  using System.Collections.Generic;
 
-  /// <summary>
-  /// Represents a collection of extension methods for the <see cref="Type"/> class.
-  /// </summary>
+  /// <summary> Represents a collection of extension methods for the <see cref="Type"/> class. </summary>
   internal static class TypeExtensions {
 
     #region Internal Methods
@@ -15,34 +12,30 @@ namespace AnnoSavegameViewer.Serialization.Reflection.TypeData {
     /// Returns a value indicating whether the given <paramref name="type"/> is enumerable. Returns
     /// <see langword="false"/> for non-enumerable objects and strings.
     /// </summary>
-    /// <param name="type">The type which should be checked.</param>
+    /// <param name="type"> The type which should be checked. </param>
     /// <returns>
     /// <see langword="true"/> if the type is enumerable and not a string; otherwise <see langword="false"/>.
     /// </returns>
-    internal static bool IsEnumerable(this Type type) {
-      return type != typeof(String) && (type.IsArray || typeof(IEnumerable).IsAssignableFrom(type));
-    }
+    internal static bool IsEnumerable(this Type type) => type != typeof(string) && (type.IsArray || typeof(IEnumerable).IsAssignableFrom(type));
 
     /// <summary>
     /// Gets the element type of <see cref="IEnumerable"/> instances. Returns <see langword="null"/>
     /// for non-enumerable objects and strings.
     /// </summary>
-    /// <param name="type">The type which element type should be returned.</param>
-    /// <returns>The type of the elements, or <see langword="null"/>.</returns>
+    /// <param name="type"> The type which element type should be returned. </param>
+    /// <returns> The type of the elements, or <see langword="null"/>. </returns>
     internal static Type GetEnumerableElementType(this Type type) {
       // Do not handle strings as enumerables, they are stored differently.
-      if (type == typeof(String)) {
+      if (type == typeof(string)) {
         return null;
       }
 
       // Check for array instances.
       if (type.IsArray) {
         var elementType = type.GetElementType();
-        if (type.GetArrayRank() > 1 || elementType.IsArray) {
-          throw new NotImplementedException(
-              $"Type {type} is a multidimensional array and not supported at the moment.");
-        }
-        return elementType;
+        return type.GetArrayRank() > 1 || elementType.IsArray
+          ? throw new NotImplementedException($"Type {type} is a multidimensional array and not supported at the moment.")
+          : elementType;
       }
 
       // Check for IEnumerable instances. Only the first implementation of IEnumerable<> is returned.
@@ -59,7 +52,7 @@ namespace AnnoSavegameViewer.Serialization.Reflection.TypeData {
     }
 
     internal static Type GetFirstUnderlayingType(this Type type) {
-      if (type == typeof(String)) {
+      if (type == typeof(string)) {
         return null;
       }
 
@@ -90,10 +83,10 @@ namespace AnnoSavegameViewer.Serialization.Reflection.TypeData {
 
     internal static bool TryGetEnumerableElementType(this Type type, out Type elementType) {
       // Do not handle strings as enumerables, they are stored differently.
-      if (type != typeof(String)) {
+      if (type != typeof(string)) {
         // Check for array instances.
         if (type.IsArray) {
-          Type elemType = type.GetElementType();
+          var elemType = type.GetElementType();
           if (type.GetArrayRank() > 1 || elemType.IsArray) {
             throw new NotImplementedException(
                 $"Type {type} is a multidimensional array and not supported at the moment.");

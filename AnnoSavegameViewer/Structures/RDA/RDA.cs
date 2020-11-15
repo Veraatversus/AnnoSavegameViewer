@@ -1,32 +1,42 @@
-﻿using AnnoSavegameViewer.Serialization.Memory;
-using System.Collections.Generic;
+﻿namespace AnnoSavegameViewer.Structures.RDA {
+  using AnnoSavegameViewer.Serialization.Memory;
+  using System;
+  using System.Collections.Generic;
 
-namespace AnnoSavegameViewer.Structures.RDA {
+  public class Rda {
 
-  public class RDA {
+		#region Public Properties
 
-    #region Public Properties
+		public RdaHeader RdaHeader { get; private set; }
+		public List<RdaBlock> Blocks { get; private set; }
 
-    public RdaHeader RdaHeader { get; set; }
-    public List<Block> Blocks { get; }
+		#endregion Public Properties
 
-    #endregion Public Properties
+		#region Public Constructors
 
-    #region Public Constructors
+		public Rda(ReadOnlyMemory<byte> bytes) {
+			var reader = bytes.ToReader();
+			ReadRda(reader);
+		}
 
-    public RDA(ref MemoryReader reader) {
-      RdaHeader = new RdaHeader(ref reader);
+    public Rda(ref MemoryReader reader) => ReadRda(reader);
 
-      Blocks = new List<Block>();
-      var nextHeaderOffset = (int)RdaHeader.FirstBlockHeaderOffset;
+    #endregion Public Constructors
 
-      while (nextHeaderOffset <= reader.Length - 32) {
-        var block = new Block(ref reader, nextHeaderOffset);
+    #region Private Methods
+
+    private void ReadRda(MemoryReader reader) {
+			RdaHeader = new RdaHeader(ref reader);
+
+			Blocks = new List<RdaBlock>();
+			var nextHeaderOffset = (int)RdaHeader.FirstBlockHeaderOffset;
+      for (var index = 0; nextHeaderOffset <= reader.Length - 32; index++) {
+        var block = new RdaBlock(ref reader, nextHeaderOffset) { Index = index };
         Blocks.Add(block);
         nextHeaderOffset = (int)block.Header.NextHeaderOffset;
       }
     }
 
-    #endregion Public Constructors
-  }
+		#endregion Private Methods
+	}
 }

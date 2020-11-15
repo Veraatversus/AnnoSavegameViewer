@@ -1,6 +1,6 @@
-using System;
-
 namespace ICSharpCode.SharpZipLib.Zip.Compression.Streams {
+  using System;
+
   /// <summary>
   /// This class allows us to retrieve a specified number of bits from
   /// the input buffer, as well as copy big byte blocks.
@@ -102,11 +102,7 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression.Streams {
     /// <returns>
     /// the number of bits available.
     /// </returns>
-    public int AvailableBits {
-      get {
-        return bitsInBuffer_;
-      }
-    }
+    public int AvailableBits => bitsInBuffer_;
 
     /// <summary>
     /// Gets the number of bytes available.
@@ -114,11 +110,7 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression.Streams {
     /// <returns>
     /// The number of bytes available.
     /// </returns>
-    public int AvailableBytes {
-      get {
-        return windowEnd_ - windowStart_ + (bitsInBuffer_ >> 3);
-      }
-    }
+    public int AvailableBytes => windowEnd_ - windowStart_ + (bitsInBuffer_ >> 3);
 
     /// <summary>
     /// Skips to the next byte boundary.
@@ -131,11 +123,7 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression.Streams {
     /// <summary>
     /// Returns true when SetInput can be called
     /// </summary>
-    public bool IsNeedingInput {
-      get {
-        return windowStart_ == windowEnd_;
-      }
-    }
+    public bool IsNeedingInput => windowStart_ == windowEnd_;
 
     /// <summary>
     /// Copies bytes from input buffer to output buffer starting

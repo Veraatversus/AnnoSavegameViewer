@@ -1,12 +1,13 @@
-using AnnoSavegameViewer.Serialization.Core;
-using System.Collections.Generic;
-
 namespace AnnoSavegameViewer.Structures.Savegame.Generated {
+  using AnnoSavegameViewer.Serialization.Core;
 
   public class FeedbackShipsListState {
+
+    #region Public Properties
 
     [BinaryContent(Name = "State", NodeType = BinaryContentTypes.Attribute)]
     public object State { get; set; }
 
+    #endregion Public Properties
   }
 }

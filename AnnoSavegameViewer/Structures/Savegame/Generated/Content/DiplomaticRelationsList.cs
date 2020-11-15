@@ -1,7 +1,5 @@
-using AnnoSavegameViewer.Serialization.Core;
-using System.Collections.Generic;
-
 namespace AnnoSavegameViewer.Structures.Savegame.Generated {
+  using AnnoSavegameViewer.Serialization.Core;
 
   public class DiplomaticRelationsList {
 
@@ -40,6 +38,5 @@ namespace AnnoSavegameViewer.Structures.Savegame.Generated {
 
     [BinaryContent(Name = "m_TriggerTimes", NodeType = BinaryContentTypes.Node)]
     public M_TriggerTimes M_TriggerTimes { get; set; }
-
   }
 }

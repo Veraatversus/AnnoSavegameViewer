@@ -1,14 +1,13 @@
-﻿using System;
-using System.Globalization;
-using System.Windows.Data;
-
-namespace AnnoSavegameViewer.Converter {
+﻿namespace AnnoSavegameViewer.Converter {
+  using System;
+  using System.Globalization;
+  using System.Windows.Data;
 
   public class GlobalDescriptionConverter : IValueConverter {
 
     #region Public Methods
 
-    public Object Convert(Object value, Type targetType, Object parameter, CultureInfo culture) {
+    public object Convert(object value, Type targetType, object parameter, CultureInfo culture) {
       if (parameter is int idint) {
         return ProgrammSettings.Texts.TryGetValue(idint, out var str) ? str : null;
       }
@@ -18,9 +17,7 @@ namespace AnnoSavegameViewer.Converter {
       return null;
     }
 
-    public Object ConvertBack(Object value, Type targetType, Object parameter, CultureInfo culture) {
-      throw new NotImplementedException();
-    }
+    public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture) => throw new NotImplementedException();
 
     #endregion Public Methods
   }

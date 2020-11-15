@@ -1,6 +1,5 @@
-﻿using AnnoSavegameViewer.Structures.Savegame.Generated;
-
-namespace AnnoSavegameViewer.Templates {
+﻿namespace AnnoSavegameViewer.Templates {
+  using AnnoSavegameViewer.Structures.Savegame.Generated;
 
   public class Savegame {
 

@@ -1,7 +1,5 @@
-using AnnoSavegameViewer.Serialization.Core;
-using System.Collections.Generic;
-
 namespace AnnoSavegameViewer.Structures.Savegame.Generated {
+  using AnnoSavegameViewer.Serialization.Core;
 
   public class Mesh {
 
@@ -22,6 +20,5 @@ namespace AnnoSavegameViewer.Structures.Savegame.Generated {
 
     [BinaryContent(Name = "SequenceData", NodeType = BinaryContentTypes.Node)]
     public SequenceData SequenceData { get; set; }
-
   }
 }

@@ -1,7 +1,5 @@
-using AnnoSavegameViewer.Serialization.Core;
-using System.Collections.Generic;
-
 namespace AnnoSavegameViewer.Structures.Savegame.Generated {
+  using AnnoSavegameViewer.Serialization.Core;
 
   public class LastResult {
 
@@ -19,6 +17,5 @@ namespace AnnoSavegameViewer.Structures.Savegame.Generated {
 
     [BinaryContent(Name = "OriginalShareOwner", NodeType = BinaryContentTypes.Node)]
     public OriginalShareOwner OriginalShareOwner { get; set; }
-
   }
 }

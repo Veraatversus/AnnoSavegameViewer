@@ -1,11 +1,10 @@
-﻿using AnnoSavegameViewer.Comparer;
-using AnnoSavegameViewer.Structures.Savegame;
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Diagnostics;
-
-namespace AnnoSavegameViewer.Templates {
+﻿namespace AnnoSavegameViewer.Templates {
+  using AnnoSavegameViewer.Comparer;
+  using AnnoSavegameViewer.Structures.DataTypes;
+  using System;
+  using System.Collections;
+  using System.Collections.Generic;
+  using System.Diagnostics;
 
   [DebuggerDisplay("{Description}")]
   public abstract class TreeBase<T> : IEnumerable<T>, ITreeBase where T : ITreeBase, new() {
@@ -13,7 +12,7 @@ namespace AnnoSavegameViewer.Templates {
     #region Public Properties
 
     public Description Description { get; set; }
-    public Dictionary<Description, T> Items { get; set; } = new Dictionary<Description, T>(DescriptionComparer.Default);
+    public Dictionary<Description, T> Items { get; } = new Dictionary<Description, T>(DescriptionComparer.Default);
     public int CountUsed { get; set; }
     public int CountUnused { get; set; }
     public abstract Func<AnnoItem, Description> DescriptionSelector { get; }
@@ -22,13 +21,12 @@ namespace AnnoSavegameViewer.Templates {
 
     #region Public Methods
 
-    public override string ToString() {
-      return $"({CountUsed + CountUnused }/{CountUsed}/{CountUnused}) {Description}";
-    }
+    public override string ToString() => $"({CountUsed + CountUnused }/{CountUsed}/{CountUnused}) {Description}";
 
     public void Add(AnnoItem annoItem) {
-      if (annoItem.InUse)
+      if (annoItem.InUse) {
         CountUsed += annoItem.Amount;
+      }
       else {
         CountUnused += annoItem.Amount;
       }
@@ -44,13 +42,9 @@ namespace AnnoSavegameViewer.Templates {
       }
     }
 
-    public IEnumerator<T> GetEnumerator() {
-      return Items.Values.GetEnumerator();
-    }
+    public IEnumerator<T> GetEnumerator() => Items.Values.GetEnumerator();
 
-    IEnumerator IEnumerable.GetEnumerator() {
-      return GetEnumerator();
-    }
+    IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
 
     #endregion Public Methods
   }

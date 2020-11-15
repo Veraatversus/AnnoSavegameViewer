@@ -1,10 +1,9 @@
-﻿using AnnoSavegameViewer.Comparer;
-using AnnoSavegameViewer.Structures.Savegame;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-
-namespace AnnoSavegameViewer.Templates.Filters {
+﻿namespace AnnoSavegameViewer.Templates.Filters {
+  using AnnoSavegameViewer.Comparer;
+  using AnnoSavegameViewer.Structures.DataTypes;
+  using System;
+  using System.Collections.Generic;
+  using System.Linq;
 
   public class OrderFilter : BaseFilter<Description> {
 
@@ -30,9 +29,7 @@ namespace AnnoSavegameViewer.Templates.Filters {
     public override int DescriptionID => -100014;
 
     public override List<Description> CurrentValues {
-      get {
-        return currentValues;
-      }
+      get => currentValues;
       set {
         if (currentValues != value) {
           currentValues = value;
@@ -42,9 +39,7 @@ namespace AnnoSavegameViewer.Templates.Filters {
     }
 
     public override Description SelectedValue {
-      get {
-        return _selectedValue;
-      }
+      get => _selectedValue;
       set {
         if (!(_selectedValue?.Equals(value) ?? false)) {
           _selectedValue = value;

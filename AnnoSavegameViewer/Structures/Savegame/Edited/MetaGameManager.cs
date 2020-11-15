@@ -1,6 +1,5 @@
-using AnnoSavegameViewer.Serialization.Core;
-
 namespace AnnoSavegameViewer.Structures.Savegame.Generated {
+  using AnnoSavegameViewer.Serialization.Core;
 
   public class MetaGameManager {
 
@@ -60,41 +59,41 @@ namespace AnnoSavegameViewer.Structures.Savegame.Generated {
     [BinaryContent(Name = "EconomyStatisticManager", NodeType = BinaryContentTypes.Node)]
     public EconomyStatisticManager EconomyStatisticManager { get; set; }
 
-    //[BinaryContent(Name = "CorporationDlcUpgradeManager", NodeType = BinaryContentType.Node)]
-    //public CorporationDlcUpgradeManager CorporationDlcUpgradeManager { get; set; }
+    [BinaryContent(Name = "CorporationDlcUpgradeManager", NodeType = BinaryContentTypes.Node)]
+    public CorporationDlcUpgradeManager CorporationDlcUpgradeManager { get; set; }
 
-    //[BinaryContent(Name = "FullscreenMovieQueueManager", NodeType = BinaryContentType.Node)]
-    //public FullscreenMovieQueueManager FullscreenMovieQueueManager { get; set; }
+    [BinaryContent(Name = "FullscreenMovieQueueManager", NodeType = BinaryContentTypes.Node)]
+    public FullscreenMovieQueueManager FullscreenMovieQueueManager { get; set; }
 
-    //[BinaryContent(Name = "WinLoseManager", NodeType = BinaryContentType.Node)]
-    //public WinLoseManager WinLoseManager { get; set; }
+    [BinaryContent(Name = "WinLoseManager", NodeType = BinaryContentTypes.Node)]
+    public WinLoseManager WinLoseManager { get; set; }
 
-    //[BinaryContent(Name = "NewspaperManager", NodeType = BinaryContentType.Node)]
-    //public NewspaperManager NewspaperManager { get; set; }
+    [BinaryContent(Name = "NewspaperManager", NodeType = BinaryContentTypes.Node)]
+    public NewspaperManager NewspaperManager { get; set; }
 
-    //[BinaryContent(Name = "SessionTradeRouteManager", NodeType = BinaryContentType.Node)]
-    //public SessionTradeRouteManager SessionTradeRouteManager { get; set; }
+    [BinaryContent(Name = "SessionTradeRouteManager", NodeType = BinaryContentTypes.Node)]
+    public SessionTradeRouteManager SessionTradeRouteManager { get; set; }
 
-    //[BinaryContent(Name = "SessionTransferManager", NodeType = BinaryContentType.Node)]
-    //public SessionTransferManager SessionTransferManager { get; set; }
+    [BinaryContent(Name = "SessionTransferManager", NodeType = BinaryContentTypes.Node)]
+    public SessionTransferManager SessionTransferManager { get; set; }
 
-    //[BinaryContent(Name = "UniqueNamingManager", NodeType = BinaryContentType.Node)]
-    //public UniqueNamingManager UniqueNamingManager { get; set; }
+    [BinaryContent(Name = "UniqueNamingManager", NodeType = BinaryContentTypes.Node)]
+    public UniqueNamingManager UniqueNamingManager { get; set; }
 
-    //[BinaryContent(Name = "TextureAtlasManager", NodeType = BinaryContentType.Node)]
-    //public TextureAtlasManager TextureAtlasManager { get; set; }
+    [BinaryContent(Name = "TextureAtlasManager", NodeType = BinaryContentTypes.Node)]
+    public TextureAtlasManager TextureAtlasManager { get; set; }
 
-    //[BinaryContent(Name = "MetaSoundManager", NodeType = BinaryContentType.Node)]
-    //public MetaSoundManager MetaSoundManager { get; set; }
+    [BinaryContent(Name = "MetaSoundManager", NodeType = BinaryContentTypes.Node)]
+    public MetaSoundManager MetaSoundManager { get; set; }
 
-    //[BinaryContent(Name = "MetaMessageManager", NodeType = BinaryContentType.Node)]
-    //public MetaMessageManager MetaMessageManager { get; set; }
+    [BinaryContent(Name = "MetaMessageManager", NodeType = BinaryContentTypes.Node)]
+    public MetaMessageManager MetaMessageManager { get; set; }
 
-    //[BinaryContent(Name = "DaytimeManager", NodeType = BinaryContentType.Node)]
-    //public DaytimeManager DaytimeManager { get; set; }
+    [BinaryContent(Name = "DaytimeManager", NodeType = BinaryContentTypes.Node)]
+    public DaytimeManager DaytimeManager { get; set; }
 
-    //[BinaryContent(Name = "MetaIncidentManager", NodeType = BinaryContentType.Node)]
-    //public MetaIncidentManager MetaIncidentManager { get; set; }
+    [BinaryContent(Name = "MetaIncidentManager", NodeType = BinaryContentTypes.Node)]
+    public MetaIncidentManager MetaIncidentManager { get; set; }
 
     [BinaryContent(Name = "GameSessions", NodeType = BinaryContentTypes.Node)]
     public GameSessions GameSessions { get; set; }

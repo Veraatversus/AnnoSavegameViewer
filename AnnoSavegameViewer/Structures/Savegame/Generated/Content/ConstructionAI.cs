@@ -1,9 +1,9 @@
-using AnnoSavegameViewer.Serialization.Core;
-using System.Collections.Generic;
-
 namespace AnnoSavegameViewer.Structures.Savegame.Generated {
+  using AnnoSavegameViewer.Serialization.Core;
 
   public class ConstructionAI {
+
+    #region Public Properties
 
     [BinaryContent(Name = "SessionGUID", NodeType = BinaryContentTypes.Attribute)]
     public object SessionGUID { get; set; }
@@ -116,5 +116,6 @@ namespace AnnoSavegameViewer.Structures.Savegame.Generated {
     [BinaryContent(Name = "Seamines", NodeType = BinaryContentTypes.Node)]
     public Seamines Seamines { get; set; }
 
+    #endregion Public Properties
   }
 }

@@ -1,12 +1,11 @@
-﻿using AnnoSavegameViewer.Comparer;
-using AnnoSavegameViewer.Templates.Filters;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Runtime.CompilerServices;
-
-namespace AnnoSavegameViewer.Templates {
+﻿namespace AnnoSavegameViewer.Templates {
+  using AnnoSavegameViewer.Comparer;
+  using AnnoSavegameViewer.Templates.Filters;
+  using System;
+  using System.Collections.Generic;
+  using System.ComponentModel;
+  using System.Linq;
+  using System.Runtime.CompilerServices;
 
   public abstract class ItemsHolder : INotifyPropertyChanged {
 
@@ -19,9 +18,7 @@ namespace AnnoSavegameViewer.Templates {
     public ILookup<AnnoItem, AnnoItem> Items { get; set; }
 
     public TreeWorld[] SelectedItemTree {
-      get {
-        return selectedItemTree;
-      }
+      get => selectedItemTree;
       set {
         if (selectedItemTree != value) {
           selectedItemTree = value;
@@ -55,9 +52,7 @@ namespace AnnoSavegameViewer.Templates {
       }
     }
 
-    public void SetItems() {
-      Items = OrderFilter.FilterFunc(GetResultWithoutFilter<IFilter>(null)).ToLookup(i => i, AnnoItemComparer.Default);
-    }
+    public void SetItems() => Items = OrderFilter.FilterFunc(GetResultWithoutFilter<IFilter>(null)).ToLookup(i => i, AnnoItemComparer.Default);
 
     public void UpdadeSavedItems() {
       IsRefreshingUi = true;
@@ -70,22 +65,13 @@ namespace AnnoSavegameViewer.Templates {
     }
 
     public IEnumerable<AnnoItem> GetResultWithoutFilter<T>(IFilter<T> filter) {
-      IEnumerable<AnnoItem> result = Base;
+      var result = Base;
       foreach (var f in StandardFilters.Values.Except(new[] { filter })) {
         if (f.SavedItems != null) {
-          if (result == null) {
-            result = f.SavedItems;
-          }
-          else {
-            result = result.Intersect(f.SavedItems);
-          }
+          result = result == null ? f.SavedItems : result.Intersect(f.SavedItems);
         }
       }
-      result = result?.Distinct();
-      if (result == null) {
-        result = Base;
-      }
-      return result;
+      return (result?.Distinct()) ?? Base;
     }
 
     public void ResetFilters() {
@@ -100,9 +86,7 @@ namespace AnnoSavegameViewer.Templates {
       UpdateUI();
     }
 
-    public void RaisePropertyChanged([CallerMemberName]string name = "") {
-      PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
-    }
+    public void RaisePropertyChanged([CallerMemberName] string name = "") => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
 
     #endregion Public Methods
 

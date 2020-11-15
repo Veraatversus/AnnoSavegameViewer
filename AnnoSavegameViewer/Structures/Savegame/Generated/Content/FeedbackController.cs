@@ -1,7 +1,5 @@
-using AnnoSavegameViewer.Serialization.Core;
-using System.Collections.Generic;
-
 namespace AnnoSavegameViewer.Structures.Savegame.Generated {
+  using AnnoSavegameViewer.Serialization.Core;
 
   public class FeedbackController {
 
@@ -19,6 +17,5 @@ namespace AnnoSavegameViewer.Structures.Savegame.Generated {
 
     [BinaryContent(Name = "OverrideSequence", NodeType = BinaryContentTypes.Node)]
     public OverrideSequence OverrideSequence { get; set; }
-
   }
 }

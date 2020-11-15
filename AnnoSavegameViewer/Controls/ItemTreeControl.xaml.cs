@@ -1,17 +1,12 @@
-﻿using System.Windows.Controls;
+﻿namespace AnnoSavegameViewer.Controls {
+  using System.Windows.Controls;
 
-namespace AnnoSavegameViewer.Controls {
-
-  /// <summary>
-  /// Interaktionslogik für ItemTreeControl.xaml
-  /// </summary>
+  /// <summary> Interaktionslogik für ItemTreeControl.xaml </summary>
   public partial class ItemTreeControl : UserControl {
 
     #region Public Constructors
 
-    public ItemTreeControl() {
-      InitializeComponent();
-    }
+    public ItemTreeControl() => InitializeComponent();
 
     #endregion Public Constructors
 

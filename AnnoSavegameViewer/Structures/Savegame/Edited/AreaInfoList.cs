@@ -1,7 +1,6 @@
-using AnnoSavegameViewer.Serialization.Core;
-using System.Diagnostics;
-
 namespace AnnoSavegameViewer.Structures.Savegame.Generated {
+  using AnnoSavegameViewer.Serialization.Core;
+  using System.Diagnostics;
 
   [DebuggerDisplay("Insel {CityName}")]
   public class AreaInfoList {

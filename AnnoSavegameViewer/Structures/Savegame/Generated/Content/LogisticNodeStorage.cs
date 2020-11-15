@@ -1,9 +1,10 @@
-using AnnoSavegameViewer.Serialization.Core;
-using System.Collections.Generic;
-
 namespace AnnoSavegameViewer.Structures.Savegame.Generated {
+  using AnnoSavegameViewer.Serialization.Core;
+  using System.Collections.Generic;
 
   public class LogisticNodeStorage {
+
+    #region Public Properties
 
     [BinaryContent(Name = "None", NodeType = BinaryContentTypes.Attribute)]
     public List<object> None { get; set; }
@@ -11,5 +12,6 @@ namespace AnnoSavegameViewer.Structures.Savegame.Generated {
     [BinaryContent(Name = "None", NodeType = BinaryContentTypes.Node)]
     public List<LogisticNodeStorageList> LogisticNodeStorageList { get; set; }
 
+    #endregion Public Properties
   }
 }

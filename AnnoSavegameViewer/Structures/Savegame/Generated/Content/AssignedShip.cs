@@ -1,12 +1,13 @@
-using AnnoSavegameViewer.Serialization.Core;
-using System.Collections.Generic;
-
 namespace AnnoSavegameViewer.Structures.Savegame.Generated {
+  using AnnoSavegameViewer.Serialization.Core;
 
   public class AssignedShip {
+
+    #region Public Properties
 
     [BinaryContent(Name = "ObjectID", NodeType = BinaryContentTypes.Attribute)]
     public object ObjectID { get; set; }
 
+    #endregion Public Properties
   }
 }

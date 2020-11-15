@@ -1,8 +1,7 @@
-﻿using AnnoSavegameViewer.Serialization.Core;
-using AnnoSavegameViewer.Serialization.Memory;
-using System.Text;
-
-namespace AnnoSavegameViewer.Structures.RDA {
+﻿namespace AnnoSavegameViewer.Structures.RDA {
+  using AnnoSavegameViewer.Serialization.Core;
+  using AnnoSavegameViewer.Serialization.Memory;
+  using System.Text;
 
   public class FileHeader {
 
@@ -20,7 +19,7 @@ namespace AnnoSavegameViewer.Structures.RDA {
     #region Public Constructors
 
     public FileHeader(ref MemoryReader reader) {
-      FilePath = reader.ReadString(Encoding.UTF8, StringPattern.FixByteCount, 520).TrimEnd('\0');
+      FilePath = reader.ReadString(Encoding.Unicode, StringPattern.FixByteCount, 520).TrimEnd('\0');
       DataOffset = reader.ReadUInt64();
       CompressedSize = reader.ReadUInt64();
       UncompressedSize = reader.ReadUInt64();

@@ -1,0 +1,340 @@
+﻿<UserControl
+  x:Class="ClassCreator.AttributeControl"
+  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+  xmlns:System="clr-namespace:System;assembly=mscorlib"
+  xmlns:core="clr-namespace:AnnoSavegameViewer.Serialization.Core;assembly=AnnoSavegameViewer"
+  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+  xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+  xmlns:local="clr-namespace:ClassCreator"
+  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+  d:DesignHeight="450"
+  d:DesignWidth="800"
+  mc:Ignorable="d">
+  <UserControl.Resources>
+    <local:ClassNameConverter x:Key="ClassNameConverter" />
+    <ObjectDataProvider x:Key="ConversationTypes" MethodName="GetValues" ObjectType="{x:Type System:Enum}">
+      <ObjectDataProvider.MethodParameters>
+        <x:Type TypeName="core:ConversationTypes" />
+      </ObjectDataProvider.MethodParameters>
+    </ObjectDataProvider>
+    <ObjectDataProvider x:Key="CompressionTypes" MethodName="GetValues" ObjectType="{x:Type System:Enum}">
+      <ObjectDataProvider.MethodParameters>
+        <x:Type TypeName="core:CompressionTypes" />
+      </ObjectDataProvider.MethodParameters>
+    </ObjectDataProvider>
+    <ObjectDataProvider x:Key="StringPattern" MethodName="GetValues" ObjectType="{x:Type System:Enum}">
+      <ObjectDataProvider.MethodParameters>
+        <x:Type TypeName="core:StringPattern" />
+      </ObjectDataProvider.MethodParameters>
+    </ObjectDataProvider>
+    <ObjectDataProvider x:Key="Endian" MethodName="GetValues" ObjectType="{x:Type System:Enum}">
+      <ObjectDataProvider.MethodParameters>
+        <x:Type TypeName="core:Endian" />
+      </ObjectDataProvider.MethodParameters>
+    </ObjectDataProvider>
+    <ObjectDataProvider x:Key="BoolPattern" MethodName="GetValues" ObjectType="{x:Type System:Enum}">
+      <ObjectDataProvider.MethodParameters>
+        <x:Type TypeName="core:BoolPattern" />
+      </ObjectDataProvider.MethodParameters>
+    </ObjectDataProvider>
+    <ObjectDataProvider x:Key="DateTimePattern" MethodName="GetValues" ObjectType="{x:Type System:Enum}">
+      <ObjectDataProvider.MethodParameters>
+        <x:Type TypeName="core:DateTimePattern" />
+      </ObjectDataProvider.MethodParameters>
+    </ObjectDataProvider>
+    <ObjectDataProvider x:Key="TimeSpanPattern" MethodName="GetValues" ObjectType="{x:Type System:Enum}">
+      <ObjectDataProvider.MethodParameters>
+        <x:Type TypeName="core:TimeSpanPattern" />
+      </ObjectDataProvider.MethodParameters>
+    </ObjectDataProvider>
+    <ObjectDataProvider x:Key="BinaryContentTypes" MethodName="GetValues" ObjectType="{x:Type System:Enum}">
+      <ObjectDataProvider.MethodParameters>
+        <x:Type TypeName="core:BinaryContentTypes" />
+      </ObjectDataProvider.MethodParameters>
+    </ObjectDataProvider>
+  </UserControl.Resources>
+  <Grid>
+    <Grid.ColumnDefinitions>
+      <ColumnDefinition Width="Auto" />
+      <ColumnDefinition Width="5" />
+      <ColumnDefinition />
+    </Grid.ColumnDefinitions>
+    <Grid.RowDefinitions>
+      <RowDefinition Height="25" />
+      <RowDefinition Height="25" />
+      <RowDefinition Height="25" />
+      <RowDefinition Height="25" />
+      <RowDefinition Height="25" />
+      <RowDefinition Height="25" />
+      <RowDefinition Height="25" />
+      <RowDefinition Height="25" />
+      <RowDefinition Height="25" />
+      <RowDefinition Height="25" />
+      <RowDefinition Height="25" />
+      <RowDefinition Height="25" />
+      <RowDefinition Height="25" />
+      <RowDefinition Height="25" />
+      <RowDefinition Height="25" />
+    </Grid.RowDefinitions>
+
+    <TextBlock
+      Grid.Row="1"
+      Grid.Column="0"
+      VerticalAlignment="Center"
+      Text="Value Type:" />
+    <ComboBox
+      x:Name="cbSupportedTypes"
+      Grid.Row="1"
+      Grid.Column="2"
+      Margin="1"
+      VerticalContentAlignment="Center"
+      ItemsSource="{Binding SupportedTypes}"
+      SelectedValue="{Binding SelectedValue.Pattern.ValueType}">
+      <i:Interaction.Triggers>
+        <i:EventTrigger EventName="SelectionChanged">
+          <i:InvokeCommandAction Command="{Binding AttributeChangedCommand}" CommandParameter="{Binding SelectedValue}" />
+        </i:EventTrigger>
+      </i:Interaction.Triggers>
+      <ComboBox.ItemTemplate>
+        <DataTemplate>
+          <TextBlock Text="{Binding ., Converter={StaticResource ClassNameConverter}}" />
+        </DataTemplate>
+      </ComboBox.ItemTemplate>
+    </ComboBox>
+
+    <TextBlock
+      Grid.Row="2"
+      Grid.Column="0"
+      VerticalAlignment="Center"
+      Text="Generic Type:" />
+    <ComboBox
+      x:Name="cbGenericTypes"
+      Grid.Row="2"
+      Grid.Column="2"
+      Margin="1"
+      VerticalContentAlignment="Center"
+      ItemsSource="{Binding GenericTypes}"
+      SelectedValue="{Binding SelectedValue.Pattern.GenericType}">
+      <i:Interaction.Triggers>
+        <i:EventTrigger EventName="SelectionChanged">
+          <i:InvokeCommandAction Command="{Binding AttributeChangedCommand}" CommandParameter="{Binding SelectedValue}" />
+        </i:EventTrigger>
+      </i:Interaction.Triggers>
+      <ComboBox.ItemTemplate>
+        <DataTemplate>
+          <TextBlock Text="{Binding ., Converter={StaticResource ClassNameConverter}}" />
+        </DataTemplate>
+      </ComboBox.ItemTemplate>
+    </ComboBox>
+
+    <TextBlock
+      Grid.Row="3"
+      Grid.Column="0"
+      VerticalAlignment="Center"
+      Text="Conversation:" />
+    <ComboBox
+      x:Name="cbConversationTypes"
+      Grid.Row="3"
+      Grid.Column="2"
+      Margin="1"
+      VerticalContentAlignment="Center"
+      ItemsSource="{Binding Source={StaticResource ConversationTypes}}"
+      SelectedValue="{Binding SelectedValue.Pattern.Attribute.ConversationType}">
+      <i:Interaction.Triggers>
+        <i:EventTrigger EventName="SelectionChanged">
+          <i:InvokeCommandAction Command="{Binding AttributeChangedCommand}" CommandParameter="{Binding SelectedValue}" />
+        </i:EventTrigger>
+      </i:Interaction.Triggers>
+    </ComboBox>
+
+    <TextBlock
+      Grid.Row="4"
+      Grid.Column="0"
+      VerticalAlignment="Center"
+      Text="Compression:" />
+    <ComboBox
+      x:Name="cbCompressionTypes"
+      Grid.Row="4"
+      Grid.Column="2"
+      Margin="1"
+      VerticalContentAlignment="Center"
+      ItemsSource="{Binding Source={StaticResource CompressionTypes}}"
+      SelectedValue="{Binding SelectedValue.Pattern.Attribute.CompressionType}">
+      <i:Interaction.Triggers>
+        <i:EventTrigger EventName="SelectionChanged">
+          <i:InvokeCommandAction Command="{Binding AttributeChangedCommand}" CommandParameter="{Binding SelectedValue}" />
+        </i:EventTrigger>
+      </i:Interaction.Triggers>
+    </ComboBox>
+
+    <TextBlock
+      Grid.Row="5"
+      Grid.Column="0"
+      VerticalAlignment="Center"
+      Text="Endian:" />
+    <ComboBox
+      x:Name="cbEndian"
+      Grid.Row="5"
+      Grid.Column="2"
+      Margin="1"
+      VerticalContentAlignment="Center"
+      ItemsSource="{Binding Source={StaticResource Endian}}"
+      SelectedValue="{Binding SelectedValue.Pattern.Attribute.Endian}">
+      <i:Interaction.Triggers>
+        <i:EventTrigger EventName="SelectionChanged">
+          <i:InvokeCommandAction Command="{Binding AttributeChangedCommand}" CommandParameter="{Binding SelectedValue}" />
+        </i:EventTrigger>
+      </i:Interaction.Triggers>
+    </ComboBox>
+
+    <TextBlock
+      Grid.Row="6"
+      Grid.Column="0"
+      VerticalAlignment="Center"
+      Text="Bool Pattern:" />
+    <ComboBox
+      x:Name="cbBoolPattern"
+      Grid.Row="6"
+      Grid.Column="2"
+      Margin="1"
+      VerticalContentAlignment="Center"
+      ItemsSource="{Binding Source={StaticResource BoolPattern}}"
+      SelectedValue="{Binding SelectedValue.Pattern.Attribute.BoolPattern}">
+      <i:Interaction.Triggers>
+        <i:EventTrigger EventName="SelectionChanged">
+          <i:InvokeCommandAction Command="{Binding AttributeChangedCommand}" CommandParameter="{Binding SelectedValue}" />
+        </i:EventTrigger>
+      </i:Interaction.Triggers>
+    </ComboBox>
+
+    <TextBlock
+      Grid.Row="7"
+      Grid.Column="0"
+      VerticalAlignment="Center"
+      Text="DateTime Pattern:" />
+    <ComboBox
+      x:Name="cbDateTimePattern"
+      Grid.Row="7"
+      Grid.Column="2"
+      Margin="1"
+      VerticalContentAlignment="Center"
+      ItemsSource="{Binding Source={StaticResource DateTimePattern}}"
+      SelectedValue="{Binding SelectedValue.Pattern.Attribute.DateTimePattern}">
+      <i:Interaction.Triggers>
+        <i:EventTrigger EventName="SelectionChanged">
+          <i:InvokeCommandAction Command="{Binding AttributeChangedCommand}" CommandParameter="{Binding SelectedValue}" />
+        </i:EventTrigger>
+      </i:Interaction.Triggers>
+    </ComboBox>
+
+    <TextBlock
+      Grid.Row="8"
+      Grid.Column="0"
+      VerticalAlignment="Center"
+      Text="TimeSpan Pattern:" />
+    <ComboBox
+      x:Name="cbTimeSpanPattern"
+      Grid.Row="8"
+      Grid.Column="2"
+      Margin="1"
+      VerticalContentAlignment="Center"
+      ItemsSource="{Binding Source={StaticResource TimeSpanPattern}}"
+      SelectedValue="{Binding SelectedValue.Pattern.Attribute.TimeSpanPattern}">
+      <i:Interaction.Triggers>
+        <i:EventTrigger EventName="SelectionChanged">
+          <i:InvokeCommandAction Command="{Binding AttributeChangedCommand}" CommandParameter="{Binding SelectedValue}" />
+        </i:EventTrigger>
+      </i:Interaction.Triggers>
+    </ComboBox>
+
+    <TextBlock
+      Grid.Row="9"
+      Grid.Column="0"
+      VerticalAlignment="Center"
+      Text="String Pattern:" />
+    <ComboBox
+      x:Name="cbStringPattern"
+      Grid.Row="9"
+      Grid.Column="2"
+      Margin="1"
+      VerticalContentAlignment="Center"
+      ItemsSource="{Binding Source={StaticResource StringPattern}}"
+      SelectedValue="{Binding SelectedValue.Pattern.Attribute.StringPattern}">
+      <i:Interaction.Triggers>
+        <i:EventTrigger EventName="SelectionChanged">
+          <i:InvokeCommandAction Command="{Binding AttributeChangedCommand}" CommandParameter="{Binding SelectedValue}" />
+        </i:EventTrigger>
+      </i:Interaction.Triggers>
+    </ComboBox>
+
+    <TextBlock
+      Grid.Row="10"
+      Grid.Column="0"
+      VerticalAlignment="Center"
+      Text="Encoding:" />
+    <ComboBox
+      x:Name="cbEncodings"
+      Grid.Row="10"
+      Grid.Column="2"
+      Margin="1"
+      VerticalContentAlignment="Center"
+      ItemsSource="{Binding Encodings}"
+      SelectedValue="{Binding SelectedValue.Pattern.Attribute.Encoding}">
+      <i:Interaction.Triggers>
+        <i:EventTrigger EventName="SelectionChanged">
+          <i:InvokeCommandAction Command="{Binding AttributeChangedCommand}" CommandParameter="{Binding SelectedValue}" />
+        </i:EventTrigger>
+      </i:Interaction.Triggers>
+    </ComboBox>
+
+    <TextBlock
+      Grid.Row="11"
+      Grid.Column="0"
+      VerticalAlignment="Center"
+      Text="Length:" />
+    <TextBox
+      x:Name="tbLength"
+      Grid.Row="11"
+      Grid.Column="2"
+      Margin="1"
+      VerticalContentAlignment="Center"
+      local:UiExtensions.IntegerOnly="True"
+      Text="{Binding SelectedValue.Pattern.Attribute.Length, UpdateSourceTrigger=PropertyChanged}">
+      <i:Interaction.Triggers>
+        <i:EventTrigger EventName="TextChanged">
+          <i:InvokeCommandAction Command="{Binding AttributeChangedCommand}" CommandParameter="{Binding SelectedValue}" />
+        </i:EventTrigger>
+      </i:Interaction.Triggers>
+    </TextBox>
+
+    <TextBlock
+      Grid.Row="12"
+      Grid.Column="0"
+      VerticalAlignment="Center"
+      Text="Offset:" />
+    <TextBox
+      x:Name="tbOffset"
+      Grid.Row="12"
+      Grid.Column="2"
+      Margin="1"
+      VerticalContentAlignment="Center"
+      local:UiExtensions.IntegerOnly="True"
+      Text="{Binding SelectedValue.Pattern.Attribute.Offset, UpdateSourceTrigger=PropertyChanged}">
+      <i:Interaction.Triggers>
+        <i:EventTrigger EventName="TextChanged">
+          <i:InvokeCommandAction Command="{Binding AttributeChangedCommand}" CommandParameter="{Binding SelectedValue}" />
+        </i:EventTrigger>
+      </i:Interaction.Triggers>
+    </TextBox>
+
+    <Button
+      x:Name="btnResetAttribute"
+      Grid.Row="14"
+      Grid.Column="2"
+      Command="{Binding ResetAttributeCommand}"
+      CommandParameter="{Binding SelectedValue}"
+      Content="Reset"
+      Tag="{Binding SelectedValue}" />
+  </Grid>
+</UserControl>

@@ -1,6 +1,6 @@
-using System;
-
 namespace ICSharpCode.SharpZipLib.Checksum {
+  using System;
+
   /// <summary>
   /// Interface to compute a data checksum used by checked input/output streams.
   /// A data checksum can be updated by one byte or with a byte array. After each

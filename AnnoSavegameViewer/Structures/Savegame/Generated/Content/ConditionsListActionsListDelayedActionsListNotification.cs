@@ -1,9 +1,9 @@
-using AnnoSavegameViewer.Serialization.Core;
-using System.Collections.Generic;
-
 namespace AnnoSavegameViewer.Structures.Savegame.Generated {
+  using AnnoSavegameViewer.Serialization.Core;
 
   public class ConditionsListActionsListDelayedActionsListNotification {
+
+    #region Public Properties
 
     [BinaryContent(Name = "SelectedTextGUID", NodeType = BinaryContentTypes.Attribute)]
     public object SelectedTextGUID { get; set; }
@@ -86,5 +86,6 @@ namespace AnnoSavegameViewer.Structures.Savegame.Generated {
     [BinaryContent(Name = "EndTime", NodeType = BinaryContentTypes.Node)]
     public ConditionsListActionsListDelayedActionsListNotificationEndTime EndTime { get; set; }
 
+    #endregion Public Properties
   }
 }

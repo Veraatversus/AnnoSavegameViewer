@@ -1,8 +1,7 @@
-﻿using AnnoSavegameViewer.Structures.Savegame;
-using System;
-using System.Collections.Generic;
-
-namespace AnnoSavegameViewer.Templates {
+﻿namespace AnnoSavegameViewer.Templates {
+  using AnnoSavegameViewer.Structures.DataTypes;
+  using System;
+  using System.Collections.Generic;
 
   public class TreeWorld : TreeBase<TreeSession> {
 

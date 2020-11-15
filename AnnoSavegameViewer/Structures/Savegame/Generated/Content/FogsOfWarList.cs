@@ -1,9 +1,9 @@
-using AnnoSavegameViewer.Serialization.Core;
-using System.Collections.Generic;
-
 namespace AnnoSavegameViewer.Structures.Savegame.Generated {
+  using AnnoSavegameViewer.Serialization.Core;
 
   public class FogsOfWarList {
+
+    #region Public Properties
 
     [BinaryContent(Name = "LastReHideTime", NodeType = BinaryContentTypes.Attribute)]
     public object LastReHideTime { get; set; }
@@ -14,5 +14,6 @@ namespace AnnoSavegameViewer.Structures.Savegame.Generated {
     [BinaryContent(Name = "DirtyPositions", NodeType = BinaryContentTypes.Node)]
     public DirtyPositions DirtyPositions { get; set; }
 
+    #endregion Public Properties
   }
 }

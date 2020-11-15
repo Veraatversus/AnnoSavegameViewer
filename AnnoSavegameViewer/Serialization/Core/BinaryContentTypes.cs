@@ -1,6 +1,5 @@
-﻿using System;
-
-namespace AnnoSavegameViewer.Serialization.Core {
+﻿namespace AnnoSavegameViewer.Serialization.Core {
+  using System;
 
   [Flags]
   public enum BinaryContentTypes {

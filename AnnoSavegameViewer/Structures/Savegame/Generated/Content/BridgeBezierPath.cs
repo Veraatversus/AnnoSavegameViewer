@@ -1,9 +1,9 @@
-using AnnoSavegameViewer.Serialization.Core;
-using System.Collections.Generic;
-
 namespace AnnoSavegameViewer.Structures.Savegame.Generated {
+  using AnnoSavegameViewer.Serialization.Core;
 
   public class BridgeBezierPath {
+
+    #region Public Properties
 
     [BinaryContent(Name = "Minimum", NodeType = BinaryContentTypes.Attribute)]
     public object Minimum { get; set; }
@@ -14,5 +14,6 @@ namespace AnnoSavegameViewer.Structures.Savegame.Generated {
     [BinaryContent(Name = "BezierCurve", NodeType = BinaryContentTypes.Node)]
     public BridgeBezierPathBezierCurve BezierCurve { get; set; }
 
+    #endregion Public Properties
   }
 }

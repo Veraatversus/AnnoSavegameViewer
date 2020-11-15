@@ -1,8 +1,7 @@
-﻿using AnnoSavegameViewer.Serialization.Core;
-using System;
-using System.Reflection;
-
-namespace AnnoSavegameViewer.Serialization.Reflection.TypeData {
+﻿namespace AnnoSavegameViewer.Serialization.Reflection.TypeData {
+  using AnnoSavegameViewer.Serialization.Core;
+  using System;
+  using System.Reflection;
 
   public static class MemberDataExtensions {
 
@@ -33,15 +32,12 @@ namespace AnnoSavegameViewer.Serialization.Reflection.TypeData {
     }
 
     public static object GetMemberValue(this MemberInfo memberInfo, object instance) {
-      switch (memberInfo) {
-        case FieldInfo field:
-          return field.GetValue(instance);
-
-        case PropertyInfo property:
-          return property.GetValue(instance);
-      }
-      return null;
-    }
+			return memberInfo switch {
+				FieldInfo field => field.GetValue(instance),
+				PropertyInfo property => property.GetValue(instance),
+				_ => null,
+			};
+		}
 
     #endregion Public Methods
   }

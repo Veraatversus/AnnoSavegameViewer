@@ -1,9 +1,8 @@
-﻿using AnnoSavegameViewer.Serialization.Core;
-using AnnoSavegameViewer.Serialization.Memory;
-using System;
-using System.Text;
-
-namespace AnnoSavegameViewer.Structures.RDA {
+﻿namespace AnnoSavegameViewer.Structures.RDA {
+  using AnnoSavegameViewer.Serialization.Core;
+  using AnnoSavegameViewer.Serialization.Memory;
+  using System;
+  using System.Text;
 
   public class RdaHeader {
 

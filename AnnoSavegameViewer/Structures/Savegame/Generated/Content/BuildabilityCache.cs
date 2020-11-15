@@ -1,9 +1,9 @@
-using AnnoSavegameViewer.Serialization.Core;
-using System.Collections.Generic;
-
 namespace AnnoSavegameViewer.Structures.Savegame.Generated {
+  using AnnoSavegameViewer.Serialization.Core;
 
   public class BuildabilityCache {
+
+    #region Public Properties
 
     [BinaryContent(Name = "LastCacheClear", NodeType = BinaryContentTypes.Attribute)]
     public object LastCacheClear { get; set; }
@@ -17,5 +17,6 @@ namespace AnnoSavegameViewer.Structures.Savegame.Generated {
     [BinaryContent(Name = "RequestsWaitingForNewIsland", NodeType = BinaryContentTypes.Node)]
     public RequestsWaitingForNewIsland RequestsWaitingForNewIsland { get; set; }
 
+    #endregion Public Properties
   }
 }

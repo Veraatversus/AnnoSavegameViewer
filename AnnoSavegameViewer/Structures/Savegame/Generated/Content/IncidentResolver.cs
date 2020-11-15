@@ -1,9 +1,9 @@
-using AnnoSavegameViewer.Serialization.Core;
-using System.Collections.Generic;
-
 namespace AnnoSavegameViewer.Structures.Savegame.Generated {
+  using AnnoSavegameViewer.Serialization.Core;
 
   public class IncidentResolver {
+
+    #region Public Properties
 
     [BinaryContent(Name = "specialActionCooldown", NodeType = BinaryContentTypes.Attribute)]
     public object SpecialActionCooldown { get; set; }
@@ -14,5 +14,6 @@ namespace AnnoSavegameViewer.Structures.Savegame.Generated {
     [BinaryContent(Name = "specialUnits", NodeType = BinaryContentTypes.Node)]
     public SpecialUnits SpecialUnits { get; set; }
 
+    #endregion Public Properties
   }
 }

@@ -1,9 +1,10 @@
-using AnnoSavegameViewer.Serialization.Core;
-using System.Collections.Generic;
-
 namespace AnnoSavegameViewer.Structures.Savegame.Generated {
+  using AnnoSavegameViewer.Serialization.Core;
+  using System.Collections.Generic;
 
   public class HarbourLayout {
+
+    #region Public Properties
 
     [BinaryContent(Name = "HarborCount", NodeType = BinaryContentTypes.Attribute)]
     public object HarborCount { get; set; }
@@ -17,5 +18,6 @@ namespace AnnoSavegameViewer.Structures.Savegame.Generated {
     [BinaryContent(Name = "Harbor", NodeType = BinaryContentTypes.Node)]
     public List<Harbor> Harbor { get; set; }
 
+    #endregion Public Properties
   }
 }

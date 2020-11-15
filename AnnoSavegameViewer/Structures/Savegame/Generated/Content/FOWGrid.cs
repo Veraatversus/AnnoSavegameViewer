@@ -1,9 +1,9 @@
-using AnnoSavegameViewer.Serialization.Core;
-using System.Collections.Generic;
-
 namespace AnnoSavegameViewer.Structures.Savegame.Generated {
+  using AnnoSavegameViewer.Serialization.Core;
 
   public class FOWGrid {
+
+    #region Public Properties
 
     [BinaryContent(Name = "Width", NodeType = BinaryContentTypes.Attribute)]
     public object Width { get; set; }
@@ -14,5 +14,6 @@ namespace AnnoSavegameViewer.Structures.Savegame.Generated {
     [BinaryContent(Name = "bits", NodeType = BinaryContentTypes.Attribute)]
     public object Bits { get; set; }
 
+    #endregion Public Properties
   }
 }

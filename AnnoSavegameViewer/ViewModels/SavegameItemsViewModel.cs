@@ -1,10 +1,9 @@
-﻿using AnnoSavegameViewer.Structures.Savegame;
-using AnnoSavegameViewer.Templates;
-using System.ComponentModel;
-using System.Linq;
-using System.Runtime.CompilerServices;
-
-namespace AnnoSavegameViewer.ViewModels {
+﻿namespace AnnoSavegameViewer.ViewModels {
+  using AnnoSavegameViewer.Structures.DataTypes;
+  using AnnoSavegameViewer.Templates;
+  using System.ComponentModel;
+  using System.Linq;
+  using System.Runtime.CompilerServices;
 
   public class SavegameItemsViewModel : INotifyPropertyChanged {
 
@@ -13,9 +12,7 @@ namespace AnnoSavegameViewer.ViewModels {
     public ItemsHolder ItemsHolder { get; }
 
     public IGrouping<AnnoItem, AnnoItem> SelectedItem {
-      get {
-        return selectedItem;
-      }
+      get => selectedItem;
       set {
         if (selectedItem != value) {
           selectedItem = value;
@@ -27,25 +24,21 @@ namespace AnnoSavegameViewer.ViewModels {
 
     #endregion Public Properties
 
-    #region Public Constructors
-
-    public SavegameItemsViewModel(ItemsHolder itemsholder) {
-      ItemsHolder = itemsholder;
-    }
-
-    #endregion Public Constructors
-
     #region Public Events
 
     public event PropertyChangedEventHandler PropertyChanged;
 
     #endregion Public Events
 
+    #region Public Constructors
+
+    public SavegameItemsViewModel(ItemsHolder itemsholder) => ItemsHolder = itemsholder;
+
+    #endregion Public Constructors
+
     #region Public Methods
 
-    public void RaisePropertyChanged([CallerMemberName]string name = "") {
-      PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
-    }
+    public void RaisePropertyChanged([CallerMemberName] string name = "") => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
 
     #endregion Public Methods
 

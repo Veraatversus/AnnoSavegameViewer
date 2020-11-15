@@ -1,7 +1,5 @@
-using AnnoSavegameViewer.Serialization.Core;
-using System.Collections.Generic;
-
 namespace AnnoSavegameViewer.Structures.Savegame.Generated {
+  using AnnoSavegameViewer.Serialization.Core;
 
   public class CityLayoutBlock {
 
@@ -43,6 +41,5 @@ namespace AnnoSavegameViewer.Structures.Savegame.Generated {
 
     [BinaryContent(Name = "ProvidedPublic", NodeType = BinaryContentTypes.Node)]
     public ProvidedPublic ProvidedPublic { get; set; }
-
   }
 }

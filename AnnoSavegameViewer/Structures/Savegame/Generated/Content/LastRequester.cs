@@ -1,7 +1,5 @@
-using AnnoSavegameViewer.Serialization.Core;
-using System.Collections.Generic;
-
 namespace AnnoSavegameViewer.Structures.Savegame.Generated {
+  using AnnoSavegameViewer.Serialization.Core;
 
   public class LastRequester {
 
@@ -34,6 +32,5 @@ namespace AnnoSavegameViewer.Structures.Savegame.Generated {
 
     [BinaryContent(Name = "Budget", NodeType = BinaryContentTypes.Node)]
     public LastRequesterBudget Budget { get; set; }
-
   }
 }

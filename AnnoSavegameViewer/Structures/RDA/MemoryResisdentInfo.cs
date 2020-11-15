@@ -1,6 +1,5 @@
-﻿using AnnoSavegameViewer.Serialization.Memory;
-
-namespace AnnoSavegameViewer.Structures.RDA {
+﻿namespace AnnoSavegameViewer.Structures.RDA {
+  using AnnoSavegameViewer.Serialization.Memory;
 
   public class MemoryResisdentInfo {
 

@@ -1,9 +1,9 @@
-using AnnoSavegameViewer.Serialization.Core;
-using System.Collections.Generic;
-
 namespace AnnoSavegameViewer.Structures.Savegame.Generated {
+  using AnnoSavegameViewer.Serialization.Core;
 
   public class IncidentInfectable {
+
+    #region Public Properties
 
     [BinaryContent(Name = "DensityBuffer", NodeType = BinaryContentTypes.Attribute)]
     public object DensityBuffer { get; set; }
@@ -17,5 +17,6 @@ namespace AnnoSavegameViewer.Structures.Savegame.Generated {
     [BinaryContent(Name = "activeType", NodeType = BinaryContentTypes.Node)]
     public IncidentInfectableActiveType ActiveType { get; set; }
 
+    #endregion Public Properties
   }
 }

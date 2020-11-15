@@ -1,9 +1,9 @@
-using AnnoSavegameViewer.Serialization.Core;
-using System.Collections.Generic;
-
 namespace AnnoSavegameViewer.Structures.Savegame.Generated {
+  using AnnoSavegameViewer.Serialization.Core;
 
   public class ArchiveListList {
+
+    #region Public Properties
 
     [BinaryContent(Name = "TitleGUID", NodeType = BinaryContentTypes.Attribute)]
     public object TitleGUID { get; set; }
@@ -98,5 +98,6 @@ namespace AnnoSavegameViewer.Structures.Savegame.Generated {
     [BinaryContent(Name = "Interaction", NodeType = BinaryContentTypes.Node)]
     public Interaction Interaction { get; set; }
 
+    #endregion Public Properties
   }
 }

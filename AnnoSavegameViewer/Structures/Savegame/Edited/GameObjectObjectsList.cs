@@ -1,7 +1,8 @@
-using AnnoSavegameViewer.Serialization.Core;
-using System.Diagnostics;
-
 namespace AnnoSavegameViewer.Structures.Savegame.Generated {
+  using AnnoSavegameViewer.Serialization.Core;
+  using AnnoSavegameViewer.Structures.DataTypes;
+  using System;
+  using System.Diagnostics;
 
   [DebuggerDisplay("{Guid.GUID}, {Guid}")]
   public class GameObjectObjectsList {
@@ -18,7 +19,7 @@ namespace AnnoSavegameViewer.Structures.Savegame.Generated {
     public int Variation { get; set; }
 
     [BinaryContent(Name = "Position", NodeType = BinaryContentTypes.Attribute)]
-    public object Position { get; set; }
+    public Point3D<float> Position { get; set; }
 
     [BinaryContent(Name = "Direction", NodeType = BinaryContentTypes.Attribute)]
     public object Direction { get; set; }
@@ -27,7 +28,7 @@ namespace AnnoSavegameViewer.Structures.Savegame.Generated {
     public object ObjectFolderID { get; set; }
 
     [BinaryContent(Name = "StateBits", NodeType = BinaryContentTypes.Attribute)]
-    public object StateBits { get; set; }
+    public StateBits StateBits { get; set; }
 
     [BinaryContent(Name = "ParticipantID", NodeType = BinaryContentTypes.Node)]
     public GameObjectObjectsListParticipantID ParticipantID { get; set; }

@@ -1,7 +1,5 @@
-using AnnoSavegameViewer.Serialization.Core;
-using System.Collections.Generic;
-
 namespace AnnoSavegameViewer.Structures.Savegame.Generated {
+  using AnnoSavegameViewer.Serialization.Core;
 
   public class AdditionalSessionEffectsList {
 
@@ -22,6 +20,5 @@ namespace AnnoSavegameViewer.Structures.Savegame.Generated {
 
     [BinaryContent(Name = "distanceSource", NodeType = BinaryContentTypes.Node)]
     public AdditionalSessionEffectsListDistanceSource DistanceSource { get; set; }
-
   }
 }

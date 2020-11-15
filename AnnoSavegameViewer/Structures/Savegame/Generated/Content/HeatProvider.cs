@@ -1,9 +1,9 @@
-using AnnoSavegameViewer.Serialization.Core;
-using System.Collections.Generic;
-
 namespace AnnoSavegameViewer.Structures.Savegame.Generated {
+  using AnnoSavegameViewer.Serialization.Core;
 
   public class HeatProvider {
+
+    #region Public Properties
 
     [BinaryContent(Name = "TransporterRange", NodeType = BinaryContentTypes.Attribute)]
     public object TransporterRange { get; set; }
@@ -11,5 +11,6 @@ namespace AnnoSavegameViewer.Structures.Savegame.Generated {
     [BinaryContent(Name = "ProductionState", NodeType = BinaryContentTypes.Node)]
     public HeatProviderProductionState ProductionState { get; set; }
 
+    #endregion Public Properties
   }
 }

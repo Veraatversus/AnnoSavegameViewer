@@ -1,7 +1,6 @@
-﻿using AnnoSavegameViewer.Converter;
-using System.ComponentModel;
-
-namespace AnnoSavegameViewer.Templates {
+﻿namespace AnnoSavegameViewer.Templates {
+  using AnnoSavegameViewer.Converter;
+  using System.ComponentModel;
 
   [TypeConverter(typeof(EnumDescriptionTypeConverter))]
   public enum Languages {

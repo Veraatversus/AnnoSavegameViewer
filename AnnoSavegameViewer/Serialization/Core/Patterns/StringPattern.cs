@@ -1,8 +1,6 @@
 ﻿namespace AnnoSavegameViewer.Serialization.Core {
 
-  /// <summary>
-  /// Represents formats of binary string encodings.
-  /// </summary>
+  /// <summary> Represents formats of binary string encodings. </summary>
   public enum StringPattern {
 
     /// <summary>

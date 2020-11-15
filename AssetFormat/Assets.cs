@@ -1,22 +1,12 @@
-﻿using System;
-using System.IO;
-using System.Linq;
-using System.Reflection;
-using System.Xml.Linq;
-using System.Xml.XPath;
-
-namespace AssetFormat {
+﻿namespace AssetFormat {
+  using System;
+  using System.IO;
+  using System.Linq;
+  using System.Reflection;
+  using System.Xml.Linq;
+  using System.Xml.XPath;
 
   internal static class Assets {
-
-    #region Public Constructors
-
-    static Assets() {
-      PathRoot = new DirectoryInfo(Path.GetDirectoryName(Assembly.GetExecutingAssembly().CodeBase).Replace(@"file:\", String.Empty)).Parent.Parent.Parent.FullName;
-      PathViewer = new DirectoryInfo(Path.GetDirectoryName(Assembly.GetExecutingAssembly().CodeBase).Replace(@"file:\", String.Empty)).Parent.Parent.Parent.Parent.FullName + @"\AnnoSavegameViewer";
-    }
-
-    #endregion Public Constructors
 
     #region Public Methods
 
@@ -30,9 +20,9 @@ namespace AssetFormat {
 
     #region Internal Fields
 
-    internal readonly static String PathRoot;
+    internal readonly static string PathRoot = new DirectoryInfo(Path.GetDirectoryName(Assembly.GetExecutingAssembly().CodeBase).Replace(@"file:\", string.Empty)).Parent.Parent.Parent.FullName;
 
-    internal readonly static String PathViewer;
+    internal readonly static string PathViewer = new DirectoryInfo(Path.GetDirectoryName(Assembly.GetExecutingAssembly().CodeBase).Replace(@"file:\", string.Empty)).Parent.Parent.Parent.Parent.FullName + @"\AnnoSavegameViewer";
     internal static XElement Original;
 
     #endregion Internal Fields
@@ -54,7 +44,7 @@ namespace AssetFormat {
     }
 
     private static int InheritDepth(this XElement ele) {
-      int depth = 0;
+      var depth = 0;
       var search = ele.Element("BaseAssetGUID")?.Value;
       while (search != null) {
         var founded = Original.Descendants("Asset").FirstOrDefault(a => a.XPathSelectElement("Values/Standard/GUID")?.Value == search);

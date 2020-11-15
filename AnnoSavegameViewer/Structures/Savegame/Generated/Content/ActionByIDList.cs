@@ -1,7 +1,5 @@
-using AnnoSavegameViewer.Serialization.Core;
-using System.Collections.Generic;
-
 namespace AnnoSavegameViewer.Structures.Savegame.Generated {
+  using AnnoSavegameViewer.Serialization.Core;
 
   public class ActionByIDList {
 
@@ -37,6 +35,5 @@ namespace AnnoSavegameViewer.Structures.Savegame.Generated {
 
     [BinaryContent(Name = "DelayedActions", NodeType = BinaryContentTypes.Node)]
     public DelayedActions DelayedActions { get; set; }
-
   }
 }

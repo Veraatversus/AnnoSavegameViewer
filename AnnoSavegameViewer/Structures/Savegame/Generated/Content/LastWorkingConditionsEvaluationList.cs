@@ -1,9 +1,9 @@
-using AnnoSavegameViewer.Serialization.Core;
-using System.Collections.Generic;
-
 namespace AnnoSavegameViewer.Structures.Savegame.Generated {
+  using AnnoSavegameViewer.Serialization.Core;
 
   public class LastWorkingConditionsEvaluationList {
+
+    #region Public Properties
 
     [BinaryContent(Name = "LastValue", NodeType = BinaryContentTypes.Attribute)]
     public object LastValue { get; set; }
@@ -17,5 +17,6 @@ namespace AnnoSavegameViewer.Structures.Savegame.Generated {
     [BinaryContent(Name = "value", NodeType = BinaryContentTypes.Node)]
     public LastWorkingConditionsEvaluationListValue Value { get; set; }
 
+    #endregion Public Properties
   }
 }

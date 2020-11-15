@@ -1,7 +1,5 @@
-using AnnoSavegameViewer.Serialization.Core;
-using System.Collections.Generic;
-
 namespace AnnoSavegameViewer.Structures.Savegame.Generated {
+  using AnnoSavegameViewer.Serialization.Core;
 
   public class LogisticNodeStorageListReservedAmountList {
 
@@ -19,6 +17,5 @@ namespace AnnoSavegameViewer.Structures.Savegame.Generated {
 
     [BinaryContent(Name = "Parent", NodeType = BinaryContentTypes.Node)]
     public LogisticNodeStorageListReservedAmountListParent Parent { get; set; }
-
   }
 }

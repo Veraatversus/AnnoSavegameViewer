@@ -1,15 +1,12 @@
-﻿using AnnoSavegameViewer.Templates;
-using AnnoSavegameViewer.ViewModels;
-using System;
-using System.Linq;
-using System.Windows;
-using System.Windows.Controls;
+﻿namespace AnnoSavegameViewer.Controls {
+  using AnnoSavegameViewer.Templates;
+  using AnnoSavegameViewer.ViewModels;
+  using System;
+  using System.Linq;
+  using System.Windows;
+  using System.Windows.Controls;
 
-namespace AnnoSavegameViewer.Controls {
-
-  /// <summary>
-  /// Interaktionslogik für SavegameItemsView.xaml
-  /// </summary>
+  /// <summary> Interaktionslogik für SavegameItemsView.xaml </summary>
   public partial class SavegameBuildingsView : UserControl {
 
     #region Public Properties
@@ -33,9 +30,7 @@ namespace AnnoSavegameViewer.Controls {
 
     public void BtnResetFilters_Click(object sender, RoutedEventArgs e) => ViewModel.ItemsHolder.ResetFilters();
 
-    public void ComboBox_SelectionChanged(object sender, EventArgs e) {
-      UpdateUi();
-    }
+    public void ComboBox_SelectionChanged(object sender, EventArgs e) => UpdateUi();
 
     #endregion Public Methods
 
@@ -57,9 +52,7 @@ namespace AnnoSavegameViewer.Controls {
       DataContext = ViewModel;
     }
 
-    private void MainWindow_SaveGameChanged() {
-      UpdateUi();
-    }
+    private void MainWindow_SaveGameChanged() => UpdateUi();
 
     private void UpdateUi() {
       ViewModel.ItemsHolder.UpdateUI();

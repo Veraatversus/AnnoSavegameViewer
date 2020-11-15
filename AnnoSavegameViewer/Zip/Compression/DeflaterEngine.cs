@@ -1,7 +1,7 @@
-using ICSharpCode.SharpZipLib.Checksum;
-using System;
-
 namespace ICSharpCode.SharpZipLib.Zip.Compression {
+  using ICSharpCode.SharpZipLib.Checksum;
+  using System;
+
   /// <summary>
   /// Strategies for deflater
   /// </summary>
@@ -129,7 +129,7 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression {
     }
 
     /// <summary>
-    /// Sets input data to be deflated.  Should only be called when <code>NeedsInput()</code>
+    /// Sets input data to be deflated.  Should only be called when <c>NeedsInput()</c>
     /// returns true
     /// </summary>
     /// <param name="buffer">The buffer containing input data.</param>
@@ -170,9 +170,7 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression {
     /// Determines if more <see cref="SetInput">input</see> is needed.
     /// </summary>
     /// <returns>Return true if input is needed via <see cref="SetInput">SetInput</see></returns>
-    public bool NeedsInput() {
-      return (inputEnd == inputOff);
-    }
+    public bool NeedsInput() => inputEnd == inputOff;
 
     /// <summary>
     /// Set compression dictionary
@@ -233,38 +231,24 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression {
     /// <summary>
     /// Reset Adler checksum
     /// </summary>
-    public void ResetAdler() {
-      adler?.Reset();
-    }
+    public void ResetAdler() => adler?.Reset();
 
     /// <summary>
     /// Get current value of Adler checksum
     /// </summary>
-    public int Adler {
-      get {
-        return (adler != null) ? unchecked((int)adler.Value) : 0;
-      }
-    }
+    public int Adler => (adler != null) ? unchecked((int)adler.Value) : 0;
 
     /// <summary>
     /// Total data processed
     /// </summary>
-    public long TotalIn {
-      get {
-        return totalIn;
-      }
-    }
+    public long TotalIn => totalIn;
 
     /// <summary>
     /// Get/set the <see cref="DeflateStrategy">deflate strategy</see>
     /// </summary>
     public DeflateStrategy Strategy {
-      get {
-        return strategy;
-      }
-      set {
-        strategy = value;
-      }
+      get => strategy;
+      set => strategy = value;
     }
 
     /// <summary>
@@ -272,7 +256,7 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression {
     /// </summary>
     /// <param name="level">The value to set the level to.</param>
     public void SetLevel(int level) {
-      if ((level < 0) || (level > 9)) {
+      if (level is < 0 or > 9) {
         throw new ArgumentOutOfRangeException(nameof(level));
       }
 
@@ -356,14 +340,13 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression {
       }
     }
 
-    private void UpdateHash() {
+    private void UpdateHash() =>
       /*
-						if (DEBUGGING) {
-							Console.WriteLine("updateHash: "+strstart);
-						}
-			*/
+if (DEBUGGING) {
+Console.WriteLine("updateHash: "+strstart);
+}
+*/
       ins_h = (window[strstart] << DeflaterConstants.HASH_SHIFT) ^ window[strstart + 1];
-    }
 
     /// <summary>
     /// Inserts the current string in the head hash and returns the previous
@@ -471,23 +454,29 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression {
 
           case 2:
             if (window[++scan] == window[++match]
-          && window[++scan] == window[++match])
+          && window[++scan] == window[++match]) {
               break;
+            }
+
             break;
 
           case 3:
             if (window[++scan] == window[++match]
           && window[++scan] == window[++match]
-          && window[++scan] == window[++match])
+          && window[++scan] == window[++match]) {
               break;
+            }
+
             break;
 
           case 4:
             if (window[++scan] == window[++match]
           && window[++scan] == window[++match]
           && window[++scan] == window[++match]
-          && window[++scan] == window[++match])
+          && window[++scan] == window[++match]) {
               break;
+            }
+
             break;
 
           case 5:
@@ -495,8 +484,10 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression {
           && window[++scan] == window[++match]
           && window[++scan] == window[++match]
           && window[++scan] == window[++match]
-          && window[++scan] == window[++match])
+          && window[++scan] == window[++match]) {
               break;
+            }
+
             break;
 
           case 6:
@@ -505,8 +496,10 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression {
           && window[++scan] == window[++match]
           && window[++scan] == window[++match]
           && window[++scan] == window[++match]
-          && window[++scan] == window[++match])
+          && window[++scan] == window[++match]) {
               break;
+            }
+
             break;
 
           case 7:
@@ -516,8 +509,10 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression {
           && window[++scan] == window[++match]
           && window[++scan] == window[++match]
           && window[++scan] == window[++match]
-          && window[++scan] == window[++match])
+          && window[++scan] == window[++match]) {
               break;
+            }
+
             break;
         }
 
@@ -559,7 +554,7 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression {
           scan_end1 = window[scan - 1];
           scan_end = window[scan];
         }
-      } while ((curMatch = (prev[curMatch & DeflaterConstants.WMASK] & 0xffff)) > limit && 0 != --chainLength);
+      } while ((curMatch = (prev[curMatch & DeflaterConstants.WMASK] & 0xffff)) > limit && --chainLength != 0);
 
       return matchLen >= DeflaterConstants.MIN_MATCH;
     }
@@ -788,7 +783,7 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression {
     private short[] head;
 
     /// <summary>
-    /// <code>prev[index &amp; WMASK]</code> points to the previous index that has the
+    /// <c>prev[index &amp; WMASK]</c> points to the previous index that has the
     /// same hash code as the string starting at index.  This way
     /// entries with the same hash code are in a linked list.
     /// Note that the array should really be unsigned short, so you need

@@ -1,7 +1,5 @@
-using AnnoSavegameViewer.Serialization.Core;
-using System.Collections.Generic;
-
 namespace AnnoSavegameViewer.Structures.Savegame.Generated {
+  using AnnoSavegameViewer.Serialization.Core;
 
   public class AreaLayout {
 
@@ -40,6 +38,5 @@ namespace AnnoSavegameViewer.Structures.Savegame.Generated {
 
     [BinaryContent(Name = "StreetPlanner", NodeType = BinaryContentTypes.Node)]
     public StreetPlanner StreetPlanner { get; set; }
-
   }
 }

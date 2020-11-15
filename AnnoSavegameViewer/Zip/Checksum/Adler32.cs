@@ -1,6 +1,6 @@
-using System;
-
 namespace ICSharpCode.SharpZipLib.Checksum {
+  using System;
+
   /// <summary>
   /// Computes Adler32 checksum for a stream of data. An Adler32
   /// checksum is not as reliable as a CRC32 checksum, but a lot faster to
@@ -53,7 +53,7 @@ namespace ICSharpCode.SharpZipLib.Checksum {
     /// <summary>
     /// largest prime smaller than 65536
     /// </summary>
-    private static readonly uint BASE = 65521;
+    private const uint BASE = 65521;
 
     /// <summary>
     /// The CRC data checksum so far.
@@ -65,25 +65,17 @@ namespace ICSharpCode.SharpZipLib.Checksum {
     /// <summary>
     /// Initialise a default instance of <see cref="Adler32"></see>
     /// </summary>
-    public Adler32() {
-      Reset();
-    }
+    public Adler32() => Reset();
 
     /// <summary>
     /// Resets the Adler32 data checksum as if no update was ever called.
     /// </summary>
-    public void Reset() {
-      checkValue = 1;
-    }
+    public void Reset() => checkValue = 1;
 
     /// <summary>
     /// Returns the Adler32 data checksum computed so far.
     /// </summary>
-    public long Value {
-      get {
-        return checkValue;
-      }
-    }
+    public long Value => checkValue;
 
     /// <summary>
     /// Updates the checksum with the byte b.
@@ -138,8 +130,8 @@ namespace ICSharpCode.SharpZipLib.Checksum {
         }
         count -= n;
         while (--n >= 0) {
-          s1 = s1 + (uint)(segment.Array[offset++] & 0xff);
-          s2 = s2 + s1;
+          s1 += (uint)(segment.Array[offset++] & 0xff);
+          s2 += s1;
         }
         s1 %= BASE;
         s2 %= BASE;

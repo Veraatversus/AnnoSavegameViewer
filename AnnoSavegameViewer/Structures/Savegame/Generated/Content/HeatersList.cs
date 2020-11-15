@@ -1,9 +1,9 @@
-using AnnoSavegameViewer.Serialization.Core;
-using System.Collections.Generic;
-
 namespace AnnoSavegameViewer.Structures.Savegame.Generated {
+  using AnnoSavegameViewer.Serialization.Core;
 
   public class HeatersList {
+
+    #region Public Properties
 
     [BinaryContent(Name = "IsCity", NodeType = BinaryContentTypes.Attribute)]
     public object IsCity { get; set; }
@@ -17,5 +17,6 @@ namespace AnnoSavegameViewer.Structures.Savegame.Generated {
     [BinaryContent(Name = "Rect", NodeType = BinaryContentTypes.Attribute)]
     public object Rect { get; set; }
 
+    #endregion Public Properties
   }
 }

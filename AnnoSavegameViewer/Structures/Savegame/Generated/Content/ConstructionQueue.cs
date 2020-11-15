@@ -1,7 +1,5 @@
-using AnnoSavegameViewer.Serialization.Core;
-using System.Collections.Generic;
-
 namespace AnnoSavegameViewer.Structures.Savegame.Generated {
+  using AnnoSavegameViewer.Serialization.Core;
 
   public class ConstructionQueue {
 
@@ -28,6 +26,5 @@ namespace AnnoSavegameViewer.Structures.Savegame.Generated {
 
     [BinaryContent(Name = "PriorityHandler", NodeType = BinaryContentTypes.Node)]
     public PriorityHandler PriorityHandler { get; set; }
-
   }
 }

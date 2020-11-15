@@ -1,10 +1,9 @@
-﻿using AnnoSavegameViewer.Structures.Savegame;
-using AnnoSavegameViewer.Structures.Savegame.Generated;
-using System;
-using System.Diagnostics;
-using System.Diagnostics.CodeAnalysis;
-
-namespace AnnoSavegameViewer.Templates {
+﻿namespace AnnoSavegameViewer.Templates {
+  using AnnoSavegameViewer.Structures.DataTypes;
+  using AnnoSavegameViewer.Structures.Savegame.Generated;
+  using System;
+  using System.Diagnostics;
+  using System.Diagnostics.CodeAnalysis;
 
   [DebuggerDisplay("{Amount}x {GUID}")]
   public class AnnoItem : IEquatable<AnnoItem> {
@@ -24,9 +23,9 @@ namespace AnnoSavegameViewer.Templates {
 
     #region Public Methods
 
-    public bool Equals([AllowNull] AnnoItem other) {
-      return GUID?.GUID == other?.GUID?.GUID;
-    }
+    public bool Equals([AllowNull] AnnoItem other) => GUID?.GUID == other?.GUID?.GUID;
+
+    public override bool Equals(object obj) => Equals(obj as AnnoItem);
 
     #endregion Public Methods
   }

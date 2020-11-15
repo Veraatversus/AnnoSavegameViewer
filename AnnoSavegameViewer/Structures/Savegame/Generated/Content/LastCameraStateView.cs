@@ -1,9 +1,9 @@
-using AnnoSavegameViewer.Serialization.Core;
-using System.Collections.Generic;
-
 namespace AnnoSavegameViewer.Structures.Savegame.Generated {
+  using AnnoSavegameViewer.Serialization.Core;
 
   public class LastCameraStateView {
+
+    #region Public Properties
 
     [BinaryContent(Name = "From", NodeType = BinaryContentTypes.Attribute)]
     public object From { get; set; }
@@ -17,5 +17,6 @@ namespace AnnoSavegameViewer.Structures.Savegame.Generated {
     [BinaryContent(Name = "Direction", NodeType = BinaryContentTypes.Attribute)]
     public object Direction { get; set; }
 
+    #endregion Public Properties
   }
 }

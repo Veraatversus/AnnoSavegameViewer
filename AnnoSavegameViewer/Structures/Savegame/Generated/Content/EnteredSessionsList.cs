@@ -1,9 +1,9 @@
-using AnnoSavegameViewer.Serialization.Core;
-using System.Collections.Generic;
-
 namespace AnnoSavegameViewer.Structures.Savegame.Generated {
+  using AnnoSavegameViewer.Serialization.Core;
 
   public class EnteredSessionsList {
+
+    #region Public Properties
 
     [BinaryContent(Name = "GUID", NodeType = BinaryContentTypes.Attribute)]
     public object GUID { get; set; }
@@ -14,5 +14,6 @@ namespace AnnoSavegameViewer.Structures.Savegame.Generated {
     [BinaryContent(Name = "Time", NodeType = BinaryContentTypes.Attribute)]
     public object Time { get; set; }
 
+    #endregion Public Properties
   }
 }

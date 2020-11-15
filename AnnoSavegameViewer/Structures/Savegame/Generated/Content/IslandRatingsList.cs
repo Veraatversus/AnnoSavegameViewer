@@ -1,9 +1,9 @@
-using AnnoSavegameViewer.Serialization.Core;
-using System.Collections.Generic;
-
 namespace AnnoSavegameViewer.Structures.Savegame.Generated {
+  using AnnoSavegameViewer.Serialization.Core;
 
   public class IslandRatingsList {
+
+    #region Public Properties
 
     [BinaryContent(Name = "AreaID", NodeType = BinaryContentTypes.Attribute)]
     public object AreaID { get; set; }
@@ -14,5 +14,6 @@ namespace AnnoSavegameViewer.Structures.Savegame.Generated {
     [BinaryContent(Name = "Priority", NodeType = BinaryContentTypes.Attribute)]
     public object Priority { get; set; }
 
+    #endregion Public Properties
   }
 }

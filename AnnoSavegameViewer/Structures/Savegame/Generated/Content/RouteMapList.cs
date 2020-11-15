@@ -1,7 +1,5 @@
-using AnnoSavegameViewer.Serialization.Core;
-using System.Collections.Generic;
-
 namespace AnnoSavegameViewer.Structures.Savegame.Generated {
+  using AnnoSavegameViewer.Serialization.Core;
 
   public class RouteMapList {
 
@@ -12,7 +10,7 @@ namespace AnnoSavegameViewer.Structures.Savegame.Generated {
     public object Name { get; set; }
 
     [BinaryContent(Name = "Ships", NodeType = BinaryContentTypes.Attribute)]
-    public object Ships { get; set; }
+    public ListOfInt64 Ships { get; set; }
 
     [BinaryContent(Name = "LastErrors", NodeType = BinaryContentTypes.Attribute)]
     public object LastErrors { get; set; }

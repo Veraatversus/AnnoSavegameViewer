@@ -1,6 +1,6 @@
-using System;
-
 namespace ICSharpCode.SharpZipLib.Zip.Compression {
+  using System;
+
   /// <summary>
   /// This is the DeflaterHuffman class.
   ///
@@ -99,13 +99,12 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression {
         length = null;
       }
 
-      public void WriteSymbol(int code) {
+      public void WriteSymbol(int code) =>
         //				if (DeflaterConstants.DEBUGGING) {
         //					freqs[code]--;
         //					//  	  Console.Write("writeSymbol("+freqs.length+","+code+"): ");
         //				}
         dh.pending.WriteBits(codes[code] & 0xffff, length[code]);
-      }
 
       /// <summary>
       /// Check that all frequencies are zero
@@ -634,7 +633,7 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression {
           literalTree.WriteSymbol(lc);
 
           var bits = (lc - 261) / 4;
-          if (bits > 0 && bits <= 5) {
+          if (bits is > 0 and <= 5) {
             pending.WriteBits(litlen & ((1 << bits) - 1), bits);
           }
 
@@ -767,9 +766,7 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression {
     /// Get value indicating if internal buffer is full
     /// </summary>
     /// <returns>true if buffer is full</returns>
-    public bool IsFull() {
-      return last_lit >= BUFSIZE;
-    }
+    public bool IsFull() => last_lit >= BUFSIZE;
 
     /// <summary>
     /// Add literal to buffer
@@ -806,7 +803,7 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression {
 
       var lc = Lcode(length - 3);
       literalTree.freqs[lc]++;
-      if (lc >= 265 && lc < 285) {
+      if (lc is >= 265 and < 285) {
         extra_bits += (lc - 261) / 4;
       }
 
@@ -823,12 +820,10 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression {
     /// </summary>
     /// <param name="toReverse">Value to reverse bits</param>
     /// <returns>Value with bits reversed</returns>
-    public static short BitReverse(int toReverse) {
-      return (short)((bit4Reverse[toReverse & 0xF] << 12) |
+    public static short BitReverse(int toReverse) => (short)((bit4Reverse[toReverse & 0xF] << 12) |
               (bit4Reverse[(toReverse >> 4) & 0xF] << 8) |
               (bit4Reverse[(toReverse >> 8) & 0xF] << 4) |
               bit4Reverse[toReverse >> 12]);
-    }
 
     private static int Lcode(int length) {
       if (length == 255) {

@@ -2,10 +2,10 @@
 
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
-    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <TargetFramework>net5.0-windows</TargetFramework>
     <UseWPF>true</UseWPF>
-    <StartupObject>AnnoSavegameViewer.App</StartupObject>
-    <Nullable>enable</Nullable>
+    <StartupObject>FileDBReader.Program</StartupObject>
+    <LangVersion>preview</LangVersion>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -25,16 +25,22 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Helper\**" />
     <Compile Remove="Structures\Savegame\Generated\Edited\**" />
+    <EmbeddedResource Remove="Helper\**" />
     <EmbeddedResource Remove="Structures\Savegame\Generated\Edited\**" />
+    <None Remove="Helper\**" />
     <None Remove="Structures\Savegame\Generated\Edited\**" />
+    <Page Remove="Helper\**" />
     <Page Remove="Structures\Savegame\Generated\Edited\**" />
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Remove="Program.cs" />
+    <Compile Remove="Serialization\Memory\MemoryReader - Kopieren.cs" />
     <Compile Remove="Serialization\Memory\SpanReader2.cs" />
+    <Compile Remove="Serialization\Memory\SpanReadExtensions - Kopieren.cs" />
     <Compile Remove="Serialization\Memory\SpanWriter.cs" />
+    <Compile Remove="Serialization\TreeNode\ListTypeEnum.cs" />
     <Compile Remove="Testing\test.cs" />
     <Compile Remove="Testing\test2.cs" />
   </ItemGroup>
@@ -59,10 +65,15 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="Testing\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\AnnoRdaExtractInsert\AnnoRdaExtractInsert.csproj" />
   </ItemGroup>
 
   <ItemGroup>
@@ -87,6 +98,6 @@
     </Page>
   </ItemGroup>
 
-  <ProjectExtensions><VisualStudio><UserProperties resources_4languages_4custom_4english_1json__JsonSchema="http://json.schemastore.org/bower" /></VisualStudio></ProjectExtensions>
+  <ProjectExtensions><VisualStudio><UserProperties /></VisualStudio></ProjectExtensions>
 
 </Project>

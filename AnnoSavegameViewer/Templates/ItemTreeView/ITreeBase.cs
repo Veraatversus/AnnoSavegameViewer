@@ -1,7 +1,6 @@
-﻿using AnnoSavegameViewer.Structures.Savegame;
-using System;
-
-namespace AnnoSavegameViewer.Templates {
+﻿namespace AnnoSavegameViewer.Templates {
+  using AnnoSavegameViewer.Structures.DataTypes;
+  using System;
 
   public interface ITreeBase {
 

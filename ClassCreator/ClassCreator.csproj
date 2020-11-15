@@ -1,0 +1,53 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net5.0-windows</TargetFramework>
+    <UseWPF>true</UseWPF>
+    <LangVersion>preview</LangVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="bin\**" />
+    <Compile Remove="NewFolder\**" />
+    <Compile Remove="TreeNode\**" />
+    <Compile Remove="Tree\**" />
+    <EmbeddedResource Remove="bin\**" />
+    <EmbeddedResource Remove="NewFolder\**" />
+    <EmbeddedResource Remove="TreeNode\**" />
+    <EmbeddedResource Remove="Tree\**" />
+    <None Remove="bin\**" />
+    <None Remove="NewFolder\**" />
+    <None Remove="TreeNode\**" />
+    <None Remove="Tree\**" />
+    <Page Remove="bin\**" />
+    <Page Remove="NewFolder\**" />
+    <Page Remove="TreeNode\**" />
+    <Page Remove="Tree\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="TreeNodeItemTemplateSelector.cs" />
+    <Compile Remove="TreeViewItemConverts.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="Patterns\a7s.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Patterns\a7s.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\AnnoSavegameViewer\AnnoSavegameViewer.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Xaml.Behaviors.Wpf" Version="1.1.19" />
+    <PackageReference Include="VAV.Core" Version="1.0.0.2" />
+  </ItemGroup>
+
+</Project>

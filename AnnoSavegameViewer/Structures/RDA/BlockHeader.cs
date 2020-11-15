@@ -1,6 +1,5 @@
-﻿using AnnoSavegameViewer.Serialization.Memory;
-
-namespace AnnoSavegameViewer.Structures.RDA {
+﻿namespace AnnoSavegameViewer.Structures.RDA {
+  using AnnoSavegameViewer.Serialization.Memory;
 
   public class BlockHeader {
 
@@ -18,11 +17,11 @@ namespace AnnoSavegameViewer.Structures.RDA {
 
     public BlockHeader(ref MemoryReader reader) {
       Flags = reader.ReadEnum<BlockFlags>();
-      NumberOfFiles = reader.ReadInt32();
+			NumberOfFiles = reader.ReadInt32();
       CompressedSize = reader.ReadUInt64();
-      UncompressedSize = reader.ReadUInt64();
-      NextHeaderOffset = reader.ReadUInt64();
-    }
+			UncompressedSize = reader.ReadUInt64();
+			NextHeaderOffset = reader.ReadUInt64();
+		}
 
     #endregion Public Constructors
   }

@@ -1,6 +1,5 @@
-using AnnoSavegameViewer.Serialization.Core;
-
 namespace AnnoSavegameViewer.Structures.Savegame.Generated {
+  using AnnoSavegameViewer.Serialization.Core;
 
   public class AreaObjectManager {
 

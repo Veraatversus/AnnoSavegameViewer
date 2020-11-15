@@ -1,7 +1,5 @@
-using AnnoSavegameViewer.Serialization.Core;
-using System.Collections.Generic;
-
 namespace AnnoSavegameViewer.Structures.Savegame.Generated {
+  using AnnoSavegameViewer.Serialization.Core;
 
   public class Attacker {
 
@@ -22,6 +20,5 @@ namespace AnnoSavegameViewer.Structures.Savegame.Generated {
 
     [BinaryContent(Name = "ProjectileLaunchinformation", NodeType = BinaryContentTypes.Node)]
     public ProjectileLaunchinformation ProjectileLaunchinformation { get; set; }
-
   }
 }

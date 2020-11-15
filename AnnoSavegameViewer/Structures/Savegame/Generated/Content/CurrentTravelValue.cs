@@ -1,9 +1,9 @@
-using AnnoSavegameViewer.Serialization.Core;
-using System.Collections.Generic;
-
 namespace AnnoSavegameViewer.Structures.Savegame.Generated {
+  using AnnoSavegameViewer.Serialization.Core;
 
   public class CurrentTravelValue {
+
+    #region Public Properties
 
     [BinaryContent(Name = "Target", NodeType = BinaryContentTypes.Attribute)]
     public object Target { get; set; }
@@ -11,5 +11,6 @@ namespace AnnoSavegameViewer.Structures.Savegame.Generated {
     [BinaryContent(Name = "Origin", NodeType = BinaryContentTypes.Attribute)]
     public object Origin { get; set; }
 
+    #endregion Public Properties
   }
 }

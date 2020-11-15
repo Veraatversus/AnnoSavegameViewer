@@ -1,17 +1,17 @@
-﻿using Microsoft.Win32;
-using System;
+﻿namespace FileDBReader {
+  using System;
 
-namespace FileDBReader {
+  public static class Program {
 
-  internal static class Program {
-
-    #region Methods
+    #region Private Methods
 
     [STAThread]
-    private static void Main(string[] args) {
-
+    private static void Main() {
+      var app = new AnnoSavegameViewer.App();
+      app.InitializeComponent();
+      _ = app.Run();
     }
 
-    #endregion Methods
+    #endregion Private Methods
   }
 }

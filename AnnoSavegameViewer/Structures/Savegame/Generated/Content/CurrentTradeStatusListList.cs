@@ -1,9 +1,9 @@
-using AnnoSavegameViewer.Serialization.Core;
-using System.Collections.Generic;
-
 namespace AnnoSavegameViewer.Structures.Savegame.Generated {
+  using AnnoSavegameViewer.Serialization.Core;
 
   public class CurrentTradeStatusListList {
+
+    #region Public Properties
 
     [BinaryContent(Name = "Step", NodeType = BinaryContentTypes.Attribute)]
     public object Step { get; set; }
@@ -14,5 +14,6 @@ namespace AnnoSavegameViewer.Structures.Savegame.Generated {
     [BinaryContent(Name = "value", NodeType = BinaryContentTypes.Node)]
     public CurrentTradeStatusListListValue Value { get; set; }
 
+    #endregion Public Properties
   }
 }

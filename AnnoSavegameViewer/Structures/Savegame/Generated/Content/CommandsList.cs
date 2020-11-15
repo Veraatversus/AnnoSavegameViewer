@@ -1,9 +1,9 @@
-using AnnoSavegameViewer.Serialization.Core;
-using System.Collections.Generic;
-
 namespace AnnoSavegameViewer.Structures.Savegame.Generated {
+  using AnnoSavegameViewer.Serialization.Core;
 
   public class CommandsList {
+
+    #region Public Properties
 
     [BinaryContent(Name = "NextTickTime", NodeType = BinaryContentTypes.Attribute)]
     public object NextTickTime { get; set; }
@@ -65,5 +65,6 @@ namespace AnnoSavegameViewer.Structures.Savegame.Generated {
     [BinaryContent(Name = "DriftingInstruction", NodeType = BinaryContentTypes.Node)]
     public DriftingInstruction DriftingInstruction { get; set; }
 
+    #endregion Public Properties
   }
 }

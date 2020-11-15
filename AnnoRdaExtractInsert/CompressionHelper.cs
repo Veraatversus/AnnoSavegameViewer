@@ -1,10 +1,13 @@
-﻿using Ionic.Zlib;
-using System;
-using System.IO;
+﻿namespace AnnoRdaExtractInsert {
+  using Ionic.Zlib;
+  using System;
+  using System.IO;
 
-namespace AnnoRdaExtractInsert {
   public static class CompressionHelper {
-    public static void DecompressFromFile(string path, int position, int leangh, string blockPath = "bytes") {
+
+    #region Public Methods
+
+    public static void DecompressFromFile(string path, int position, int leangh) {
       Memory<byte> reader = System.IO.File.ReadAllBytes(path);
       var mem = reader.Slice(position, leangh);
       using var inputStream = new MemoryStream();
@@ -19,7 +22,7 @@ namespace AnnoRdaExtractInsert {
       File.WriteAllBytes("bytes", outputStream.ToArray());
     }
 
-    public static void InsertBlockCompressed (string path, int position, int leangh, string blockPath = "bytes") {
+    public static void InsertBlockCompressed(string path, int position, int leangh) {
       Memory<byte> file = File.ReadAllBytes("bytes");
       using var outputStream = new MemoryStream();
       using var outputStream2 = new MemoryStream();
@@ -35,5 +38,7 @@ namespace AnnoRdaExtractInsert {
       data.CopyTo(slice);
       File.WriteAllBytes($"{path}_edit", k.ToArray());
     }
+
+    #endregion Public Methods
   }
 }

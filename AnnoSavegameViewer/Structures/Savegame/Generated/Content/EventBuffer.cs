@@ -1,7 +1,5 @@
-using AnnoSavegameViewer.Serialization.Core;
-using System.Collections.Generic;
-
 namespace AnnoSavegameViewer.Structures.Savegame.Generated {
+  using AnnoSavegameViewer.Serialization.Core;
 
   public class EventBuffer {
 
@@ -40,6 +38,5 @@ namespace AnnoSavegameViewer.Structures.Savegame.Generated {
 
     [BinaryContent(Name = "RuinOrAbandon", NodeType = BinaryContentTypes.Node)]
     public RuinOrAbandon RuinOrAbandon { get; set; }
-
   }
 }

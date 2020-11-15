@@ -1,6 +1,6 @@
-using System;
-
 namespace ICSharpCode.SharpZipLib.Zip.Compression.Streams {
+  using System;
+
   /// <summary>
   /// Contains the output from the Inflation process.
   /// We need to have a window so that we can refer backwards into the output stream
@@ -134,17 +134,13 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression.Streams {
     /// Get remaining unfilled space in window
     /// </summary>
     /// <returns>Number of bytes left in window</returns>
-    public int GetFreeSpace() {
-      return WindowSize - windowFilled;
-    }
+    public int GetFreeSpace() => WindowSize - windowFilled;
 
     /// <summary>
     /// Get bytes available for output in window
     /// </summary>
     /// <returns>Number of bytes filled</returns>
-    public int GetAvailable() {
-      return windowFilled;
-    }
+    public int GetAvailable() => windowFilled;
 
     /// <summary>
     /// Copy contents of window to output
@@ -184,8 +180,6 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression.Streams {
     /// <summary>
     /// Reset by clearing window so <see cref="GetAvailable">GetAvailable</see> returns 0
     /// </summary>
-    public void Reset() {
-      windowFilled = windowEnd = 0;
-    }
+    public void Reset() => windowFilled = windowEnd = 0;
   }
 }

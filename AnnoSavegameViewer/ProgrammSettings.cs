@@ -1,25 +1,22 @@
-﻿using AnnoSavegameViewer.Templates;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Globalization;
-using System.IO;
-using System.Linq;
-using System.Reflection;
-using System.Runtime.CompilerServices;
-using System.Web;
-using System.Xml.Linq;
-
-namespace AnnoSavegameViewer {
+﻿namespace AnnoSavegameViewer {
+  using AnnoSavegameViewer.Templates;
+  using System;
+  using System.Collections.Generic;
+  using System.ComponentModel;
+  using System.Globalization;
+  using System.IO;
+  using System.Linq;
+  using System.Reflection;
+  using System.Runtime.CompilerServices;
+  using System.Web;
+  using System.Xml.Linq;
 
   public static class ProgrammSettings {
 
     #region Public Properties
 
     public static Savegame CurrentSavegame {
-      get {
-        return currentSavegame;
-      }
+      get => currentSavegame;
       set {
         if (currentSavegame != value) {
           currentSavegame = value;
@@ -31,9 +28,7 @@ namespace AnnoSavegameViewer {
     public static MainWindow MainWindow { get; set; }
 
     public static Languages Language {
-      get {
-        return language;
-      }
+      get => language;
       set {
         if (PossibleLanguages.Contains(value)) {
           language = value;
@@ -51,13 +46,21 @@ namespace AnnoSavegameViewer {
 
     #endregion Public Properties
 
+    #region Public Events
+
+    public static event EventHandler<PropertyChangedEventArgs> StaticPropertyChanged;
+
+    public static event Action OnLanguageChanged;
+
+    #endregion Public Events
+
     #region Public Constructors
 
     static ProgrammSettings() {
       //Set possible languages
       foreach (var language in Enum.GetValues(typeof(Languages))) {
         var lang = (Languages)language;
-        var resource = $"AnnoSavegameViewer.Resources.Languages.texts_{lang.ToString("G")}.xml";
+        var resource = $"AnnoSavegameViewer.Resources.Languages.texts_{lang:G}.xml";
         if (Assembly.GetExecutingAssembly().GetManifestResourceNames().Contains(resource)) {
           PossibleLanguages.Add(lang);
         }
@@ -76,27 +79,9 @@ namespace AnnoSavegameViewer {
 
     #endregion Public Constructors
 
-    #region Public Events
-
-    public static event EventHandler<PropertyChangedEventArgs> StaticPropertyChanged;
-
-    public static event Action OnLanguageChanged;
-
-    #endregion Public Events
-
-    #region Private Fields
-
-    private static Languages language = Languages.english;
-
-    private static Savegame currentSavegame;
-
-    #endregion Private Fields
-
     #region Private Methods
 
-    private static void NotifyStaticPropertyChanged([CallerMemberName]string propertyName = null) {
-      StaticPropertyChanged?.Invoke(null, new PropertyChangedEventArgs(propertyName));
-    }
+    private static void NotifyStaticPropertyChanged([CallerMemberName] string propertyName = null) => StaticPropertyChanged?.Invoke(null, new PropertyChangedEventArgs(propertyName));
 
     private static void SetSystemLanguage() {
       Language = CultureInfo.CurrentCulture.TwoLetterISOLanguageName switch
@@ -120,7 +105,7 @@ namespace AnnoSavegameViewer {
 
     private static void LoadLanguageFile() {
       Texts.Clear();
-      var resource = $"AnnoSavegameViewer.Resources.Languages.texts_{Language.ToString("G")}.xml";
+      var resource = $"AnnoSavegameViewer.Resources.Languages.texts_{Language:G}.xml";
 
       using var stream = Assembly.GetExecutingAssembly().GetManifestResourceStream(resource);
       using var reader = new StreamReader(stream);
@@ -129,9 +114,9 @@ namespace AnnoSavegameViewer {
         Texts.Add(Convert.ToInt32(item.Element("GUID").Value), HttpUtility.HtmlDecode(item.Element("Text").Value));
       }
 
-      resource = $"AnnoSavegameViewer.Resources.Languages.Custom.{Language.ToString("G")}.xml";
+      resource = $"AnnoSavegameViewer.Resources.Languages.Custom.{Language:G}.xml";
       if (!Assembly.GetExecutingAssembly().GetManifestResourceNames().Contains(resource)) {
-        resource = $"AnnoSavegameViewer.Resources.Languages.Custom.{Languages.english.ToString("G")}.xml";
+        resource = $"AnnoSavegameViewer.Resources.Languages.Custom.{Languages.english:G}.xml";
       }
 
       using var stream2 = Assembly.GetExecutingAssembly().GetManifestResourceStream(resource);
@@ -143,5 +128,13 @@ namespace AnnoSavegameViewer {
     }
 
     #endregion Private Methods
+
+    #region Private Fields
+
+    private static Languages language = Languages.english;
+
+    private static Savegame currentSavegame;
+
+    #endregion Private Fields
   }
 }

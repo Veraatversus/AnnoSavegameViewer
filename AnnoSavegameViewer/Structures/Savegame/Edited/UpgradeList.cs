@@ -1,13 +1,12 @@
-using AnnoSavegameViewer.Serialization.Core;
-
 namespace AnnoSavegameViewer.Structures.Savegame.Generated {
+  using AnnoSavegameViewer.Serialization.Core;
 
   public class UpgradeList {
 
     #region Public Properties
 
     [BinaryContent(Name = "UpgradeGUIDs", NodeType = BinaryContentTypes.Attribute)]
-    public AnnoUpgradeGUIDS UpgradeGUIDs { get; set; }
+    public DescriptionIntList UpgradeGUIDs { get; set; }
 
     [BinaryContent(Name = "ElectricityUpgrades", NodeType = BinaryContentTypes.Attribute)]
     public object ElectricityUpgrades { get; set; }

@@ -1,8 +1,8 @@
-using ICSharpCode.SharpZipLib.Zip.Compression.Streams;
-using System;
-using System.Collections.Generic;
-
 namespace ICSharpCode.SharpZipLib.Zip.Compression {
+  using ICSharpCode.SharpZipLib.Zip.Compression.Streams;
+  using System;
+  using System.Collections.Generic;
+
   internal class InflaterDynHeader {
     #region Constants
 

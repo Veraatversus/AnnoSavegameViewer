@@ -1,7 +1,7 @@
-using System;
-using System.Runtime.Serialization;
-
 namespace ICSharpCode.SharpZipLib {
+  using System;
+  using System.Runtime.Serialization;
+
   /// <summary>
   /// SharpZipBaseException is the base exception class for SharpZipLib.
   /// All library exceptions are derived from this.

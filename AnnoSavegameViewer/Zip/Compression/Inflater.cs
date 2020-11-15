@@ -1,18 +1,18 @@
-using ICSharpCode.SharpZipLib.Checksum;
-using ICSharpCode.SharpZipLib.Zip.Compression.Streams;
-using System;
-
 namespace ICSharpCode.SharpZipLib.Zip.Compression {
+  using ICSharpCode.SharpZipLib.Checksum;
+  using ICSharpCode.SharpZipLib.Zip.Compression.Streams;
+  using System;
+
   /// <summary>
   /// Inflater is used to decompress data that has been compressed according
   /// to the "deflate" standard described in rfc1951.
   ///
   /// By default Zlib (rfc1950) headers and footers are expected in the input.
-  /// You can use constructor <code> public Inflater(bool noHeader)</code> passing true
+  /// You can use constructor <c> public Inflater(bool noHeader)</c> passing true
   /// if there is no Zlib header information
   ///
   /// The usage is as following.  First you have to set some input with
-  /// <code>SetInput()</code>, then Inflate() it.  If inflate doesn't
+  /// <c>SetInput()</c>, then Inflate() it.  If inflate doesn't
   /// inflate any bytes there may be three reasons:
   /// <ul>
   /// <li>IsNeedingInput() returns true because the input buffer is empty.
@@ -510,9 +510,7 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression {
     /// <param name="buffer">
     /// The dictionary.
     /// </param>
-    public void SetDictionary(byte[] buffer) {
-      SetDictionary(buffer, 0, buffer.Length);
-    }
+    public void SetDictionary(byte[] buffer) => SetDictionary(buffer, 0, buffer.Length);
 
     /// <summary>
     /// Sets the preset dictionary.  This should only be called, if
@@ -569,9 +567,7 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression {
     /// <param name="buffer">
     /// the input.
     /// </param>
-    public void SetInput(byte[] buffer) {
-      SetInput(buffer, 0, buffer.Length);
-    }
+    public void SetInput(byte[] buffer) => SetInput(buffer, 0, buffer.Length);
 
     /// <summary>
     /// Sets the input.  This should only be called, if needsInput()
@@ -671,7 +667,7 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression {
       // Special case: count may be zero
       if (count == 0) {
         if (!IsFinished) { // -jr- 08-Nov-2003 INFLATE_BUG fix..
-          Decode();
+          _ = Decode();
         }
         return 0;
       }
@@ -708,30 +704,18 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression {
     /// You should then call setInput().
     /// NOTE: This method also returns true when the stream is finished.
     /// </summary>
-    public bool IsNeedingInput {
-      get {
-        return input.IsNeedingInput;
-      }
-    }
+    public bool IsNeedingInput => input.IsNeedingInput;
 
     /// <summary>
     /// Returns true, if a preset dictionary is needed to inflate the input.
     /// </summary>
-    public bool IsNeedingDictionary {
-      get {
-        return mode == DECODE_DICT && neededBits == 0;
-      }
-    }
+    public bool IsNeedingDictionary => mode == DECODE_DICT && neededBits == 0;
 
     /// <summary>
     /// Returns true, if the inflater has finished.  This means, that no
     /// input is needed and no output can be produced.
     /// </summary>
-    public bool IsFinished {
-      get {
-        return mode == FINISHED && outputWindow.GetAvailable() == 0;
-      }
-    }
+    public bool IsFinished => mode == FINISHED && outputWindow.GetAvailable() == 0;
 
     /// <summary>
     /// Gets the adler checksum.  This is either the checksum of all
@@ -762,11 +746,7 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression {
     /// <returns>
     /// the total number of output bytes.
     /// </returns>
-    public long TotalOut {
-      get {
-        return totalOut;
-      }
-    }
+    public long TotalOut => totalOut;
 
     /// <summary>
     /// Gets the total number of processed compressed input bytes.
@@ -774,11 +754,7 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression {
     /// <returns>
     /// The total number of bytes of processed input bytes.
     /// </returns>
-    public long TotalIn {
-      get {
-        return totalIn - (long)RemainingInput;
-      }
-    }
+    public long TotalIn => totalIn - (long)RemainingInput;
 
     /// <summary>
     /// Gets the number of unprocessed input bytes.  Useful, if the end of the
@@ -788,11 +764,6 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression {
     /// <returns>
     /// The number of bytes of the input which have not been processed.
     /// </returns>
-    public int RemainingInput {
-      // TODO: This should be a long?
-      get {
-        return input.AvailableBytes;
-      }
-    }
+    public int RemainingInput => input.AvailableBytes;
   }
 }

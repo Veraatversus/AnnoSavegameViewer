@@ -1,8 +1,7 @@
-﻿using AnnoSavegameViewer.Structures.Savegame;
-using System;
-using System.Diagnostics;
-
-namespace AnnoSavegameViewer.Templates {
+﻿namespace AnnoSavegameViewer.Templates {
+  using AnnoSavegameViewer.Structures.DataTypes;
+  using System;
+  using System.Diagnostics;
 
   [DebuggerDisplay("{Description}")]
   public class TreeItem : ITreeBase {
@@ -20,9 +19,7 @@ namespace AnnoSavegameViewer.Templates {
 
     #region Public Methods
 
-    public override string ToString() {
-      return $"({CountUsed + CountUnused }/{CountUsed}/{CountUnused}) {Description}";
-    }
+    public override string ToString() => $"({CountUsed + CountUnused }/{CountUsed}/{CountUnused}) {Description}";
 
     public void Add(AnnoItem annoItem) {
       Item = annoItem;

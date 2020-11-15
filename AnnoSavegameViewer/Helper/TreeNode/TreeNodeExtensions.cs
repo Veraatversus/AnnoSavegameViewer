@@ -3,7 +3,6 @@ using AnnoSavegameViewer.Serialization.Memory;
 using AnnoSavegameViewer.Serialization.Reflection.TypeData;
 using System;
 using System.Linq;
-using System.Reflection;
 using System.Text;
 
 namespace AnnoSavegameViewer.Helper.TreeNode {
@@ -45,16 +44,7 @@ namespace AnnoSavegameViewer.Helper.TreeNode {
               }
               value = values;
             }
-
-            switch (member.MemberInfo) {
-              case FieldInfo field:
-                field.SetValue(instance, value);
-                break;
-
-              case PropertyInfo property:
-                property.SetValue(instance, value);
-                break;
-            }
+            member.MemberInfo.SetMemberValue(instance, value);
           }
         }
       }
@@ -77,15 +67,7 @@ namespace AnnoSavegameViewer.Helper.TreeNode {
               value = values;
             }
 
-            switch (member.MemberInfo) {
-              case FieldInfo field:
-                field.SetValue(instance, value);
-                break;
-
-              case PropertyInfo property:
-                property.SetValue(instance, value);
-                break;
-            }
+            member.MemberInfo.SetMemberValue(instance, value);
           }
         }
       }
@@ -93,7 +75,7 @@ namespace AnnoSavegameViewer.Helper.TreeNode {
     }
 
     private static object ReadObject(this in ReadOnlySpan<byte> span, BinaryContentAttribute attribute, Type type) {
-      var encoding = attribute.Encoding != null ? Encoding.GetEncoding(attribute.Encoding) : null;
+      var encoding = String.IsNullOrEmpty(attribute.Encoding) ? null : Encoding.GetEncoding(attribute.Encoding);
       if (type == typeof(string)) {
         var lenght = attribute.Length != 0 ? attribute.Length : span.Length - attribute.Offset;
         return span.ReadString(attribute.Offset, lenght, encoding, attribute.StringPattern);

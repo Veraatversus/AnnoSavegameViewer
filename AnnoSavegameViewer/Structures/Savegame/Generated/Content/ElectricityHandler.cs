@@ -1,9 +1,9 @@
-using AnnoSavegameViewer.Serialization.Core;
-using System.Collections.Generic;
-
 namespace AnnoSavegameViewer.Structures.Savegame.Generated {
+  using AnnoSavegameViewer.Serialization.Core;
 
   public class ElectricityHandler {
+
+    #region Public Properties
 
     [BinaryContent(Name = "LastRequesterTime", NodeType = BinaryContentTypes.Attribute)]
     public object LastRequesterTime { get; set; }
@@ -14,5 +14,6 @@ namespace AnnoSavegameViewer.Structures.Savegame.Generated {
     [BinaryContent(Name = "LastRequester", NodeType = BinaryContentTypes.Node)]
     public LastRequester LastRequester { get; set; }
 
+    #endregion Public Properties
   }
 }

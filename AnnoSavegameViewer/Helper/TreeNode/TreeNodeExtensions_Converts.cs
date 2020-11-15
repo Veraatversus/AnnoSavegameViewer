@@ -21,7 +21,7 @@ namespace AnnoSavegameViewer.Helper.TreeNode {
     public static XElement ToXml(this TreeNode node) {
       var element = new XElement(node.Name.Replace(" ", "_"));
       if (!node.Content.IsEmpty) {
-        element.Value = MemoryExtensions.ToHexString(node.Content.Span);
+        element.Value = MemoryExtensions.ToHexString(node.Content);
         return element;
       }
       if (node.Attributes.Count > 0) {
@@ -172,7 +172,7 @@ namespace AnnoSavegameViewer.Helper.TreeNode {
       Directory.CreateDirectory(saveName);
       Directory.CreateDirectory($"{saveName}/Xml");
       //Extract Xmls
-      var sessioncount = 0;
+      //var sessioncount = 0;
       var rootxml = node.ToXml();
       rootxml.Save($"{saveName}/Xml/{saveName}.data.xml");
       //foreach (var item in node["MetaGameManager"][0]["GameSessions"][0]) {
@@ -205,17 +205,6 @@ namespace AnnoSavegameViewer.Helper.TreeNode {
     }
 
     #endregion Public Methods
-
-    #region Private Fields
-
-    private static readonly HashSet<string> UsedClassNames = new HashSet<string>();
-
-    private static Regex AttributeRegex = new Regex("BinaryContentType.Attribute");
-
-    private static Regex ObjectRegex = new Regex("public object");
-    private static Regex ListObjectRegex = new Regex("public List<object>");
-
-    #endregion Private Fields
 
     #region Private Methods
 
@@ -254,5 +243,16 @@ namespace AnnoSavegameViewer.Helper.TreeNode {
     }
 
     #endregion Private Methods
+
+    #region Private Fields
+
+    private static readonly HashSet<string> UsedClassNames = new HashSet<string>();
+
+    private static Regex AttributeRegex = new Regex("BinaryContentType.Attribute");
+
+    private static Regex ObjectRegex = new Regex("public object");
+    private static Regex ListObjectRegex = new Regex("public List<object>");
+
+    #endregion Private Fields
   }
 }

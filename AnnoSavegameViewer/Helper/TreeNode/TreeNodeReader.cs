@@ -1,9 +1,7 @@
 ﻿using AnnoSavegameViewer.Serialization.Core;
-using AnnoSavegameViewer.Serialization.FileDBSerializer;
 using AnnoSavegameViewer.Serialization.Memory;
-using System;
+using AnnoSavegameViewer.Structures.FileDB;
 using System.Collections.Generic;
-using System.Threading.Tasks;
 
 namespace AnnoSavegameViewer.Helper.TreeNode {
 
@@ -28,13 +26,13 @@ namespace AnnoSavegameViewer.Helper.TreeNode {
 
     #region Public Methods
 
-    public static async Task<TreeNode> ReadBinaryNode(this ReadOnlyMemory<byte> memory, TreeNode treeNode = null) {
+    public static TreeNode ReadBinaryNode(this FileDB fileDB, TreeNode treeNode = null) {
       var mainNode = treeNode ?? new TreeNode() { Name = "BaseNode" };
       var currentNode = mainNode;
-      await foreach (var item in FileDBSerializer.EnumerateTreeAsync(memory)) {
+      foreach (var item in fileDB.EnumerateTree()) {
         switch (item.Item2/*.serializingType*/) {
           case SerializingType.OpenNode:
-            var newNode = new TreeNode() { Name = item.Item1/*.Name*/, Parent = currentNode, NodeType = BinaryContentTypes.Node };
+            var newNode = new TreeNode() { Name = item.Item1/*.Name*/, Parent = currentNode, NodeType = BinaryContentTypes.Node, ClassName = currentNode.Name + "." + item.Name };
             currentNode.Nodes.AddLast(newNode);
             currentNode = newNode;
             break;
@@ -87,7 +85,7 @@ namespace AnnoSavegameViewer.Helper.TreeNode {
 
             //Extract Sub Nodes
             if (tag == "BinaryData") {
-              var node = await ReadBinaryNode(nodesReader.Memory.Slice(nodesReader.Position, length));
+              var node = ReadBinaryNode(new FileDB(nodesReader.Memory.Slice(nodesReader.Position, length)));
               node.Name = tag;
               node.Id = nextId;
               currentNode.AddChild(node);

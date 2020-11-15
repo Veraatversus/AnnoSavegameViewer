@@ -1,7 +1,7 @@
-using System;
-using System.Runtime.Serialization;
-
 namespace ICSharpCode.SharpZipLib.Zip {
+  using System;
+  using System.Runtime.Serialization;
+
   /// <summary>
   /// ZipException represents exceptions specific to Zip classes and code.
   /// </summary>

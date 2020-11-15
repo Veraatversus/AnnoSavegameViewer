@@ -30,17 +30,6 @@ namespace AnnoSavegameViewer.Helper.TreeNode {
 
     #endregion Public Properties
 
-    #region Public Constructors
-
-    public TreeNode() {
-    }
-
-    #endregion Public Constructors
-
-    //public TreeNode(TreeNode treeNode) {
-    //  if (treeNode == null)
-    //    throw new ArgumentNullException(nameof(treeNode));
-
     #region Public Indexers
 
     //  Name = treeNode.Name;
@@ -56,8 +45,18 @@ namespace AnnoSavegameViewer.Helper.TreeNode {
 
     #endregion Public Indexers
 
+    #region Public Constructors
+
+    public TreeNode() {
+    }
+
+    #endregion Public Constructors
+
     #region Public Methods
 
+    //public TreeNode(TreeNode treeNode) {
+    //  if (treeNode == null)
+    //    throw new ArgumentNullException(nameof(treeNode));
     //public TreeNode this[int index] { get => Nodes[index]; }
     public void SetArrayItems() {
       foreach (var item in Nodes.ToLookup(x => x.Name).Where(g => g.Skip(1).Any()).SelectMany(g => g)) {

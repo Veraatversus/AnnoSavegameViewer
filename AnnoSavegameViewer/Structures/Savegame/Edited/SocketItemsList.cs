@@ -1,6 +1,6 @@
-using AnnoSavegameViewer.Serialization.Core;
-
 namespace AnnoSavegameViewer.Structures.Savegame.Generated {
+  using AnnoSavegameViewer.Serialization.Core;
+  using AnnoSavegameViewer.Structures.DataTypes;
 
   public class SocketItemsList {
 

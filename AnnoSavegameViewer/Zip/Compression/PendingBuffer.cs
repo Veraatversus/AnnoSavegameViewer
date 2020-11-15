@@ -37,18 +37,14 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression {
     /// <param name="bufferSize">
     /// size to use for internal buffer
     /// </param>
-    public PendingBuffer(int bufferSize) {
-      buffer = new byte[bufferSize];
-    }
+    public PendingBuffer(int bufferSize) => buffer = new byte[bufferSize];
 
     #endregion Constructors
 
     /// <summary>
     /// Clear internal state/buffers
     /// </summary>
-    public void Reset() {
-      start = end = bitCount = 0;
-    }
+    public void Reset() => start = end = bitCount = 0;
 
     /// <summary>
     /// Write a byte to buffer
@@ -56,7 +52,7 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression {
     /// <param name="value">
     /// The value to write
     /// </param>
-    public void WriteByte(int value) {
+    public void WriteByte(int value) =>
 #if DebugDeflation
 			if (DeflaterConstants.DEBUGGING && (start != 0) )
 			{
@@ -64,7 +60,6 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression {
 			}
 #endif
       buffer[end++] = unchecked((byte)value);
-    }
 
     /// <summary>
     /// Write a short value to buffer LSB first
@@ -120,11 +115,7 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression {
     /// <summary>
     /// The number of bits written to the buffer
     /// </summary>
-    public int BitCount {
-      get {
-        return bitCount;
-      }
-    }
+    public int BitCount => bitCount;
 
     /// <summary>
     /// Align internal buffer on a byte boundary
@@ -190,11 +181,7 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression {
     /// <summary>
     /// Indicates if buffer has been flushed
     /// </summary>
-    public bool IsFlushed {
-      get {
-        return end == 0;
-      }
-    }
+    public bool IsFlushed => end == 0;
 
     /// <summary>
     /// Flushes the pending buffer into the given output array.  If the

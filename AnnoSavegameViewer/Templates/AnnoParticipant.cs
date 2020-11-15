@@ -1,12 +1,11 @@
-﻿using AnnoSavegameViewer.Structures.Savegame;
-
-namespace AnnoSavegameViewer.Templates {
+﻿namespace AnnoSavegameViewer.Templates {
+  using AnnoSavegameViewer.Structures.DataTypes;
 
   public class AnnoParticipant {
 
     #region Public Properties
 
-    public short ID { get; private set; }
+    public short ID { get; }
 
     public DescriptionInt GUID { get; set; }
 
@@ -14,9 +13,7 @@ namespace AnnoSavegameViewer.Templates {
 
     #region Public Constructors
 
-    public AnnoParticipant(short id) {
-      ID = id;
-    }
+    public AnnoParticipant(short id) => ID = id;
 
     #endregion Public Constructors
   }

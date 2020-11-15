@@ -1,8 +1,7 @@
-﻿using AnnoSavegameViewer.Templates;
-using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
-
-namespace AnnoSavegameViewer.Comparer {
+﻿namespace AnnoSavegameViewer.Comparer {
+  using AnnoSavegameViewer.Templates;
+  using System.Collections.Generic;
+  using System.Diagnostics.CodeAnalysis;
 
   public class AnnoItemComparer : IEqualityComparer<AnnoItem> {
 
@@ -14,13 +13,9 @@ namespace AnnoSavegameViewer.Comparer {
 
     #region Public Methods
 
-    public bool Equals([AllowNull] AnnoItem x, [AllowNull] AnnoItem y) {
-      return x?.GUID?.GUID == y?.GUID?.GUID;
-    }
+    public bool Equals([AllowNull] AnnoItem x, [AllowNull] AnnoItem y) => x?.GUID?.GUID == y?.GUID?.GUID;
 
-    public int GetHashCode([DisallowNull] AnnoItem obj) {
-      return obj?.GUID?.GUID.GetHashCode() ?? 0;
-    }
+    public int GetHashCode([DisallowNull] AnnoItem obj) => obj?.GUID?.GUID.GetHashCode() ?? 0;
 
     #endregion Public Methods
   }

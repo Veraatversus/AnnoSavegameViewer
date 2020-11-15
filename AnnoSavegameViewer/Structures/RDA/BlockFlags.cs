@@ -1,6 +1,5 @@
-﻿using System;
-
-namespace AnnoSavegameViewer.Structures.RDA {
+﻿namespace AnnoSavegameViewer.Structures.RDA {
+  using System;
 
   [Flags]
   public enum BlockFlags {

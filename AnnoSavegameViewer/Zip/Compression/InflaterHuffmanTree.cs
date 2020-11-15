@@ -1,8 +1,8 @@
-using ICSharpCode.SharpZipLib.Zip.Compression.Streams;
-using System;
-using System.Collections.Generic;
-
 namespace ICSharpCode.SharpZipLib.Zip.Compression {
+  using ICSharpCode.SharpZipLib.Zip.Compression.Streams;
+  using System;
+  using System.Collections.Generic;
+
   /// <summary>
   /// Huffman tree used for inflation
   /// </summary>
@@ -67,9 +67,7 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression {
     /// <param name = "codeLengths">
     /// the array of code lengths
     /// </param>
-    public InflaterHuffmanTree(IList<byte> codeLengths) {
-      BuildTree(codeLengths);
-    }
+    public InflaterHuffmanTree(IList<byte> codeLengths) => BuildTree(codeLengths);
 
     #endregion Constructors
 

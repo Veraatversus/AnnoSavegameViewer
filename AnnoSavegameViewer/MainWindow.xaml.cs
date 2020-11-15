@@ -1,18 +1,21 @@
-﻿using AnnoSavegameViewer.Controls;
-using AnnoSavegameViewer.Controls.Loading;
-using AnnoSavegameViewer.Templates;
-using Microsoft.Win32;
-using System;
-using System.ComponentModel;
-using System.Runtime.CompilerServices;
-using System.Windows;
+﻿namespace AnnoSavegameViewer {
+  using AnnoSavegameViewer.Controls;
+  using AnnoSavegameViewer.Controls.Loading;
+  using AnnoSavegameViewer.Templates;
+  using Microsoft.Win32;
+  using System;
+  using System.ComponentModel;
+  using System.Runtime.CompilerServices;
+  using System.Windows;
 
-namespace AnnoSavegameViewer {
+  /// <summary> Interaction logic for MainWindow.xaml </summary>
+  public partial class MainWindow : Window {
 
-  /// <summary>
-  /// Interaction logic for MainWindow.xaml
-  /// </summary>
-  public partial class MainWindow : Window, INotifyPropertyChanged {
+    #region Public Events
+
+    public event Action SaveGameChanged;
+
+    #endregion Public Events
 
     #region Public Constructors
 
@@ -27,27 +30,9 @@ namespace AnnoSavegameViewer {
 
     #endregion Public Constructors
 
-    #region Public Events
-
-    public event PropertyChangedEventHandler PropertyChanged;
-
-    public event Action SaveGameChanged;
-
-    #endregion Public Events
-
-    #region Public Methods
-
-    public void RaisePropertyChanged([CallerMemberName]string name = "") {
-      PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
-    }
-
-    #endregion Public Methods
-
     #region Private Methods
 
-    private async void MainWindow_Loaded(object sender, RoutedEventArgs e) {
-      cbMode.SelectedIndex = 0;
-    }
+    private void MainWindow_Loaded(object sender, RoutedEventArgs e) => cbMode.SelectedIndex = 0;
 
     private void ComboBoxLanguage_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e) {
       if (ComboBoxLanguage.SelectedItem is Languages lang) {
@@ -83,7 +68,7 @@ namespace AnnoSavegameViewer {
       if (dialog.ShowDialog() == true) {
         var loadingDialog = new LoadingDialog() { Owner = this };
         loadingDialog.Show();
-        await FileReader.ReadFileAsync(dialog.FileName);
+        await SaveGameReader.ReadFileAsync(dialog.FileName);
         SaveGameChanged?.Invoke();
         loadingDialog.Close();
       }
