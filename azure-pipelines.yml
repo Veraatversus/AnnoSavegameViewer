@@ -71,7 +71,7 @@ steps:
     command: 'publish'
     publishWebProjects: false
     projects: '**/*.sln'
-    arguments: '--configuration $(BuildConfiguration) --self-contained -p:ZipOutputPath=$(Build.ArtifactStagingDirectory)'
+    arguments: '--configuration $(BuildConfiguration) --self-contained true -p:ZipOutputPath=$(Build.ArtifactStagingDirectory)'
     modifyOutputPath: false
     zipAfterPublish: false    
 
