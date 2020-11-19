@@ -1,0 +1,103 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <StartupObject>FileDBReader.Program</StartupObject>
+    <TargetFramework>net5.0-windows</TargetFramework>
+    <RuntimeIdentifier>win-x64</RuntimeIdentifier>
+    <Configuration>Release</Configuration>
+    <SelfContained>false</SelfContained>
+    <PublishSingleFile>true</PublishSingleFile>
+    <UseWPF>true</UseWPF>
+    <EnableNETAnalyzers>true</EnableNETAnalyzers>
+  </PropertyGroup>
+  
+  <PropertyGroup Condition="'$(Configuration)'=='Debug'">
+    <DebugType>portable</DebugType>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)'=='Release'">
+    <DebugType>embedded</DebugType>
+  </PropertyGroup>
+  
+  <Target Name="ZipOutputPath" AfterTargets="Publish" DependsOnTargets="Publish" Condition="'$(ZipOutputPath)' != ''">
+    <ZipDirectory Condition="'$(SelfContained)' == 'true'" SourceDirectory="$(PublishDir)" DestinationFile="$(ZipOutputPath)\$(AssemblyName)_Standalone.zip" Overwrite="true" />
+    <ZipDirectory Condition="'$(SelfContained)' == 'false'" SourceDirectory="$(PublishDir)" DestinationFile="$(ZipOutputPath)\$(AssemblyName).zip" Overwrite="true" />
+  </Target>
+  
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <DocumentationFile></DocumentationFile>
+    <GenerateSerializationAssemblies>Auto</GenerateSerializationAssemblies>
+    <DebugType>portable</DebugType>
+    <DebugSymbols>true</DebugSymbols>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <DocumentationFile></DocumentationFile>
+    <GenerateSerializationAssemblies>Auto</GenerateSerializationAssemblies>
+    <DebugType>embedded</DebugType>
+    <DebugSymbols>true</DebugSymbols>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Helper\**" />
+    <Compile Remove="Resources\**" />
+    <EmbeddedResource Remove="Helper\**" />
+    <EmbeddedResource Remove="Resources\**" />
+    <None Remove="Helper\**" />
+    <None Remove="Resources\**" />
+    <Page Remove="Helper\**" />
+    <Page Remove="Resources\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="Comparer\GameObjectComparer.cs" />
+    <Compile Remove="Templates\Languages.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="Anno1800_Fortification_Concept.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Resources\Anno1800_Fortification_Concept.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="2.9.8">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\AnnoSerializer\AnnoSerializer.csproj" />
+    <ProjectReference Include="..\GeneratedA7s\GeneratedA7s.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Controls\Views\SavegameUpgradesView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Controls\Views\SavegameBuildingsView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Update="Controls\Views\SavegameUpgradesView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Controls\Views\SavegameBuildingsView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Properties\" />
+  </ItemGroup>
+
+  <ProjectExtensions><VisualStudio><UserProperties /></VisualStudio></ProjectExtensions>
+
+</Project>

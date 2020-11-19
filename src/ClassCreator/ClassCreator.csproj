@@ -1,0 +1,74 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net5.0-windows</TargetFramework>
+    <RuntimeIdentifier>win-x64</RuntimeIdentifier>
+    <Configuration>Release</Configuration>
+    <SelfContained>false</SelfContained>
+    <PublishSingleFile>true</PublishSingleFile>
+    <UseWPF>true</UseWPF>
+    <EnableNETAnalyzers>true</EnableNETAnalyzers>
+    <DebugSymbols>true</DebugSymbols>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)'=='Debug'">
+    <DebugType>portable</DebugType>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)'=='Release'">
+    <DebugType>embedded</DebugType>
+  </PropertyGroup>
+
+  <Target Name="ZipOutputPath" AfterTargets="Publish" DependsOnTargets="Publish" Condition="'$(ZipOutputPath)' != ''">
+    <ZipDirectory Condition="'$(SelfContained)' == 'true'" SourceDirectory="$(PublishDir)" DestinationFile="$(ZipOutputPath)\$(AssemblyName)_Standalone.zip" Overwrite="true" />
+    <ZipDirectory Condition="'$(SelfContained)' == 'false'" SourceDirectory="$(PublishDir)" DestinationFile="$(ZipOutputPath)\$(AssemblyName).zip" Overwrite="true" />
+  </Target>
+  
+  <ItemGroup>
+    <Compile Remove="bin\**" />
+    <Compile Remove="TreeNode\**" />
+    <Compile Remove="Tree\**" />
+    <EmbeddedResource Remove="bin\**" />
+    <EmbeddedResource Remove="TreeNode\**" />
+    <EmbeddedResource Remove="Tree\**" />
+    <None Remove="bin\**" />
+    <None Remove="TreeNode\**" />
+    <None Remove="Tree\**" />
+    <Page Remove="bin\**" />
+    <Page Remove="TreeNode\**" />
+    <Page Remove="Tree\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="TreeNodeItemTemplateSelector.cs" />
+    <Compile Remove="TreeViewItemConverts.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Xaml.Behaviors.Wpf" Version="1.1.19" />
+    <PackageReference Include="VAV.Core" Version="1.0.0.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\AnnoSerializer\AnnoSerializer.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Converter\" />
+    <Folder Include="Properties\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Patterns\a7m.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Patterns\a7s.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Patterns\db.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Patterns\tmc.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+</Project>
