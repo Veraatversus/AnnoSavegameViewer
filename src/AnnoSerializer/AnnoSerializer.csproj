@@ -1,0 +1,65 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Library</OutputType>
+    <TargetFramework>net5.0</TargetFramework>
+    <Configuration>Release</Configuration>
+    <SelfContained>false</SelfContained>
+    <EnableNETAnalyzers>true</EnableNETAnalyzers>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)'=='Debug'">
+    <DebugType>portable</DebugType>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)'=='Release'">
+    <DebugType>embedded</DebugType>
+  </PropertyGroup>
+
+  <Target Name="ZipOutputPath" AfterTargets="Publish" DependsOnTargets="Publish" Condition="'$(ZipOutputPath)' != ''">
+    <ZipDirectory Condition="'$(SelfContained)' == 'true'" SourceDirectory="$(PublishDir)" DestinationFile="$(ZipOutputPath)\$(AssemblyName)_Standalone.zip" Overwrite="true" />
+    <ZipDirectory Condition="'$(SelfContained)' == 'false'" SourceDirectory="$(PublishDir)" DestinationFile="$(ZipOutputPath)\$(AssemblyName).zip" Overwrite="true" />
+  </Target>
+
+  <ItemGroup>
+    <Compile Remove="Serialization\Memory\MemoryReader - Kopieren.cs" />
+    <Compile Remove="Serialization\Memory\SpanReader2.cs" />
+    <Compile Remove="Serialization\Memory\SpanReadExtensions - Kopieren.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="Resources\Anno1800_Fortification_Concept.jpg" />
+    <None Remove="Resources\Languages\Custom\english.xml" />
+    <None Remove="Resources\Languages\Custom\german.xml" />
+    <None Remove="Resources\Languages\texts_chinese.xml" />
+    <None Remove="Resources\Languages\texts_english.xml" />
+    <None Remove="Resources\Languages\texts_french.xml" />
+    <None Remove="Resources\Languages\texts_german.xml" />
+    <None Remove="Resources\Languages\texts_italian.xml" />
+    <None Remove="Resources\Languages\texts_japanese.xml" />
+    <None Remove="Resources\Languages\texts_korean.xml" />
+    <None Remove="Resources\Languages\texts_polish.xml" />
+    <None Remove="Resources\Languages\texts_russian.xml" />
+    <None Remove="Resources\Languages\texts_spanish.xml" />
+    <None Remove="Resources\Languages\texts_taiwanese.xml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Languages\Custom\english.xml" />
+    <EmbeddedResource Include="Resources\Languages\Custom\german.xml" />
+    <EmbeddedResource Include="Resources\Languages\texts_english.xml" />
+    <EmbeddedResource Include="Resources\Languages\texts_german.xml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Resources\Anno1800_Fortification_Concept.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Properties\" />
+  </ItemGroup>
+
+</Project>

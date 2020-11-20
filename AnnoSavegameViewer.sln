@@ -3,11 +3,19 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29709.97
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AnnoSavegameViewer", "AnnoSavegameViewer\AnnoSavegameViewer.csproj", "{F2AB5B80-8E7F-4E86-81AC-CD4C3F54D38C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AnnoSavegameViewer", "src\AnnoSavegameViewer\AnnoSavegameViewer\AnnoSavegameViewer.csproj", "{F2AB5B80-8E7F-4E86-81AC-CD4C3F54D38C}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AssetFormat", "AssetFormat\AssetFormat.csproj", "{EE06FDB2-EBD1-4296-88B2-4594F8CCDA03}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AnnoRdaExtractInsert", "src\Deprecated\AnnoRdaExtractInsert\AnnoRdaExtractInsert.csproj", "{E02C92F8-BD4D-4E12-8BAC-C23C11F2AF82}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AnnoRdaExtractInsert", "AnnoRdaExtractInsert\AnnoRdaExtractInsert.csproj", "{E02C92F8-BD4D-4E12-8BAC-C23C11F2AF82}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ClassCreator", "src\ClassCreator\ClassCreator.csproj", "{19C57EA9-80C4-4F1F-836D-1D8D443F09A5}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Deprecated", "Deprecated", "{1C436A33-4A66-4AC0-AFB8-5B887906077B}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AnnoSerializer", "src\AnnoSerializer\AnnoSerializer.csproj", "{9A40D675-4CEF-43E1-B5C7-97A747C9EEBC}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GeneratedA7s", "src\AnnoSavegameViewer\GeneratedA7s\GeneratedA7s.csproj", "{76F050AF-B74B-4D5E-877E-21AE81DE3F46}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SavegameViewer", "SavegameViewer", "{613D6906-0347-4D15-AE50-E4C558878B46}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -19,17 +27,29 @@ Global
 		{F2AB5B80-8E7F-4E86-81AC-CD4C3F54D38C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F2AB5B80-8E7F-4E86-81AC-CD4C3F54D38C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F2AB5B80-8E7F-4E86-81AC-CD4C3F54D38C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{EE06FDB2-EBD1-4296-88B2-4594F8CCDA03}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{EE06FDB2-EBD1-4296-88B2-4594F8CCDA03}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{EE06FDB2-EBD1-4296-88B2-4594F8CCDA03}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{EE06FDB2-EBD1-4296-88B2-4594F8CCDA03}.Release|Any CPU.Build.0 = Release|Any CPU
 		{E02C92F8-BD4D-4E12-8BAC-C23C11F2AF82}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E02C92F8-BD4D-4E12-8BAC-C23C11F2AF82}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E02C92F8-BD4D-4E12-8BAC-C23C11F2AF82}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E02C92F8-BD4D-4E12-8BAC-C23C11F2AF82}.Release|Any CPU.Build.0 = Release|Any CPU
+		{19C57EA9-80C4-4F1F-836D-1D8D443F09A5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{19C57EA9-80C4-4F1F-836D-1D8D443F09A5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{19C57EA9-80C4-4F1F-836D-1D8D443F09A5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{19C57EA9-80C4-4F1F-836D-1D8D443F09A5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9A40D675-4CEF-43E1-B5C7-97A747C9EEBC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9A40D675-4CEF-43E1-B5C7-97A747C9EEBC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9A40D675-4CEF-43E1-B5C7-97A747C9EEBC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9A40D675-4CEF-43E1-B5C7-97A747C9EEBC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{76F050AF-B74B-4D5E-877E-21AE81DE3F46}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{76F050AF-B74B-4D5E-877E-21AE81DE3F46}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{76F050AF-B74B-4D5E-877E-21AE81DE3F46}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{76F050AF-B74B-4D5E-877E-21AE81DE3F46}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{F2AB5B80-8E7F-4E86-81AC-CD4C3F54D38C} = {613D6906-0347-4D15-AE50-E4C558878B46}
+		{E02C92F8-BD4D-4E12-8BAC-C23C11F2AF82} = {1C436A33-4A66-4AC0-AFB8-5B887906077B}
+		{76F050AF-B74B-4D5E-877E-21AE81DE3F46} = {613D6906-0347-4D15-AE50-E4C558878B46}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C2873989-848C-4CFC-A0E9-A3AA15223344}

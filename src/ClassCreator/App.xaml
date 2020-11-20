@@ -1,0 +1,66 @@
+﻿<Application
+  x:Class="ClassCreator.App"
+  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+  xmlns:core="clr-namespace:AnnoSerializer.Serialization.Core;assembly=AnnoSerializer"
+  xmlns:local="clr-namespace:ClassCreator"
+  xmlns:pattern="clr-namespace:ClassCreator.Serialization.Pattern"
+  xmlns:tree="clr-namespace:ClassCreator.Serialization.Tree"
+  StartupUri="MainWindow.xaml">
+  <Application.Resources>
+    <HierarchicalDataTemplate x:Key="TreeNodeTemplate" DataType="{x:Type tree:TreeNode}" ItemsSource="{Binding Childs}">
+      <StackPanel Orientation="Horizontal">
+        <TextBlock Grid.Column="0">
+          <Run Text="{Binding Name, Mode=OneWay}" />
+          <Run Foreground="Green" Text=" : " />
+        </TextBlock>
+        <TextBlock
+          x:Name="tbContent"
+          Grid.Column="1"
+          MaxWidth="2000"
+          Tag="{Binding ElementName=tvItems, Path=SelectedValue}">
+          <TextBlock.Style>
+            <Style TargetType="TextBlock">
+              <Style.Triggers>
+                <DataTrigger Binding="{Binding Childs.HasChilds}" Value="False">
+                  <Setter Property="Text" Value="{Binding CalculatedValue}" />
+                </DataTrigger>
+                <DataTrigger Binding="{Binding Childs.HasChilds}" Value="True">
+                  <Setter Property="Text" Value="{}{ }" />
+                </DataTrigger>
+                <DataTrigger Binding="{Binding Pattern.IsArrayItem}" Value="True">
+                  <Setter Property="Text" Value="[ ]" />
+                </DataTrigger>
+              </Style.Triggers>
+            </Style>
+          </TextBlock.Style>
+        </TextBlock>
+      </StackPanel>
+    </HierarchicalDataTemplate>
+    <HierarchicalDataTemplate x:Key="PatternTemplate" DataType="{x:Type pattern:PropertyPattern}" ItemsSource="{Binding Childs}">
+      <StackPanel Orientation="Horizontal">
+        <TextBlock Grid.Column="0">
+          <Run Text="{Binding RealName, Mode=OneWay}" />
+          <Run Foreground="Green" Text=" : " />
+        </TextBlock>
+        <TextBlock x:Name="tbContent" Grid.Column="1" MaxWidth="2000">
+          <TextBlock.Style>
+            <Style TargetType="TextBlock">
+              <Style.Triggers>
+                <DataTrigger Binding="{Binding HasChilds}" Value="False">
+                  <Setter Property="Text" Value="{Binding FirstRegisteredNode.CalculatedValue}" />
+                </DataTrigger>
+                <DataTrigger Binding="{Binding HasChilds}" Value="True">
+                  <Setter Property="Text" Value="{}{ }" />
+                </DataTrigger>
+                <DataTrigger Binding="{Binding IsArrayItem}" Value="True">
+                  <Setter Property="Text" Value="[ ]" />
+                </DataTrigger>
+              </Style.Triggers>
+            </Style>
+          </TextBlock.Style>
+        </TextBlock>
+      </StackPanel>
+    </HierarchicalDataTemplate>
+  </Application.Resources>
+</Application>

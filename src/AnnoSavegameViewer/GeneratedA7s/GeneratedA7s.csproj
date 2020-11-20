@@ -1,0 +1,35 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Library</OutputType>
+    <TargetFramework>net5.0</TargetFramework>
+    <Configuration>Release</Configuration>
+    <SelfContained>false</SelfContained>
+    <EnableNETAnalyzers>true</EnableNETAnalyzers>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)'=='Debug'">
+    <DebugType>portable</DebugType>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)'=='Release'">
+    <DebugType>embedded</DebugType>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Structures\Patterns\**" />
+    <Compile Remove="Structures\Savegame2\**" />
+    <EmbeddedResource Remove="Structures\Patterns\**" />
+    <EmbeddedResource Remove="Structures\Savegame2\**" />
+    <None Remove="Structures\Patterns\**" />
+    <None Remove="Structures\Savegame2\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="Structures\.editorconfig" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\AnnoSerializer\AnnoSerializer.csproj" />
+  </ItemGroup>
+
+</Project>
