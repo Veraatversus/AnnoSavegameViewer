@@ -67,7 +67,7 @@ steps:
     command: 'publish'
     publishWebProjects: false
     projects: '**/*.sln'
-    arguments: '--configuration $(BuildConfiguration) -p:ZipOutputPath=$(Build.ArtifactStagingDirectory)'
+    arguments: '--configuration $(BuildConfiguration) -r -p:ZipOutputPath=$(Build.ArtifactStagingDirectory)'
     modifyOutputPath: false
     zipAfterPublish: false
 
@@ -78,7 +78,7 @@ steps:
     command: 'publish'
     publishWebProjects: false
     projects: '**/*.csproj'
-    arguments: '--configuration $(BuildConfiguration) -p:ZipOutputPath=$(Build.ArtifactStagingDirectory) -p:SelfContained=true'
+    arguments: '--configuration $(BuildConfiguration) -r win-x64 -p:ZipOutputPath=$(Build.ArtifactStagingDirectory) -p:SelfContained=true'
     modifyOutputPath: false
     zipAfterPublish: false    
 
