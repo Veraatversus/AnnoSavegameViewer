@@ -18,6 +18,13 @@ variables:
   versionNumber: '$(version.MajorMinor).$(version.Revision)'
 
 steps:
+- task: UseDotNet@2
+  inputs:
+    packageType: 'sdk'
+    version: '5.x'
+    includePreviewVersions: true
+    performMultiLevelLookup: true
+
 - task: PowerShell@2
   displayName: Set the name of the build (i.e. the Build.BuildNumber)
   inputs:
@@ -71,7 +78,7 @@ steps:
     command: 'publish'
     publishWebProjects: false
     projects: '**/*.sln'
-    arguments: '--configuration $(BuildConfiguration) --self-contained -p:ZipOutputPath=$(Build.ArtifactStagingDirectory)'
+    arguments: '--self-contained true --configuration $(BuildConfiguration) -p:ZipOutputPath=$(Build.ArtifactStagingDirectory)'
     modifyOutputPath: false
     zipAfterPublish: false    
 
