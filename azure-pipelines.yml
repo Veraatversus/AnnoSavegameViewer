@@ -78,7 +78,7 @@ steps:
     command: 'publish'
     publishWebProjects: false
     projects: '**/*.csproj'
-    arguments: '--configuration $(BuildConfiguration) -p:SelfContained=true -p:ZipOutputPath=$(Build.ArtifactStagingDirectory)'
+    arguments: '-c $(BuildConfiguration) -r win-x64 -p:SelfContained=true -p:ZipOutputPath=$(Build.ArtifactStagingDirectory)'
     modifyOutputPath: false
     zipAfterPublish: false    
 
