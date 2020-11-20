@@ -18,6 +18,12 @@ variables:
   versionNumber: '$(version.MajorMinor).$(version.Revision)'
 
 steps:
+- task: UseDotNet@2
+  displayName: 'Install .Net Core SDK'
+  inputs:
+    packageType: 'sdk'
+    version: '5.0'
+
 - task: PowerShell@2
   displayName: Set the name of the build (i.e. the Build.BuildNumber)
   inputs:
