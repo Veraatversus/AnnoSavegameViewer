@@ -21,7 +21,6 @@ steps:
 - task: UseDotNet@2
   inputs:
     packageType: 'sdk'
-    version: '5.0.x'
     vsVersion: '16.6.4'
     performMultiLevelLookup: true
 
