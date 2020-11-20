@@ -6,7 +6,6 @@
     <Configuration>Release</Configuration>
     <SelfContained>false</SelfContained>
     <PublishSingleFile>true</PublishSingleFile>
-    <PublishTrimmed>true</PublishTrimmed>
     <UseWPF>true</UseWPF>
     <EnableNETAnalyzers>true</EnableNETAnalyzers>
     <DebugSymbols>true</DebugSymbols>
