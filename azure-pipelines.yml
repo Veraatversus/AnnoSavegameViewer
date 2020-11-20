@@ -22,7 +22,7 @@ steps:
   inputs:
     packageType: 'sdk'
     version: '5.x'
-    includePreviewVersions: true
+    includePreviewVersions: false
     performMultiLevelLookup: true
 
 - task: PowerShell@2
@@ -78,7 +78,7 @@ steps:
     command: 'publish'
     publishWebProjects: false
     projects: '**/*.csproj'
-    arguments: '--self-contained true --configuration $(BuildConfiguration) -p:ZipOutputPath=$(Build.ArtifactStagingDirectory)'
+    arguments: '--configuration $(BuildConfiguration) -p:SelfContained=true -p:ZipOutputPath=$(Build.ArtifactStagingDirectory)'
     modifyOutputPath: false
     zipAfterPublish: false    
 
