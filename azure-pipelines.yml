@@ -13,9 +13,6 @@ variables:
   solution: '**\*.sln'
   buildPlatform: 'Any CPU'
   buildConfiguration: 'Release'
-  Version.MajorMinor: 3.0
-  version.Revision: $[counter(variables['version.MajorMinor'], 0)]
-  versionNumber: '$(version.MajorMinor).$(version.Revision)'
 
 steps:
 - task: UseDotNet@2
@@ -24,15 +21,6 @@ steps:
     version: '5.x'
     includePreviewVersions: false
     performMultiLevelLookup: true
-
-- task: PowerShell@2
-  displayName: Set the name of the build (i.e. the Build.BuildNumber)
-  inputs:
-    targetType: 'inline'
-    script: |
-      [string] $buildName = "$(versionNumber)_$(Build.SourceBranchName)"
-      Write-Host "Setting the name of the build to '$buildName'."
-      Write-Host "##vso[build.updatebuildnumber]$buildName"
 
 - task: PowerShell@2
   displayName: Set the name of the Repository
@@ -70,6 +58,14 @@ steps:
     arguments: '-c $(BuildConfiguration) -r win-x64 -p:SelfContained=true -p:ZipOutputPath=$(Build.ArtifactStagingDirectory)'
     modifyOutputPath: false
     zipAfterPublish: false    
+
+- task: gitversion/setup@0
+  displayName: Setup GitVersion
+  inputs:
+    versionSpec: '5.x'
+
+- task: gitversion/execute@0
+  displayName: Execute GitVersion
 
 - task: GitHubRelease@1
   inputs:
