@@ -49,17 +49,6 @@ steps:
   inputs:
     restoreSolution: '$(solution)'
 
-- task: VersionDotNetCoreAssemblies@2
-  inputs:
-    Path: '$(Build.SourcesDirectory)'
-    VersionNumber: '$(versionNumber)'
-    Injectversion: false
-    VersionRegex: '\d+\.\d+\.\d+'
-    FilenamePattern: '**/*.csproj'
-    OutputVersion: 'OutputedVersion'
-    AddDefault: true
-  continueOnError: true
-
 #win-x64
 - task: DotNetCoreCLI@2
   displayName: Build win-x64
@@ -89,8 +78,8 @@ steps:
     action: 'create'
     target: '$(Build.SourceVersion)'
     tagSource: 'userSpecifiedTag'
-    tag: '$(versionNumber)'
-    title: '$(versionNumber): $(RepoName)'
+    tag: '$(GitVersion.SemVer)'
+    title: '$(RepoName)-$(GitVersion.SemVer)'
     changeLogCompareToRelease: 'lastFullRelease'
     changeLogType: 'commitBased'
     assets: '$(Build.ArtifactStagingDirectory)\*.zip'
