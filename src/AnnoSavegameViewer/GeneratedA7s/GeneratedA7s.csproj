@@ -9,7 +9,7 @@
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)'=='Debug'">
-    <DebugType>portable</DebugType>
+    <DebugType>full</DebugType>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)'=='Release'">
     <DebugType>embedded</DebugType>
@@ -29,7 +29,16 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="GitVersionTask" Version="5.5.1">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\..\AnnoSerializer\AnnoSerializer.csproj" />
   </ItemGroup>
+
+  <ProjectExtensions><VisualStudio><UserProperties BuildVersion_StartDate="2000/1/1" BuildVersion_UseGlobalSettings="True" /></VisualStudio></ProjectExtensions>
 
 </Project>

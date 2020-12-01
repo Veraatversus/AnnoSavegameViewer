@@ -18,7 +18,7 @@ namespace ClassCreator.Serialization.Pattern {
 
     public static PatternService Default { get; set; } = new PatternService();
     public string Name { get; set; }
-    public Dictionary<string, PropertyPattern> Patterns { get; set; } = new Dictionary<string, PropertyPattern>();
+    public Dictionary<ClassName, PropertyPattern> Patterns { get; set; } = new Dictionary<ClassName, PropertyPattern>();
 
     public CSharpClassDictionary Classes { get; } = new CSharpClassDictionary();
 
@@ -32,7 +32,7 @@ namespace ClassCreator.Serialization.Pattern {
       Patterns.Clear();
       Name = patt;
       if (File.Exists($"Patterns/{Name}.json")) {
-        Patterns = JsonConvert.DeserializeObject<Dictionary<string, PropertyPattern>>(File.ReadAllText($"Patterns/{Name}.json"));
+        Patterns = JsonConvert.DeserializeObject<List<KeyValuePair<ClassName, PropertyPattern>>>(File.ReadAllText($"Patterns/{Name}.json")).ToDictionary(a=> a.Key, a=> a.Value);
         return true;
       }
       return false;
@@ -41,21 +41,24 @@ namespace ClassCreator.Serialization.Pattern {
     public void SavePatterns() {
       _ = Directory.CreateDirectory("Patterns");
       if (!string.IsNullOrEmpty(Name)) {
-        File.WriteAllText($"Patterns/{Name}.json", JsonConvert.SerializeObject(Patterns));
+        File.WriteAllText($"Patterns/{Name}.json", JsonConvert.SerializeObject(Patterns.ToList()));
       }
     }
 
     public PropertyPattern SetPatternOrDefault(TreeNode node) {
-      if (!Patterns.TryGetValue(node.ClassName, out var propertyPattern)) {
-        propertyPattern = GetDefaultPattern(node);
-        Patterns.Add(propertyPattern.ClassName, propertyPattern);
+      if (node.ClassName is not null) {
+        if (!Patterns.TryGetValue(node.ClassName, out var propertyPattern)) {
+          propertyPattern = GetDefaultPattern(node);
+          Patterns.Add(propertyPattern.ClassName, propertyPattern);
+        }
+        if (!propertyPattern.IsRegistered) {
+          propertyPattern.Attribute.PropertyChanged += propertyPattern.OnAttributePropertyChanged;
+          propertyPattern.IsRegistered = true;
+        }
+        propertyPattern.RegisterNode(node);
+        return propertyPattern;
       }
-      if (!propertyPattern.IsRegistered) {
-        propertyPattern.Attribute.PropertyChanged += propertyPattern.OnAttributePropertyChanged;
-        propertyPattern.IsRegistered = true;
-      }
-      propertyPattern.RegisterNode(node);
-      return propertyPattern;
+      return null;
     }
 
     public Task SaveCSharpClasses() {
@@ -66,12 +69,12 @@ namespace ClassCreator.Serialization.Pattern {
         Classes.Clear();
 
         //Create Classes and Calculate Names
-        foreach (var pattern in Patterns.Values.Where(a => a.Attribute.NodeType == BinaryContentTypes.Node || a.Attribute.ConversationType != ConversationTypes.None).OrderBy(a => a.ClassName.Length)) {
+        foreach (var pattern in Patterns.Values.Where(a => a.Attribute.NodeType == BinaryContentTypes.Node || a.Attribute.ConversationType != ConversationTypes.None).OrderBy(a => a.ClassName.Count)) {
           Classes.Add(new CSharpClass() { Pattern = pattern });
         }
 
         //Fill Classes
-        foreach (var csClass in Classes.Values.OrderByDescending(c => c.Pattern.ClassName.Length)) {
+        foreach (var csClass in Classes.Values.OrderByDescending(c => c.Pattern.ClassName.Count)) {
           //Standard Usings
           _ = csClass.Usings.Add("AnnoSerializer.Serialization.Core");
           _ = csClass.Usings.Add("AnnoSerializer.Structures.DataTypes");

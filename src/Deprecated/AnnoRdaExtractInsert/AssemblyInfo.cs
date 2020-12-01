@@ -1,4 +1,4 @@
-// Copyright © 2020 Vera@Versus. All rights reserved. Licensed under the MIT License.
+ï»¿// Copyright ï¿½ 2020 Vera@Versus. All rights reserved. Licensed under the MIT License.
 
 using System.Windows;
 

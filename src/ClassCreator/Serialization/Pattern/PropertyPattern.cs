@@ -19,7 +19,7 @@ namespace ClassCreator.Serialization.Pattern {
 
     public BinaryContentAttribute Attribute { get; set; }
 
-    public string ClassName { get; set; }
+    public ClassName ClassName { get; set; }
 
     public Type ValueType {
       get => valueType;
@@ -54,25 +54,25 @@ namespace ClassCreator.Serialization.Pattern {
     }
 
     [JsonIgnore]
-    public IEnumerable<PropertyPattern> Childs => PatternService.Default.Patterns.Values.Where(a => a.ClassName.StartsWith(ClassName + ".", StringComparison.Ordinal) && a.Depth == (Depth + 1));
+    public IEnumerable<PropertyPattern> Childs => PatternService.Default.Patterns.Values.Where(a => a.ClassName.StartsWith(ClassName) && a.ClassName.Count == (ClassName.Count + 1));
 
     [JsonIgnore]
-    public bool HasChilds => PatternService.Default.Patterns.Values.Any(a => a.ClassName.StartsWith(ClassName + ".", StringComparison.Ordinal) && a.Depth == (Depth + 1));
+    public bool HasChilds => Childs.Any();
 
     [JsonIgnore]
     public TreeNode FirstRegisteredNode => registeredNodes.FirstOrDefault();
 
-    [JsonIgnore]
-    public PropertyPattern Parent => PatternService.Default.Patterns.TryGetValue(ClassName.Remove(ClassName.LastIndexOf('.')), out var value) ? value : null;
+    //[JsonIgnore]
+    //public PropertyPattern Parent => PatternService.Default.Patterns.TryGetValue(ClassName.GetParent(), out var value) ? value : null;
 
     [JsonIgnore]
-    public int Depth => ClassName?.Count(c => c == '.') ?? 0;
+    public int Depth => ClassName.Count;
 
     [JsonIgnore]
     public Type FullType => GenericType != null ? GenericType.MakeGenericType(ValueType) : ValueType;
 
     [JsonIgnore]
-    public string RealName => realName ??= ClassName.Remove(0, ClassName.LastIndexOf('.') + 1);
+    public string RealName => realName ??= ClassName.LastOrDefault();
 
     [JsonIgnore]
     public bool IsRegistered { get; set; }
@@ -94,7 +94,10 @@ namespace ClassCreator.Serialization.Pattern {
 
     public void RaisePropertyChanged([CallerMemberName] string name = "") => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
 
-    public void UnRegisterNode(TreeNode node) => _ = registeredNodes.Remove(node);
+    public void UnRegisterNode(TreeNode node) {
+      _ = registeredNodes.Remove(node);
+      node.Pattern = null;
+    }
 
     public void RegisterNode(TreeNode node) {
       node.Pattern = this;

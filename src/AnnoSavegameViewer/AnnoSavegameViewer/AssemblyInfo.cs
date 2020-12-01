@@ -1,4 +1,4 @@
-// Copyright © 2020 Vera@Versus. All rights reserved. Licensed under the MIT License.
+ï»¿// Copyright ï¿½ 2020 Vera@Versus. All rights reserved. Licensed under the MIT License.
 
 using System.Windows;
 
@@ -10,3 +10,4 @@ using System.Windows;
                                               //(used if a resource is not found in the page,
                                               // app, or any theme specific resource dictionaries)
 )]
+
