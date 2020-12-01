@@ -7,6 +7,7 @@ namespace ClassCreator.Serialization.Tree {
   using System.Collections.Generic;
   using System.ComponentModel;
   using System.Runtime.CompilerServices;
+  using System.Windows.Data;
   using AnnoSerializer.Serialization.Core;
   using AnnoSerializer.Serialization.Memory;
   using AnnoSerializer.Structures.FileDB;
@@ -17,13 +18,9 @@ namespace ClassCreator.Serialization.Tree {
 
     #region Public Properties
 
-    public ushort Id { get; set; }
-
     public string Name { get; }
 
-    public TreeNode Parent { get; set; }
-
-    public TreeChildCollection Childs { get; }
+    public TreeChildCollection ChildsCollection { get; private set; }
 
     public ReadOnlyMemory<byte> Content { get; set; }
 
@@ -37,14 +34,14 @@ namespace ClassCreator.Serialization.Tree {
       }
     }
 
-    public string ClassName {
+    public ClassName ClassName {
       get => className;
       set {
         if (className != value) {
           className = value;
           Pattern?.UnRegisterNode(this);
           PatternService.Default.SetPatternOrDefault(this);
-          RaisePropertyChanged(nameof(ClassName));
+          //RaisePropertyChanged(nameof(ClassName));
         }
       }
     }
@@ -67,8 +64,8 @@ namespace ClassCreator.Serialization.Tree {
     #region Public Constructors
 
     public TreeNode(string name) {
-      Name = name;
-      Childs = new TreeChildCollection(this);
+      Name = name.Replace(".", "_");
+      ChildsCollection = new TreeChildCollection(this);
     }
 
     #endregion Public Constructors
@@ -77,23 +74,34 @@ namespace ClassCreator.Serialization.Tree {
 
     public void RaisePropertyChanged([CallerMemberName] string name = "") => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
 
-    public void AddChild(TreeNode element) {
+    public void AddChild(TreeNode element, bool splitNones = true) {
       if (element is null) {
         throw new ArgumentNullException(nameof(element));
       }
-      Childs.Add(element);
+      ChildsCollection.Add(element, splitNones);
     }
 
-    public IEnumerator<TreeNode> GetEnumerator() => Childs.GetEnumerator();
+    public IEnumerator<TreeNode> GetEnumerator() => ChildsCollection.GetEnumerator();
 
     public IEnumerable<TreeNode> Descendants(bool self = true) {
       if (self) {
         yield return this;
       }
-      foreach (var child in Childs) {
+      foreach (var child in ChildsCollection) {
         foreach (var descendant in child.Descendants()) {
           yield return descendant;
         }
+      }
+    }
+
+    public IEnumerable<TreeNode> DescendantsThanSelf(bool self = true) { 
+      foreach (var child in ChildsCollection) {
+        foreach (var descendant in child.DescendantsThanSelf()) {
+          yield return descendant;
+        }
+      }
+      if (self) {
+        yield return this;
       }
     }
 
@@ -105,7 +113,7 @@ namespace ClassCreator.Serialization.Tree {
       if (calculatedValue is null && Content.Length is > 0) {
         var oldConversationType = Pattern.Attribute.ConversationType;
         Pattern.Attribute.conversationType = ConversationTypes.None;
-        Childs.Clear();
+        Clear();
         try {
           switch (oldConversationType) {
             case ConversationTypes.None:
@@ -117,14 +125,15 @@ namespace ClassCreator.Serialization.Tree {
               break;
 
             case ConversationTypes.RDA:
-              var reader = new MemoryReader(Content.ReadObject<ReadOnlyMemory<byte>>(Pattern.Attribute));
-              var rda = new Rda(ref reader);
+              var rda = new Rda(Content.ReadObject<ReadOnlyMemory<byte>>(Pattern.Attribute));
               rda.ReadBinaryNode(this);
+              RefreshView();
               break;
 
             case ConversationTypes.FileDB:
               var fileDB = new FileDB(Content.ReadObject<ReadOnlyMemory<byte>>(Pattern.Attribute));
               fileDB.ReadBinaryNode(this);
+              RefreshView();
               break;
           }
         }
@@ -145,12 +154,23 @@ namespace ClassCreator.Serialization.Tree {
     }
 
     public void UnregisterFromPattern() {
-      foreach (var node in Descendants()) {
-        node?.Pattern?.UnRegisterNode(node);
+      foreach (var node in DescendantsThanSelf()) {
+        node!.Pattern?.UnRegisterNode(node);
+        node!.ChildsCollection.Parent = null;
+        node!.ChildsCollection = null;
       }
     }
 
     IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
+
+    public void Clear() {
+      if (ChildsCollection.Count > 0) {
+        ChildsCollection.Clear();
+        RefreshView();
+      }
+    }
+
+    public void RefreshView() => CollectionViewSource.GetDefaultView(this).Refresh();
 
     #endregion Public Methods
 
@@ -160,7 +180,7 @@ namespace ClassCreator.Serialization.Tree {
 
     [System.Diagnostics.CodeAnalysis.SuppressMessage("CodeQuality", "IDE0052:Ungelesene private Member entfernen", Justification = "<Ausstehend>")]
     private object calculatedValue;
-    private string className = string.Empty;
+    private ClassName className;
 
     #endregion Private Fields
   }

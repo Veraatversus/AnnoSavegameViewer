@@ -32,8 +32,9 @@ namespace AnnoSerializer.Structures.RDA {
 
 			Blocks = new List<RdaBlock>();
 			var nextHeaderOffset = (int)RdaHeader.FirstBlockHeaderOffset;
+      RdaBlock block;
       for (var index = 0; nextHeaderOffset <= reader.Length - 32; index++) {
-        var block = new RdaBlock(ref reader, nextHeaderOffset) { Index = index };
+        block = new RdaBlock(ref reader, nextHeaderOffset) { Index = index };
         Blocks.Add(block);
         nextHeaderOffset = (int)block.Header.NextHeaderOffset;
       }

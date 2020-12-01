@@ -8,7 +8,7 @@
   xmlns:tree="clr-namespace:ClassCreator.Serialization.Tree"
   StartupUri="MainWindow.xaml">
   <Application.Resources>
-    <HierarchicalDataTemplate x:Key="TreeNodeTemplate" DataType="{x:Type tree:TreeNode}" ItemsSource="{Binding Childs}">
+    <HierarchicalDataTemplate x:Key="TreeNodeTemplate" DataType="{x:Type tree:TreeNode}" ItemsSource="{Binding}">
       <StackPanel Orientation="Horizontal">
         <TextBlock Grid.Column="0">
           <Run Text="{Binding Name, Mode=OneWay}" />
@@ -22,10 +22,10 @@
           <TextBlock.Style>
             <Style TargetType="TextBlock">
               <Style.Triggers>
-                <DataTrigger Binding="{Binding Childs.HasChilds}" Value="False">
+                <DataTrigger Binding="{Binding ChildsCollection.HasChilds}" Value="False">
                   <Setter Property="Text" Value="{Binding CalculatedValue}" />
                 </DataTrigger>
-                <DataTrigger Binding="{Binding Childs.HasChilds}" Value="True">
+                <DataTrigger Binding="{Binding ChildsCollection.HasChilds}" Value="True">
                   <Setter Property="Text" Value="{}{ }" />
                 </DataTrigger>
                 <DataTrigger Binding="{Binding Pattern.IsArrayItem}" Value="True">
@@ -37,6 +37,7 @@
         </TextBlock>
       </StackPanel>
     </HierarchicalDataTemplate>
+    
     <HierarchicalDataTemplate x:Key="PatternTemplate" DataType="{x:Type pattern:PropertyPattern}" ItemsSource="{Binding Childs}">
       <StackPanel Orientation="Horizontal">
         <TextBlock Grid.Column="0">

@@ -47,9 +47,9 @@ namespace AnnoSavegameViewer {
 ### Anno Savegame Viewer
 ---
 
-A sample front-end for the data is the savegame viewer which one shows
+A sample front-end for the data is the savegame viewer, which one shows
 the amount of items, buildings and buffs that come from items.
-You can filter by participant, map, island.
+You can filter by participant, map and island.
 
 ![SavegameViewer](res/Pictures/CM2qGaQicW.png)
 

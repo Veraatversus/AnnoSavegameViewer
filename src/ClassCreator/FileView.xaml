@@ -64,13 +64,13 @@
         CommandParameter="{Binding ElementName=tvItems, Path=SelectedValue}"
         Content="Export Xml" />
       <Button
-        Visibility="Collapsed"
         Grid.Row="2"
         Margin="5,0"
         Padding="5,0"
         Command="{Binding ExportJsonCommand}"
         CommandParameter="{Binding ElementName=tvItems, Path=SelectedValue}"
-        Content="Export Json" />
+        Content="Export Json"
+        Visibility="Collapsed" />
       <Button
         Grid.Row="2"
         Margin="5,0"

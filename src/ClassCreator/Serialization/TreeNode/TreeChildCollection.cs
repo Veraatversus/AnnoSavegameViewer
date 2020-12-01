@@ -7,23 +7,32 @@ namespace ClassCreator.Serialization.Tree {
   using System.Collections.Generic;
   using System.Collections.ObjectModel;
   using System.Collections.Specialized;
+  using System.Drawing;
   using System.Linq;
   using AnnoSerializer.Serialization.Core;
+  using ClassCreator.Serialization.Pattern;
 
-  public class TreeChildCollection : ICollection<TreeNode>, INotifyCollectionChanged {
+  public class TreeChildCollection : ICollection<TreeNode>/*, INotifyCollectionChanged*/ {
 
     #region Public Properties
 
     public TreeNode Parent { get; set; }
     public bool HasChilds => Count > 0;
-    public int Count => Nodes.Count + Attributes.Count + ((Keys?.Childs?.HasChilds ?? false) ? 1 : 0) + ((Values?.Childs?.HasChilds ?? false) ? 1 : 0);
+    public int Count => Nodes?.Count ?? 0 + Attributes?.Count ?? 0 + ((Keys?.ChildsCollection?.HasChilds ?? false) ? 1 : 0) + ((Values?.ChildsCollection?.HasChilds ?? false) ? 1 : 0);
     public bool IsReadOnly => ((ICollection<TreeNode>)Nodes).IsReadOnly && ((ICollection<TreeNode>)Attributes).IsReadOnly;
 
+    //public IEnumerable<TreeNode> Items {
+    //  get {
+    //    for (var en = GetEnumerator(); en.MoveNext();) {
+    //      yield return en.Current;
+    //    }
+    //  }
+    //}
     #endregion Public Properties
 
     #region Public Events
 
-    public event NotifyCollectionChangedEventHandler CollectionChanged;
+    //public event NotifyCollectionChangedEventHandler CollectionChanged;
 
     #endregion Public Events
 
@@ -31,48 +40,53 @@ namespace ClassCreator.Serialization.Tree {
 
     public TreeChildCollection(TreeNode parent) {
       Parent = parent;
-      Nodes.CollectionChanged += OnCollectionChanged;
-      Attributes.CollectionChanged += OnCollectionChanged;
+      //Nodes.CollectionChanged += OnCollectionChanged;
+      //Attributes.CollectionChanged += OnCollectionChanged;
     }
 
     #endregion Public Constructors
 
     #region Public Methods
-
-    public void Add(TreeNode item) {
-      item.Parent = Parent;
-      var name = item.Name.Replace(".", "_", System.StringComparison.Ordinal).Replace(" ", "_", System.StringComparison.Ordinal);
+    public void Add(TreeNode item) => Add(item, true);
+    public void Add(TreeNode item, bool spiltNones = true) {
+      //var name = item.Name.Replace(".", "_", System.StringComparison.Ordinal).Replace(" ", "_", System.StringComparison.Ordinal);
       if (item.NodeType == BinaryContentTypes.Attribute) {
-        if (name is "None") {
+        if (item.Name is "None" && spiltNones) {
           InitKeys();
-          item.ClassName = (Keys?.ClassName ?? "") + "." + name;
-          Keys!.Childs.Attributes.Add(item);
+          Keys!.AddChild(item, false);
         }
         else {
-          item.ClassName = (Parent?.ClassName ?? "") + "." + name;
-          Attributes.Add(item);
+          //if (Parent.ClassName.Count > 0) {
+          //  item.ClassName.AddRange(Parent.ClassName);
+          //}
+          //item.ClassName.Add(item.Name);
+          item.ClassName = new ClassName(Parent.ClassName, item.Name);
+          PatternService.Default.SetPatternOrDefault(item);
+          (Attributes ??= new HashSet<TreeNode>()).Add(item);
         }
       }
+      else if (item.Name is "None" && spiltNones) {
+        InitValues();
+        Values!.AddChild(item, false);
+      }
       else {
-        if (name is "None") {
-          InitValues();
-          item.ClassName = (Values?.ClassName ?? "") + "." + name;
-          Values!.Childs.Nodes.Add(item);
-        }
-        else {
-          item.ClassName = (Parent?.ClassName ?? "") + "." + name;
-          Nodes.Add(item);
-        }
+        //if (Parent.ClassName.Count > 0) {
+        //  item.ClassName.AddRange(Parent.ClassName);
+        //}
+        //item.ClassName.Add(item.Name);
+        item.ClassName = new ClassName(Parent.ClassName, item.Name);
+        PatternService.Default.SetPatternOrDefault(item);
+        (Nodes ??= new HashSet<TreeNode>()).Add(item);
       }
     }
 
     public void Clear() {
-      foreach (var node in Attributes.Concat(Nodes)) {
+      foreach (var node in (Attributes ?? Enumerable.Empty<TreeNode>()).Concat(Nodes ?? Enumerable.Empty<TreeNode>())) {
         node.UnregisterFromPattern();
       }
 
-      Attributes.Clear();
-      Nodes.Clear();
+      Attributes?.Clear();
+      Nodes?.Clear();
 
       if (Keys is not null) {
         Keys.UnregisterFromPattern();
@@ -85,12 +99,12 @@ namespace ClassCreator.Serialization.Tree {
       }
     }
 
-    public bool Contains(TreeNode item) => Attributes.Contains(item) || Nodes.Contains(item) || (Keys?.Childs?.Contains(item) ?? false) || (Values?.Childs?.Contains(item) ?? false);
+    public bool Contains(TreeNode item) => (Attributes?.Contains(item) ?? false) || (Nodes?.Contains(item) ?? false) || (Keys?.ChildsCollection?.Contains(item) ?? false) || (Values?.ChildsCollection?.Contains(item) ?? false);
 
-    public void CopyTo(TreeNode[] array, int arrayIndex) => Attributes.Concat(Nodes).Concat(Keys?.Childs ?? Enumerable.Empty<TreeNode>()).Concat(Values?.Childs ?? Enumerable.Empty<TreeNode>()).ToList().CopyTo(array, arrayIndex);
+    public void CopyTo(TreeNode[] array, int arrayIndex) => (Attributes ?? Enumerable.Empty<TreeNode>()).Concat(Nodes ?? Enumerable.Empty<TreeNode>()).Concat(Keys?.ChildsCollection ?? Enumerable.Empty<TreeNode>()).Concat(Values?.ChildsCollection ?? Enumerable.Empty<TreeNode>()).ToList().CopyTo(array, arrayIndex);
 
     public IEnumerator<TreeNode> GetEnumerator() {
-      foreach (var item in Attributes.Concat(Nodes).Concat(Keys != null ? new[] { Keys } : Enumerable.Empty<TreeNode>()).Concat(Values != null ? new[] { Values } : Enumerable.Empty<TreeNode>())) {
+      foreach (var item in (Attributes ?? Enumerable.Empty<TreeNode>()).Concat(Nodes ?? Enumerable.Empty<TreeNode>()).Concat(Keys != null ? new[] { Keys } : Enumerable.Empty<TreeNode>()).Concat(Values != null ? new[] { Values } : Enumerable.Empty<TreeNode>())) {
         yield return item;
       }
     }
@@ -98,10 +112,10 @@ namespace ClassCreator.Serialization.Tree {
     public bool Remove(TreeNode item) {
       var removed = false;
       if (item.NodeType == BinaryContentTypes.Attribute) {
-        removed = Attributes.Remove(item) || (Keys?.Childs?.Remove(item) ?? false) || (Values?.Childs?.Remove(item) ?? false);
+        removed = (Attributes?.Remove(item) ?? false) || (Keys?.ChildsCollection?.Remove(item) ?? false) || (Values?.ChildsCollection?.Remove(item) ?? false);
       }
       else {
-        removed = Nodes.Remove(item) || (Keys?.Childs?.Remove(item) ?? false) || (Values?.Childs?.Remove(item) ?? false);
+        removed = (Nodes?.Remove(item) ?? false) || (Keys?.ChildsCollection?.Remove(item) ?? false) || (Values?.ChildsCollection?.Remove(item) ?? false);
       }
       if (removed) {
         item.UnregisterFromPattern();
@@ -115,9 +129,9 @@ namespace ClassCreator.Serialization.Tree {
 
     #region Private Properties
 
-    private ObservableCollection<TreeNode> Nodes { get; } = new ObservableCollection<TreeNode>();
+    private HashSet<TreeNode> Nodes { get; set; }
 
-    private ObservableCollection<TreeNode> Attributes { get; } = new ObservableCollection<TreeNode>();
+    private HashSet<TreeNode> Attributes { get; set; }
 
     #endregion Private Properties
 
@@ -126,10 +140,15 @@ namespace ClassCreator.Serialization.Tree {
     private void InitValues() {
       if (Values == null) {
         Values = new TreeNode("Values") {
-          Parent = Parent,
           NodeType = BinaryContentTypes.Node,
-          ClassName = (Parent?.ClassName ?? "") + ".Values",
+          //ClassName = $"{Parent?.ClassName ?? ""}.Values",
         };
+        //if (Parent.ClassName.Count > 0) {
+        //  Values.ClassName.AddRange(Parent.ClassName);
+        //}
+        //Values.ClassName.Add(Values.Name);
+        Values.ClassName = new ClassName(Parent.ClassName, Values.Name);
+        PatternService.Default.SetPatternOrDefault(Values);
         Values.Pattern.IsArrayItem = true;
         Values.Pattern.Attribute.Name = "None";
       }
@@ -138,21 +157,17 @@ namespace ClassCreator.Serialization.Tree {
     private void InitKeys() {
       if (Keys == null) {
         Keys = new TreeNode("Keys") {
-          Parent = Parent,
-          NodeType = BinaryContentTypes.Attribute,
-          ClassName = (Parent?.ClassName ?? "") + ".Keys",
+          NodeType = BinaryContentTypes.Attribute
         };
+
+        //if (Parent.ClassName.Count > 0) {
+        //  Keys.ClassName.AddRange(Parent.ClassName);
+        //}
+        //Keys.ClassName.Add(Keys.Name);
+        Keys.ClassName = new ClassName(Parent.ClassName, Keys.Name);
+        PatternService.Default.SetPatternOrDefault(Keys);
         Keys.Pattern.IsArrayItem = true;
         Keys.Pattern.Attribute.Name = "None";
-      }
-    }
-
-    private void OnCollectionChanged(object sender, NotifyCollectionChangedEventArgs e) {
-      try {
-        CollectionChanged?.Invoke(sender, e);
-      }
-      catch (Exception) {
-        //error while collectionChanged should not be called by other thread then created
       }
     }
 
