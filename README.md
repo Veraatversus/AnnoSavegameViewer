@@ -1,3 +1,5 @@
+## DEPRECATED
+
 # Anno 1800 Savegame Viewer
 
 
