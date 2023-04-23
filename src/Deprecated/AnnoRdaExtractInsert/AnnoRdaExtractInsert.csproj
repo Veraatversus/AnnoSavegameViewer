@@ -16,12 +16,18 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="GitVersionTask" Version="5.5.1">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
     <PackageReference Include="Iconic.Zlib.Netstandard" Version="1.0.0" />
-    <PackageReference Include="SharpZipLib" Version="1.3.0" />
+    <PackageReference Include="SharpZipLib" Version="1.4.2" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\..\AnnoSerializer\AnnoSerializer.csproj" />
   </ItemGroup>
+
+  <ProjectExtensions><VisualStudio><UserProperties BuildVersion_StartDate="2000/1/1" BuildVersion_UseGlobalSettings="True" /></VisualStudio></ProjectExtensions>
 
 </Project>

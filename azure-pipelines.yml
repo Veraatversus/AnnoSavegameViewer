@@ -13,9 +13,6 @@ variables:
   solution: '**\*.sln'
   buildPlatform: 'Any CPU'
   buildConfiguration: 'Release'
-  Version.MajorMinor: 3.0
-  version.Revision: $[counter(variables['version.MajorMinor'], 0)]
-  versionNumber: '$(version.MajorMinor).$(version.Revision)'
 
 steps:
 - task: UseDotNet@2
@@ -24,15 +21,6 @@ steps:
     version: '5.x'
     includePreviewVersions: false
     performMultiLevelLookup: true
-
-- task: PowerShell@2
-  displayName: Set the name of the build (i.e. the Build.BuildNumber)
-  inputs:
-    targetType: 'inline'
-    script: |
-      [string] $buildName = "$(versionNumber)_$(Build.SourceBranchName)"
-      Write-Host "Setting the name of the build to '$buildName'."
-      Write-Host "##vso[build.updatebuildnumber]$buildName"
 
 - task: PowerShell@2
   displayName: Set the name of the Repository
@@ -48,17 +36,6 @@ steps:
 - task: NuGetCommand@2
   inputs:
     restoreSolution: '$(solution)'
-
-- task: VersionDotNetCoreAssemblies@2
-  inputs:
-    Path: '$(Build.SourcesDirectory)'
-    VersionNumber: '$(versionNumber)'
-    Injectversion: false
-    VersionRegex: '\d+\.\d+\.\d+'
-    FilenamePattern: '**/*.csproj'
-    OutputVersion: 'OutputedVersion'
-    AddDefault: true
-  continueOnError: true
 
 #win-x64
 - task: DotNetCoreCLI@2
@@ -82,6 +59,14 @@ steps:
     modifyOutputPath: false
     zipAfterPublish: false    
 
+- task: gitversion/setup@0
+  displayName: Setup GitVersion
+  inputs:
+    versionSpec: '5.x'
+
+- task: gitversion/execute@0
+  displayName: Execute GitVersion
+
 - task: GitHubRelease@1
   inputs:
     gitHubConnection: 'github.com_Veraatversus'
@@ -89,8 +74,8 @@ steps:
     action: 'create'
     target: '$(Build.SourceVersion)'
     tagSource: 'userSpecifiedTag'
-    tag: '$(versionNumber)'
-    title: '$(versionNumber): $(RepoName)'
+    tag: '$(GitVersion.SemVer)'
+    title: '$(RepoName)-$(GitVersion.SemVer)'
     changeLogCompareToRelease: 'lastFullRelease'
     changeLogType: 'commitBased'
     assets: '$(Build.ArtifactStagingDirectory)\*.zip'

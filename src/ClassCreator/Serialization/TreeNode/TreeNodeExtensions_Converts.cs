@@ -3,6 +3,8 @@
 namespace ClassCreator.Serialization.Tree {
 
   using System;
+  using System.Collections;
+  using System.Collections.Generic;
   using System.IO;
   using System.Threading.Tasks;
   using System.Xml.Linq;
@@ -36,8 +38,8 @@ namespace ClassCreator.Serialization.Tree {
     public static XElement ToXml(this TreeNode node) {
       var element = new XElement(node.Name.Replace(" ", "_", StringComparison.Ordinal));
       var value = node.CalculatedValue?.ToString() ?? MemoryExtensions.ToHexString(node.Content);
-      if (node.Childs.HasChilds) {
-        foreach (var item in node.Childs) {
+      if (node.ChildsCollection.HasChilds) {
+        foreach (var item in node.ChildsCollection) {
           element.Add(item.ToXml());
         }
       }
@@ -53,11 +55,11 @@ namespace ClassCreator.Serialization.Tree {
     public static JProperty ToJson(this TreeNode node) {
       var element = new JProperty(node.Name.Replace(" ", "_", StringComparison.Ordinal));
       var value = node.CalculatedValue?.ToString() ?? MemoryExtensions.ToHexString(node.Content);
-      if (node.Childs.HasChilds) {
+      if (node.ChildsCollection.HasChilds) {
         JContainer content = node.Pattern.IsArrayItem ? new JArray() : new JObject();
         element.Value = content;
         if (node.Pattern.IsArrayItem) {
-          foreach (var item in node.Childs) {
+          foreach (var item in node.ChildsCollection) {
             var val = item.ToJson();
             if (val.Name == "None") {
               content.Add(val.Value);
@@ -68,7 +70,7 @@ namespace ClassCreator.Serialization.Tree {
           }
         }
         else {
-          foreach (var item in node.Childs) {
+          foreach (var item in node.ChildsCollection) {
             content.Add(item.ToJson());
           }
         }
@@ -81,14 +83,14 @@ namespace ClassCreator.Serialization.Tree {
       return element;
     }
 
-    public static TreeNode ReadBinaryNode(this Rda rda, TreeNode treeNode = null, string baseNodeName = null) {
+    public static TreeNode ReadBinaryNode(this Rda rda, TreeNode treeNode, string baseNodeName = null) {
       var mainNode = treeNode ?? new TreeNode(baseNodeName ?? "BaseNode");
       var rdaNode = new TreeNode($"{mainNode.Name}_RDA") { NodeType = BinaryContentTypes.Node };
       mainNode.AddChild(rdaNode);
       rdaNode.Pattern.Attribute = mainNode.Pattern.Attribute;
       //Blocks
       for (var i = 0; i < rda.Blocks.Count; i++) {
-        var blockNode = new TreeNode($"Block {i.ToString().PadLeft(2, '0')}") {
+        var blockNode = new TreeNode($"Block_{i.ToString().PadLeft(2, '0')}") {
           NodeType = BinaryContentTypes.Node,
         };
         rdaNode.AddChild(blockNode);
@@ -104,22 +106,26 @@ namespace ClassCreator.Serialization.Tree {
         }
       }
 
-      return rdaNode;
+      return mainNode;
     }
 
     public static TreeNode ReadBinaryNode(this FileDB fileDB, TreeNode treeNode = null, string baseNodeName = null) {
       var mainNode = treeNode ?? new TreeNode(baseNodeName ?? "BaseNode");
-      var currentNode = mainNode;
+      //var currentNode = mainNode;
+      var objectStack = new Stack<TreeNode>();
+      objectStack.Push(mainNode);
       foreach (var (Name, serializingType, Content) in fileDB.EnumerateTree()) {
         switch (serializingType) {
           case SerializingType.OpenNode:
             var newNode = new TreeNode(Name) { NodeType = BinaryContentTypes.Node };
-            currentNode.AddChild(newNode);
-            currentNode = newNode;
+            objectStack.Peek().AddChild(newNode);
+            objectStack.Push(newNode);
+            //currentNode = newNode;
             break;
 
           case SerializingType.CloseNode:
-            currentNode = currentNode.Parent;
+            objectStack.Pop();
+            //currentNode = currentNode.Parent;
             break;
 
           case SerializingType.Content:
@@ -127,8 +133,7 @@ namespace ClassCreator.Serialization.Tree {
               NodeType = BinaryContentTypes.Attribute,
               Content = Content
             };
-
-            currentNode.AddChild(newAttribute);
+            objectStack.Peek().AddChild(newAttribute);
             break;
         }
       }

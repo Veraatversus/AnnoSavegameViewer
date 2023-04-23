@@ -19,8 +19,8 @@ namespace AnnoSerializer.Serialization.Memory {
 
     public static string ToHexString(this ReadOnlyMemory<byte> Bytes) {
       var span = Bytes;
-      if (span.Length > 500) {
-        span = span.Slice(0, 500);
+      if (span.Length > 200) {
+        span = span.Slice(0, 200);
       }
       //return BitConverter.ToString(span.ToArray()));
       return string.Create(span.Length * 3, span, (buffer, bytes) => {

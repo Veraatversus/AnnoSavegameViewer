@@ -10,9 +10,9 @@
     <UseWPF>true</UseWPF>
     <EnableNETAnalyzers>true</EnableNETAnalyzers>
   </PropertyGroup>
-  
+
   <PropertyGroup Condition="'$(Configuration)'=='Debug'">
-    <DebugType>portable</DebugType>
+    <DebugType>full</DebugType>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)'=='Release'">
     <DebugType>embedded</DebugType>
@@ -41,12 +41,16 @@
 
   <ItemGroup>
     <Compile Remove="Helper\**" />
+    <Compile Remove="Properties\**" />
     <Compile Remove="Resources\**" />
     <EmbeddedResource Remove="Helper\**" />
+    <EmbeddedResource Remove="Properties\**" />
     <EmbeddedResource Remove="Resources\**" />
     <None Remove="Helper\**" />
+    <None Remove="Properties\**" />
     <None Remove="Resources\**" />
     <Page Remove="Helper\**" />
+    <Page Remove="Properties\**" />
     <Page Remove="Resources\**" />
   </ItemGroup>
 
@@ -64,11 +68,15 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="2.9.8">
+    <PackageReference Include="GitVersionTask" Version="5.5.1">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+    <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="3.3.2">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
   </ItemGroup>
 
   <ItemGroup>
@@ -94,10 +102,6 @@
     </Page>
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Properties\" />
-  </ItemGroup>
-
-  <ProjectExtensions><VisualStudio><UserProperties /></VisualStudio></ProjectExtensions>
+  <ProjectExtensions><VisualStudio><UserProperties BuildVersion_StartDate="2000/1/1" BuildVersion_UseGlobalSettings="True" /></VisualStudio></ProjectExtensions>
 
 </Project>

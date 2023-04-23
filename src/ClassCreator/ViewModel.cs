@@ -16,6 +16,8 @@ namespace ClassCreator {
   using Microsoft.Win32;
   using VAV;
   using VAV.Mvvm;
+  using System.Collections.ObjectModel;
+  using System.Windows.Data;
 
   public class ViewModel : ViewModelBase {
 
@@ -36,7 +38,7 @@ namespace ClassCreator {
         }
       }
     }
-    public TreeChildCollection Tree {
+    public TreeNode Tree {
       get => tree;
       set {
         if (tree != value) {
@@ -116,10 +118,10 @@ namespace ClassCreator {
 
     private void AnalyseNodePatterns(TreeNode treeNode, bool self = true) {
       foreach (var node in treeNode.Descendants(self).ToArray()) {
-        if (node.Pattern.Attribute.ConversationType != ConversationTypes.None && !node.Childs.HasChilds) {
+        if (node.Pattern.Attribute.ConversationType != ConversationTypes.None && !node.ChildsCollection.HasChilds) {
           _ = node.GetCalculatedValue();
           AnalyseNodePatterns(node, false);
-          node.Childs.Clear();
+          node.Clear();
         }
       }
     }
@@ -148,10 +150,10 @@ namespace ClassCreator {
         _ = PatternService.Default.TryLoadPatterns(dialog.FileName);
         FilePath = dialog.FileName;
         var bytes = await File.ReadAllBytesAsync(dialog.FileName);
-        Tree?.Clear();
-        Tree = new TreeChildCollection(null);
+        Tree.Clear();
         var rootNode = new TreeNode($"{PatternService.Default.Name}_File") { NodeType = BinaryContentTypes.Node, Content = bytes };
-        Tree.Add(rootNode);
+        Tree.AddChild(rootNode);
+        Tree.RefreshView();
         RootPatterns = new[] { rootNode.Pattern };
       }
     }
@@ -160,7 +162,7 @@ namespace ClassCreator {
 
     #region Private Fields
 
-    private TreeChildCollection tree;
+    private TreeNode tree = new TreeNode("");
     private TreeNode selectedValue;
     private IEnumerable<PropertyPattern> rootPatterns;
 

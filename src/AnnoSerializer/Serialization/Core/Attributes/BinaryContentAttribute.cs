@@ -98,7 +98,6 @@ namespace AnnoSerializer.Serialization.Core {
       set {
         if (name != value) {
           name = value;
-          RaisePropertyChanged(nameof(Name));
         }
       }
     }
