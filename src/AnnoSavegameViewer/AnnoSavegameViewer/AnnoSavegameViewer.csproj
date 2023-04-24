@@ -1,107 +1,112 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-  <PropertyGroup>
-    <OutputType>WinExe</OutputType>
-    <StartupObject>FileDBReader.Program</StartupObject>
-    <TargetFramework>net5.0-windows</TargetFramework>
-    <RuntimeIdentifier>win-x64</RuntimeIdentifier>
-    <Configuration>Release</Configuration>
-    <SelfContained>false</SelfContained>
-    <PublishSingleFile>true</PublishSingleFile>
-    <UseWPF>true</UseWPF>
-    <EnableNETAnalyzers>true</EnableNETAnalyzers>
-  </PropertyGroup>
+	<PropertyGroup>
+		<OutputType>WinExe</OutputType>
+		<StartupObject>FileDBReader.Program</StartupObject>
+		<TargetFramework>net5.0-windows</TargetFramework>
+		<RuntimeIdentifier>win-x64</RuntimeIdentifier>
+		<Configuration>Release</Configuration>
+		<SelfContained>false</SelfContained>
+		<PublishSingleFile>true</PublishSingleFile>
+		<UseWPF>true</UseWPF>
+		<EnableNETAnalyzers>true</EnableNETAnalyzers>
+		<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+	</PropertyGroup>
 
-  <PropertyGroup Condition="'$(Configuration)'=='Debug'">
-    <DebugType>full</DebugType>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)'=='Release'">
-    <DebugType>embedded</DebugType>
-  </PropertyGroup>
-  
-  <Target Name="ZipOutputPath" AfterTargets="Publish" DependsOnTargets="Publish" Condition="'$(ZipOutputPath)' != ''">
-    <ZipDirectory Condition="'$(SelfContained)' == 'true'" SourceDirectory="$(PublishDir)" DestinationFile="$(ZipOutputPath)\$(AssemblyName)_Standalone.zip" Overwrite="true" />
-    <ZipDirectory Condition="'$(SelfContained)' == 'false'" SourceDirectory="$(PublishDir)" DestinationFile="$(ZipOutputPath)\$(AssemblyName).zip" Overwrite="true" />
-  </Target>
-  
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
-    <DocumentationFile></DocumentationFile>
-    <GenerateSerializationAssemblies>Auto</GenerateSerializationAssemblies>
-    <DebugType>portable</DebugType>
-    <DebugSymbols>true</DebugSymbols>
-  </PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)'=='Debug'">
+		<DebugType>full</DebugType>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)'=='Release'">
+		<DebugType>embedded</DebugType>
+	</PropertyGroup>
 
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
-    <DocumentationFile></DocumentationFile>
-    <GenerateSerializationAssemblies>Auto</GenerateSerializationAssemblies>
-    <DebugType>embedded</DebugType>
-    <DebugSymbols>true</DebugSymbols>
-  </PropertyGroup>
+	<Target Name="ZipOutputPath" AfterTargets="Publish" DependsOnTargets="Publish" Condition="'$(ZipOutputPath)' != ''">
+		<ZipDirectory Condition="'$(SelfContained)' == 'true'" SourceDirectory="$(PublishDir)" DestinationFile="$(ZipOutputPath)\$(AssemblyName)_Standalone.zip" Overwrite="true" />
+		<ZipDirectory Condition="'$(SelfContained)' == 'false'" SourceDirectory="$(PublishDir)" DestinationFile="$(ZipOutputPath)\$(AssemblyName).zip" Overwrite="true" />
+	</Target>
 
-  <ItemGroup>
-    <Compile Remove="Helper\**" />
-    <Compile Remove="Properties\**" />
-    <Compile Remove="Resources\**" />
-    <EmbeddedResource Remove="Helper\**" />
-    <EmbeddedResource Remove="Properties\**" />
-    <EmbeddedResource Remove="Resources\**" />
-    <None Remove="Helper\**" />
-    <None Remove="Properties\**" />
-    <None Remove="Resources\**" />
-    <Page Remove="Helper\**" />
-    <Page Remove="Properties\**" />
-    <Page Remove="Resources\**" />
-  </ItemGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+		<AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+		<DocumentationFile></DocumentationFile>
+		<GenerateSerializationAssemblies>Auto</GenerateSerializationAssemblies>
+		<DebugType>portable</DebugType>
+		<DebugSymbols>true</DebugSymbols>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <Compile Remove="Comparer\GameObjectComparer.cs" />
-    <Compile Remove="Templates\Languages.cs" />
-  </ItemGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+		<AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+		<DocumentationFile></DocumentationFile>
+		<GenerateSerializationAssemblies>Auto</GenerateSerializationAssemblies>
+		<DebugType>embedded</DebugType>
+		<DebugSymbols>true</DebugSymbols>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <None Remove="Anno1800_Fortification_Concept.jpg" />
-  </ItemGroup>
+	<ItemGroup>
+		<Compile Remove="Helper\**" />
+		<Compile Remove="Properties\**" />
+		<Compile Remove="Resources\**" />
+		<EmbeddedResource Remove="Helper\**" />
+		<EmbeddedResource Remove="Properties\**" />
+		<EmbeddedResource Remove="Resources\**" />
+		<None Remove="Helper\**" />
+		<None Remove="Properties\**" />
+		<None Remove="Resources\**" />
+		<Page Remove="Helper\**" />
+		<Page Remove="Properties\**" />
+		<Page Remove="Resources\**" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <Resource Include="Resources\Anno1800_Fortification_Concept.jpg" />
-  </ItemGroup>
+	<ItemGroup>
+		<Compile Remove="Comparer\GameObjectComparer.cs" />
+		<Compile Remove="Templates\Languages.cs" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <PackageReference Include="GitVersionTask" Version="5.5.1">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
-    <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="3.3.2">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
-    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
-  </ItemGroup>
+	<ItemGroup>
+		<None Remove="Anno1800_Fortification_Concept.jpg" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\..\AnnoSerializer\AnnoSerializer.csproj" />
-    <ProjectReference Include="..\GeneratedA7s\GeneratedA7s.csproj" />
-  </ItemGroup>
+	<ItemGroup>
+		<Resource Include="Resources\Anno1800_Fortification_Concept.jpg" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <Compile Update="Controls\Views\SavegameUpgradesView.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="Controls\Views\SavegameBuildingsView.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-  </ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="GitVersion.MsBuild" Version="5.12.0">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
+		<PackageReference Include="Microsoft.CodeAnalysis.NetAnalyzers" Version="7.0.1">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
+		<PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <Page Update="Controls\Views\SavegameUpgradesView.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="Controls\Views\SavegameBuildingsView.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-  </ItemGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\..\AnnoSerializer\AnnoSerializer.csproj" />
+		<ProjectReference Include="..\GeneratedA7s\GeneratedA7s.csproj" />
+	</ItemGroup>
 
-  <ProjectExtensions><VisualStudio><UserProperties BuildVersion_StartDate="2000/1/1" BuildVersion_UseGlobalSettings="True" /></VisualStudio></ProjectExtensions>
+	<ItemGroup>
+		<Compile Update="Controls\Views\SavegameUpgradesView.xaml.cs">
+			<SubType>Code</SubType>
+		</Compile>
+		<Compile Update="Controls\Views\SavegameBuildingsView.xaml.cs">
+			<SubType>Code</SubType>
+		</Compile>
+	</ItemGroup>
+
+	<ItemGroup>
+		<Page Update="Controls\Views\SavegameUpgradesView.xaml">
+			<SubType>Designer</SubType>
+		</Page>
+		<Page Update="Controls\Views\SavegameBuildingsView.xaml">
+			<SubType>Designer</SubType>
+		</Page>
+	</ItemGroup>
+
+	<ProjectExtensions>
+		<VisualStudio>
+			<UserProperties BuildVersion_StartDate="2000/1/1" BuildVersion_UseGlobalSettings="True" />
+		</VisualStudio>
+	</ProjectExtensions>
 
 </Project>

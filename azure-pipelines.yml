@@ -10,7 +10,6 @@ pool:
   vmImage: 'windows-latest'
 
 variables:
-  solution: '**\*.sln'
   buildPlatform: 'Any CPU'
   buildConfiguration: 'Release'
 
@@ -31,11 +30,12 @@ steps:
       Write-Host "Setting the name of the Repository to '$RepoName'."
       Write-Host "##vso[task.setvariable variable=RepoName]$RepoName"
 
-- task: NuGetToolInstaller@1
-
-- task: NuGetCommand@2
+- task: DotNetCoreCLI@2
+  displayName: Restore Nuget depenencies
   inputs:
-    restoreSolution: '$(solution)'
+    command: 'restore'
+    projects: '**/*.csproj'
+    feedsToUse: 'select'
 
 #win-x64
 - task: DotNetCoreCLI@2
