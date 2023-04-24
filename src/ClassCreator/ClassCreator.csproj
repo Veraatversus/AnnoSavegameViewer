@@ -1,83 +1,92 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-  <PropertyGroup>
-    <OutputType>WinExe</OutputType>
-    <TargetFramework>net5.0-windows</TargetFramework>
-    <RuntimeIdentifier>win-x64</RuntimeIdentifier>
-    <Configuration>Release</Configuration>
-    <SelfContained>false</SelfContained>
-    <PublishSingleFile>true</PublishSingleFile>
-    <UseWPF>true</UseWPF>
-    <EnableNETAnalyzers>true</EnableNETAnalyzers>
-    <DebugSymbols>true</DebugSymbols>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)'=='Debug'">
-    <DebugType>full</DebugType>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)'=='Release'">
-    <DebugType>embedded</DebugType>
-  </PropertyGroup>
+	<PropertyGroup>
+		<OutputType>WinExe</OutputType>
+		<TargetFramework>net5.0-windows</TargetFramework>
+		<RuntimeIdentifier>win-x64</RuntimeIdentifier>
+		<Configuration>Release</Configuration>
+		<SelfContained>false</SelfContained>
+		<PublishSingleFile>true</PublishSingleFile>
+		<UseWPF>true</UseWPF>
+		<EnableNETAnalyzers>true</EnableNETAnalyzers>
+		<DebugSymbols>true</DebugSymbols>
+		<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)'=='Debug'">
+		<DebugType>full</DebugType>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)'=='Release'">
+		<DebugType>embedded</DebugType>
+	</PropertyGroup>
 
-  <Target Name="ZipOutputPath" AfterTargets="Publish" DependsOnTargets="Publish" Condition="'$(ZipOutputPath)' != ''">
-    <ZipDirectory Condition="'$(SelfContained)' == 'true'" SourceDirectory="$(PublishDir)" DestinationFile="$(ZipOutputPath)\$(AssemblyName)_Standalone.zip" Overwrite="true" />
-    <ZipDirectory Condition="'$(SelfContained)' == 'false'" SourceDirectory="$(PublishDir)" DestinationFile="$(ZipOutputPath)\$(AssemblyName).zip" Overwrite="true" />
-  </Target>
-  
-  <ItemGroup>
-    <Compile Remove="bin\**" />
-    <Compile Remove="Converter\**" />
-    <Compile Remove="Properties\**" />
-    <Compile Remove="TreeNode\**" />
-    <Compile Remove="Tree\**" />
-    <EmbeddedResource Remove="bin\**" />
-    <EmbeddedResource Remove="Converter\**" />
-    <EmbeddedResource Remove="Properties\**" />
-    <EmbeddedResource Remove="TreeNode\**" />
-    <EmbeddedResource Remove="Tree\**" />
-    <None Remove="bin\**" />
-    <None Remove="Converter\**" />
-    <None Remove="Properties\**" />
-    <None Remove="TreeNode\**" />
-    <None Remove="Tree\**" />
-    <Page Remove="bin\**" />
-    <Page Remove="Converter\**" />
-    <Page Remove="Properties\**" />
-    <Page Remove="TreeNode\**" />
-    <Page Remove="Tree\**" />
-  </ItemGroup>
+	<Target Name="ZipOutputPath" AfterTargets="Publish" DependsOnTargets="Publish" Condition="'$(ZipOutputPath)' != ''">
+		<ZipDirectory Condition="'$(SelfContained)' == 'true'" SourceDirectory="$(PublishDir)" DestinationFile="$(ZipOutputPath)\$(AssemblyName)_Standalone.zip" Overwrite="true" />
+		<ZipDirectory Condition="'$(SelfContained)' == 'false'" SourceDirectory="$(PublishDir)" DestinationFile="$(ZipOutputPath)\$(AssemblyName).zip" Overwrite="true" />
+	</Target>
 
-  <ItemGroup>
-    <Compile Remove="TreeNodeItemTemplateSelector.cs" />
-    <Compile Remove="TreeViewItemConverts.cs" />
-  </ItemGroup>
+	<ItemGroup>
+		<Compile Remove="bin\**" />
+		<Compile Remove="Converter\**" />
+		<Compile Remove="Properties\**" />
+		<Compile Remove="TreeNode\**" />
+		<Compile Remove="Tree\**" />
+		<EmbeddedResource Remove="bin\**" />
+		<EmbeddedResource Remove="Converter\**" />
+		<EmbeddedResource Remove="Properties\**" />
+		<EmbeddedResource Remove="TreeNode\**" />
+		<EmbeddedResource Remove="Tree\**" />
+		<None Remove="bin\**" />
+		<None Remove="Converter\**" />
+		<None Remove="Properties\**" />
+		<None Remove="TreeNode\**" />
+		<None Remove="Tree\**" />
+		<Page Remove="bin\**" />
+		<Page Remove="Converter\**" />
+		<Page Remove="Properties\**" />
+		<Page Remove="TreeNode\**" />
+		<Page Remove="Tree\**" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <PackageReference Include="GitVersionTask" Version="5.5.1">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
-    <PackageReference Include="Microsoft.Xaml.Behaviors.Wpf" Version="1.1.39" />
-    <PackageReference Include="VAV.Core" Version="1.0.0.2" />
-  </ItemGroup>
+	<ItemGroup>
+		<Compile Remove="TreeNodeItemTemplateSelector.cs" />
+		<Compile Remove="TreeViewItemConverts.cs" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\AnnoSerializer\AnnoSerializer.csproj" />
-  </ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="GitVersion.MsBuild" Version="5.12.0">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
+		<PackageReference Include="Microsoft.CodeAnalysis.NetAnalyzers" Version="7.0.1">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
+		<PackageReference Include="Microsoft.Xaml.Behaviors.Wpf" Version="1.1.39" />
+		<PackageReference Include="VAV.Core" Version="1.0.0.2" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <None Update="Patterns\a7m.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="Patterns\a7s.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="Patterns\db.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="Patterns\tmc.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-  </ItemGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\AnnoSerializer\AnnoSerializer.csproj" />
+	</ItemGroup>
 
-  <ProjectExtensions><VisualStudio><UserProperties BuildVersion_StartDate="2000/1/1" BuildVersion_UseGlobalSettings="True" /></VisualStudio></ProjectExtensions>
+	<ItemGroup>
+		<None Update="Patterns\a7m.json">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
+		<None Update="Patterns\a7s.json">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
+		<None Update="Patterns\db.json">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
+		<None Update="Patterns\tmc.json">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
+	</ItemGroup>
+
+	<ProjectExtensions>
+		<VisualStudio>
+			<UserProperties BuildVersion_StartDate="2000/1/1" BuildVersion_UseGlobalSettings="True" />
+		</VisualStudio>
+	</ProjectExtensions>
 
 </Project>
